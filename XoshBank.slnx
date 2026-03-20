@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SQLConnection/SQLConnection.csproj" />
+  <Project Path="XoshBank/XoshBank.csproj" />
+</Solution>
