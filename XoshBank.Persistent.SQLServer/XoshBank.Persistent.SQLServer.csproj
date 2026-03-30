@@ -51,5 +51,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XoshBank.Core\XoshBank.Core.csproj">
+      <Project>{25c543d9-d122-4dea-8502-231b8b4d5dc1}</Project>
+      <Name>XoshBank.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using XoshBankCore.Entities.Repositories;
 
-namespace SQLConnection.Entities.Repositories
+namespace XoshBankCore.Entities.Repositories
 {
     internal interface IUnityOfWork
     {
-        IBrachesRepository Branches { get; }
+        IBranchesRepository Branches { get; }
         ILoansRepository Loans { get; }
     }
 }

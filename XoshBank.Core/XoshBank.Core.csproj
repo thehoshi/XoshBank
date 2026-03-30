@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Entities\Interfaces\Branches.cs" />
     <Compile Include="Entities\Repositories\IBaseRepository.cs" />
-    <Compile Include="Entities\Repositories\IBrahchesRepository.cs" />
+    <Compile Include="Entities\Repositories\IBranchesRepository.cs" />
     <Compile Include="Entities\Repositories\ILoansRepository.cs" />
     <Compile Include="Entities\Repositories\IUnityOfWork.cs" />
     <Compile Include="Program.cs" />

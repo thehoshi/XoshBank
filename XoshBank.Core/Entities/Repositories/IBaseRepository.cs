@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace XoshBankCore.Entities.Repositories
 {
-    interface IBaseRepository<T>
+    public interface IBaseRepository<T>
     {
             List<T> GetAll();
             T GetById(int id);
