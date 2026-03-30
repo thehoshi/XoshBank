@@ -1,9 +1,11 @@
-﻿using XoshBankCore.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+using XoshBankCore;
+using XoshBankCore.Entities;
 using XoshBankCore.Entities.Repositories;
 
 namespace XoshBank.Persistent.SQLServer.Repositories
@@ -17,7 +19,8 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             _connectionString = connectionString;
         }
 
-        private IBranchesRepository _branchesRepository;
+        public IBranchesRepository Branches => new MsSQLBranchesRepository(_connectionString);
+        public ILoansRepository Loans => new MsSQLLoansRepository(_connectionString);
 
 
     }
