@@ -9,5 +9,6 @@ namespace XoshBankCore.Entities.Repositories
     public interface IBranchesRepository : IBaseRepository<Branches>
     {
 
+
     }
 }

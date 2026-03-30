@@ -7,7 +7,7 @@ using XoshBankCore.Entities.Repositories;
 
 namespace XoshBankCore.Entities.Repositories
 {
-    internal interface IUnityOfWork
+    public interface IUnitOfWork
     {
         IBranchesRepository Branches { get; }
         ILoansRepository Loans { get; }
