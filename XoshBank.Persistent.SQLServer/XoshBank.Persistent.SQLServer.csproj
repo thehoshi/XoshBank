@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{25C543D9-D122-4DEA-8502-231B8B4D5DC1}</ProjectGuid>
+    <ProjectGuid>{FA322679-56EA-4428-8FCD-18B61343C89F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SQLConnection</RootNamespace>
-    <AssemblyName>SQLConnection</AssemblyName>
+    <RootNamespace>XoshBank.Persistent.SQLServer</RootNamespace>
+    <AssemblyName>XoshBank.Persistent.SQLServer</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,19 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tables\Branches.cs" />
-    <Compile Include="DataAccessManager.cs" />
+    <Compile Include="Repositories\MsSQLBranchesRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tables\Loans.cs" />
+    <Compile Include="Repositories\MsSQLUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XoshBank\XoshBank.csproj">
-      <Project>{3e1057c6-2999-4937-be27-e181d87388db}</Project>
-      <Name>XoshBank</Name>
+    <ProjectReference Include="..\SQLConnection\XoshBank.Core.csproj">
+      <Project>{25c543d9-d122-4dea-8502-231b8b4d5dc1}</Project>
+      <Name>XoshBank.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
