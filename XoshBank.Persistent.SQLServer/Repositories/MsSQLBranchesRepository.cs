@@ -68,7 +68,7 @@ namespace XoshBank.Persistent.SQLServer
                         {
                             return new Branches
                             {
-                                BranchID = reader["BranchID"] != DBNull.Value ? (int?)Convert.ToInt32(reader["Id"]) : null,
+                                BranchID = reader["BranchID"] != DBNull.Value ? (int?)Convert.ToInt32(reader["BranchID"]) : null,
                                 BranchName = reader["BranchName"] as string,
                                 City = reader["City"] as string,
                                 Address = reader["Address"] as string,
@@ -114,7 +114,7 @@ namespace XoshBank.Persistent.SQLServer
                 connection.Open();
                 var command = new SqlCommand(
                     "UPDATE Branches SET BranchName = @BranchName, City = @City, Address = @Address, ManagerName = @ManagerName, PhoneNumber = @PhoneNumber, EmployeeCount = @EmployeeCount, OpeningDate = @OpeningDate, Revenue = @Revenue, Expenses = @Expenses " +
-                    "WHERE BranchID = @Id",
+                    "WHERE BranchID = @BranchID",
                     connection);
                 command.Parameters.AddWithValue("@BranchID", entity.BranchID);
                 command.Parameters.AddWithValue("@BranchName", entity.BranchName);

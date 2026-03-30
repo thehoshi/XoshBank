@@ -131,6 +131,8 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 command.Parameters.AddWithValue("@Notes", entity.Notes);
                 command.Parameters.AddWithValue("@CreatedAt", (object)entity.CreatedAt ?? DBNull.Value);
                 command.Parameters.AddWithValue("@UpdatedAt", (object)entity.UpdatedAt ?? DBNull.Value);
+
+                command.ExecuteNonQuery();
             }
         }
         public void Update(Loans entity)
