@@ -56,7 +56,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\XoshBank\XoshBank.Desktop.csproj">
+    <ProjectReference Include="..\XoshBank.Desktop\XoshBank.Desktop.csproj">
       <Project>{3e1057c6-2999-4937-be27-e181d87388db}</Project>
       <Name>XoshBank.Desktop</Name>
     </ProjectReference>

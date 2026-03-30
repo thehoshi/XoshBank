@@ -9,7 +9,7 @@ namespace SQLConnection.Entities.Repositories
 {
     internal interface IUnityOfWork
     {
-        IBrahchesRepository Branches { get; }
+        IBrachesRepository Branches { get; }
         ILoansRepository Loans { get; }
     }
 }
