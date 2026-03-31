@@ -43,7 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Cards.cs" />
+    <Compile Include="Entities\Emloyees.cs" />
     <Compile Include="Entities\Interfaces\Branches.cs" />
+    <Compile Include="Entities\Interfaces\ICardRepository.cs" />
+    <Compile Include="Entities\Interfaces\IEmployeeRepository.cs" />
+    <Compile Include="Entities\Repositories\CardRepository.cs" />
+    <Compile Include="Entities\Repositories\EmployeeRepository.cs" />
     <Compile Include="Entities\Repositories\IBaseRepository.cs" />
     <Compile Include="Entities\Repositories\IBranchesRepository.cs" />
     <Compile Include="Entities\Repositories\ILoansRepository.cs" />
