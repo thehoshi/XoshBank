@@ -43,9 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repositories\MsSQLAccountsRepository.cs" />
     <Compile Include="Repositories\MsSQLBranchesRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\MsSQLCustomersRepository.cs" />
     <Compile Include="Repositories\MsSQLLoansRepository.cs" />
     <Compile Include="Repositories\MsSQLUnitOfWork.cs" />
   </ItemGroup>

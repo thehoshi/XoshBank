@@ -43,20 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Accounts.cs" />
     <Compile Include="Entities\Cards.cs" />
+    <Compile Include="Entities\Customers.cs" />
     <Compile Include="Entities\Emloyees.cs" />
-    <Compile Include="Entities\Interfaces\Branches.cs" />
-    <Compile Include="Entities\Interfaces\ICardRepository.cs" />
-    <Compile Include="Entities\Interfaces\IEmployeeRepository.cs" />
-    <Compile Include="Entities\Repositories\CardRepository.cs" />
-    <Compile Include="Entities\Repositories\EmployeeRepository.cs" />
-    <Compile Include="Entities\Repositories\IBaseRepository.cs" />
-    <Compile Include="Entities\Repositories\IBranchesRepository.cs" />
-    <Compile Include="Entities\Repositories\ILoansRepository.cs" />
-    <Compile Include="Entities\Repositories\IUnitOfWork.cs" />
+    <Compile Include="Entities\Branches.cs" />
+    <Compile Include="Entities\Interfaces\IDbEntities.cs" />
+    <Compile Include="Entities\Interfaces\IDeletable.cs" />
+    <Compile Include="Repositories\AccountRepository.cs" />
+    <Compile Include="Repositories\CardRepository.cs" />
+    <Compile Include="Repositories\CustomersRepository.cs" />
+    <Compile Include="Repositories\EmployeeRepository.cs" />
+    <Compile Include="Repositories\IBaseRepository.cs" />
+    <Compile Include="Repositories\BranchesRepository.cs" />
+    <Compile Include="Repositories\LoansRepository.cs" />
+    <Compile Include="Repositories\IUnitOfWork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\Interfaces\Loans.cs" />
+    <Compile Include="Entities\Loans.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using XoshBank.Entities.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace XoshBankCore
 {
-    public class Branches
+    public class Branches : IDeletable
     {
-        public int? BranchID { get; set; }
+        public int ID { get; set; }
         public string BranchName { get; set; } = string.Empty;
         public string City { get; set; } = string.Empty;
         public string Address { get; set; } = string.Empty;
@@ -18,5 +19,6 @@ namespace XoshBankCore
         public DateTime? OpeningDate { get; set; }
         public double? Revenue { get; set; }
         public double? Expenses { get; set; }
+        public DateTime? DeletedAt { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using XoshBankCore.Entities.Repositories;
 
 namespace XoshBank.Persistent.SQLServer.Repositories
 {
-    public class MsSQLLoansRepository : ILoansRepository
+    public class MsSQLLoansRepository : LoansRepository
     {
         private readonly string _connectionString;
 
@@ -33,7 +33,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     {
                         loans.Add(new Loans
                         {
-                            LoanID = reader.GetInt32(0),
+                            ID = reader.GetInt32(0),
                             CustomerID = reader.GetInt32(1),
                             ApprovedBy = reader.GetInt32(2),
                             BranchID = reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
@@ -74,7 +74,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     {
                         return new Loans
                         {
-                            LoanID = reader.GetInt32(0),
+                            ID = reader.GetInt32(0),
                             CustomerID = reader.GetInt32(1),
                             ApprovedBy = reader.GetInt32(2),
                             BranchID = reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
@@ -143,7 +143,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 var command = new SqlCommand(
                     "UPDATE Loans SET CustomerID = @CustomerID, ApprovedBy = @ApprovedBy, BranchID = @BranchID, Amount = @Amount, InterestRate = @InterestRate, TotalAmount = @TotalAmount, MonthlyPayment = @MonthlyPayment, Status = @Status, LoanType = @LoanType, Currency = @Currency, StartDate = @StartDate, EndDate = @EndDate, ApprovalDate = @ApprovalDate, DurationMonths = @DurationMonths, LatePaymentFee = @LatePaymentFee, PenaltyRate = @PenaltyRate, Collateral = @Collateral, Notes = @Notes, CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt WHERE LoanID = @LoanID",
                     connection);
-                command.Parameters.AddWithValue("@LoanID", entity.LoanID);
+                command.Parameters.AddWithValue("@LoanID", entity.ID);
                 command.Parameters.AddWithValue("@CustomerID", entity.CustomerID);
                 command.Parameters.AddWithValue("@ApprovedBy", entity.ApprovedBy);
                 command.Parameters.AddWithValue("@BranchID", (object)entity.BranchID ?? DBNull.Value);
@@ -178,3 +178,4 @@ namespace XoshBank.Persistent.SQLServer.Repositories
         }
     }
 }
+

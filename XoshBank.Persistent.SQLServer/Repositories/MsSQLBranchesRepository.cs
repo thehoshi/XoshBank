@@ -9,7 +9,8 @@ using XoshBankCore.Entities;
 using XoshBankCore.Entities.Repositories;
 
 namespace XoshBank.Persistent.SQLServer
-{    public class MsSQLBranchesRepository : IBranchesRepository
+{
+    public class MsSQLBranchesRepository : BranchesRepository
     {
         private readonly string _connectionString;
 
@@ -32,7 +33,7 @@ namespace XoshBank.Persistent.SQLServer
                     {
                         var branch = new Branches
                         {
-                            BranchID = reader["BranchID"] != DBNull.Value ? (int?)Convert.ToInt32(reader["BranchID"]) : null,
+                            ID = reader["BranchID"] != DBNull.Value ? Convert.ToInt32(reader["BranchID"]) : 0,
                             BranchName = reader["BranchName"] as string,
                             City = reader["City"] as string,
                             Address = reader["Address"] as string,
@@ -68,7 +69,7 @@ namespace XoshBank.Persistent.SQLServer
                         {
                             return new Branches
                             {
-                                BranchID = reader["BranchID"] != DBNull.Value ? (int?)Convert.ToInt32(reader["BranchID"]) : null,
+                                ID = reader["BranchID"] != DBNull.Value ? Convert.ToInt32(reader["BranchID"]) : 0,
                                 BranchName = reader["BranchName"] as string,
                                 City = reader["City"] as string,
                                 Address = reader["Address"] as string,
@@ -116,7 +117,7 @@ namespace XoshBank.Persistent.SQLServer
                     "UPDATE Branches SET BranchName = @BranchName, City = @City, Address = @Address, ManagerName = @ManagerName, PhoneNumber = @PhoneNumber, EmployeeCount = @EmployeeCount, OpeningDate = @OpeningDate, Revenue = @Revenue, Expenses = @Expenses " +
                     "WHERE BranchID = @BranchID",
                     connection);
-                command.Parameters.AddWithValue("@BranchID", entity.BranchID);
+                command.Parameters.AddWithValue("@BranchID", entity.ID);
                 command.Parameters.AddWithValue("@BranchName", entity.BranchName);
                 command.Parameters.AddWithValue("@City", entity.City);
                 command.Parameters.AddWithValue("@Address", entity.Address);

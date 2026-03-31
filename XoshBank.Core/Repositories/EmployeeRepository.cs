@@ -8,7 +8,7 @@ using XoshBankCore;
 namespace XoshBankCore.Entities.Repositories 
 { 
 
-    public class EmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository : IBaseRepository<Employee>
     {
         private readonly List<Employee> _employees = new List<Employee>();
 

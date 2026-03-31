@@ -19,9 +19,10 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             _connectionString = connectionString;
         }
 
-        public IBranchesRepository Branches => new MsSQLBranchesRepository(_connectionString);
-        public ILoansRepository Loans => new MsSQLLoansRepository(_connectionString);
-
+        public BranchesRepository Branches => new MsSQLBranchesRepository(_connectionString);
+        public LoansRepository Loans => new MsSQLLoansRepository(_connectionString);
+        public AccountsRepository Accounts => new MsSQLAccountsRepository(_connectionString);
+        public CustomersRepository Customers => new MsSQLCustomersRepository(_connectionString);
 
     }
 }

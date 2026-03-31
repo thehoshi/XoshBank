@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using XoshBank.Entities.Interfaces;
+
+namespace XoshBank.Entities.Interfaces
+{
+    public interface IDbEntities
+    {
+        int ID { get; set; }
+    }
+}
+

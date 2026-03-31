@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XoshBankCore.Entities.Repositories
+namespace XoshBank.Entities.Interfaces
 {
-    public interface ILoansRepository : IBaseRepository<Loans>
+    public interface IDeletable : IDbEntities
     {
-
+        DateTime? DeletedAt { get; set; }
     }
 }
