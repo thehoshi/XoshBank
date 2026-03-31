@@ -48,8 +48,8 @@
     <Compile Include="Entities\Customers.cs" />
     <Compile Include="Entities\Emloyees.cs" />
     <Compile Include="Entities\Branches.cs" />
-    <Compile Include="Entities\Interfaces\IDbEntities.cs" />
-    <Compile Include="Entities\Interfaces\IDeletable.cs" />
+    <Compile Include="Entities\Interfaces\IDbEntity.cs" />
+    <Compile Include="Entities\Interfaces\IDeletableDbEntity.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\CardRepository.cs" />
     <Compile Include="Repositories\CustomersRepository.cs" />

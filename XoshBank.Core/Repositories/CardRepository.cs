@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using XoshBankCore.Entities;
 using XoshBankCore.Entities.Repositories;
-using XoshBankCore.Interfaces;  
 
 namespace XoshBankCore.Repositories
 {
@@ -16,8 +13,6 @@ namespace XoshBankCore.Repositories
         public void Add(Card card) => _cards.Add(card);
 
         public Card GetById(int id) => _cards.FirstOrDefault(c => c.ID == id);
-
-        public IEnumerable<Card> GetAll() => _cards;
 
         public void Update(Card card)
         {
@@ -35,6 +30,16 @@ namespace XoshBankCore.Repositories
             var card = GetById(id);
             if (card != null)
                 _cards.Remove(card);
+        }
+
+        public List<Card> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(Card entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }
