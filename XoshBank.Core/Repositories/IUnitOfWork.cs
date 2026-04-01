@@ -13,5 +13,8 @@ namespace XoshBankCore.Entities.Repositories
         LoansRepository Loans { get; }
         AccountsRepository Accounts { get; }
         CustomersRepository Customers { get; }
+        ICardRepository Card { get; }
+        IEmployeeRepository Employee { get; }
+
     }
 }

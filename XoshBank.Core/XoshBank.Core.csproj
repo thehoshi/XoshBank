@@ -44,18 +44,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Accounts.cs" />
-    <Compile Include="Entities\Cards.cs" />
+    <Compile Include="Entities\Card.cs" />
     <Compile Include="Entities\Customers.cs" />
-    <Compile Include="Entities\Emloyees.cs" />
     <Compile Include="Entities\Branches.cs" />
+    <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\Interfaces\IDbEntity.cs" />
     <Compile Include="Entities\Interfaces\IDeletableDbEntity.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
-    <Compile Include="Repositories\CardRepository.cs" />
     <Compile Include="Repositories\CustomersRepository.cs" />
-    <Compile Include="Repositories\EmployeeRepository.cs" />
     <Compile Include="Repositories\IBaseRepository.cs" />
     <Compile Include="Repositories\BranchesRepository.cs" />
+    <Compile Include="Repositories\ICardRepository.cs" />
+    <Compile Include="Repositories\IEmployeeRepository.cs" />
     <Compile Include="Repositories\LoansRepository.cs" />
     <Compile Include="Repositories\IUnitOfWork.cs" />
     <Compile Include="Program.cs" />

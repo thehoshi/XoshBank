@@ -10,7 +10,7 @@ using XoshBankCore.Entities.Repositories;
 
 namespace XoshBank.Persistent.SQLServer.Repositories
 {
-    public class MsSQLUnitOfWork : IUnitOfWork
+    public class  MsSQLUnitOfWork : IUnitOfWork
     {
         private readonly string _connectionString;
 
@@ -23,6 +23,11 @@ namespace XoshBank.Persistent.SQLServer.Repositories
         public LoansRepository Loans => new MsSQLLoansRepository(_connectionString);
         public AccountsRepository Accounts => new MsSQLAccountsRepository(_connectionString);
         public CustomersRepository Customers => new MsSQLCustomersRepository(_connectionString);
+        public ICardRepository Card => new MsSqlCardRepository(_connectionString);
+        public IEmployeeRepository Employee => new MsSqlEmployeeRepository(_connectionString);
 
     }
 }
+    
+
+

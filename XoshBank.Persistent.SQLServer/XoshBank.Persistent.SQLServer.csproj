@@ -47,7 +47,9 @@
     <Compile Include="Repositories\MsSQLBranchesRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\MsSQLCardRepository.cs" />
     <Compile Include="Repositories\MsSQLCustomersRepository.cs" />
+    <Compile Include="Repositories\MsSQLEmployeeRepository.cs" />
     <Compile Include="Repositories\MsSQLLoansRepository.cs" />
     <Compile Include="Repositories\MsSQLUnitOfWork.cs" />
   </ItemGroup>
