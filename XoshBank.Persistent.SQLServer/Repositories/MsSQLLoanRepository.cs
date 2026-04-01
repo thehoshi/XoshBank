@@ -10,28 +10,28 @@ using XoshBankCore.Entities.Repositories;
 
 namespace XoshBank.Persistent.SQLServer.Repositories
 {
-    public class MsSQLLoansRepository : LoansRepository
+    public class MsSQLLoanRepository : ILoanRepository
     {
         private readonly string _connectionString;
 
-        public MsSQLLoansRepository(string connectionString)
+        public MsSQLLoanRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public List<Loans> GetAll()
+        public List<Loan> GetAll()
         {
-            var loans = new List<Loans>();
+            var loans = new List<Loan>();
 
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("SELECT * FROM Loans", connection);
+                var command = new SqlCommand("SELECT * FROM Loan", connection);
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        loans.Add(new Loans
+                        loans.Add(new Loan
                         {
                             ID = reader.GetInt32(0),
                             CustomerID = reader.GetInt32(1),
@@ -61,18 +61,18 @@ namespace XoshBank.Persistent.SQLServer.Repositories
 
             return loans;
         }
-        public Loans GetById(int id)
+        public Loan GetById(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("SELECT * FROM Loans WHERE LoanID = @LoanID", connection);
+                var command = new SqlCommand("SELECT * FROM Loan WHERE LoanID = @LoanID", connection);
                 command.Parameters.AddWithValue("@LoanID", id);
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
-                        return new Loans
+                        return new Loan
                         {
                             ID = reader.GetInt32(0),
                             CustomerID = reader.GetInt32(1),
@@ -102,13 +102,13 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             return null;
 
         }
-        public void Insert(Loans entity)
+        public void Insert(Loan entity)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "INSERT INTO Loans (CustomerID, ApprovedBy, BranchID, Amount, InterestRate, TotalAmount, MonthlyPayment, Status, LoanType, Currency, StartDate, EndDate, ApprovalDate, DurationMonths, LatePaymentFee, PenaltyRate, Collateral, Notes, CreatedAt, UpdatedAt) " +
+                    "INSERT INTO Loan (CustomerID, ApprovedBy, BranchID, Amount, InterestRate, TotalAmount, MonthlyPayment, Status, LoanType, Currency, StartDate, EndDate, ApprovalDate, DurationMonths, LatePaymentFee, PenaltyRate, Collateral, Notes, CreatedAt, UpdatedAt) " +
                     "VALUES (@CustomerID, @ApprovedBy, @BranchID, @Amount, @InterestRate, @TotalAmount, @MonthlyPayment, @Status, @LoanType, @Currency, @StartDate, @EndDate, @ApprovalDate, @DurationMonths, @LatePaymentFee, @PenaltyRate, @Collateral, @Notes, @CreatedAt, @UpdatedAt)",
                     connection);
                 command.Parameters.AddWithValue("@CustomerID", entity.CustomerID);
@@ -135,13 +135,13 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 command.ExecuteNonQuery();
             }
         }
-        public void Update(Loans entity)
+        public void Update(Loan entity)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "UPDATE Loans SET CustomerID = @CustomerID, ApprovedBy = @ApprovedBy, BranchID = @BranchID, Amount = @Amount, InterestRate = @InterestRate, TotalAmount = @TotalAmount, MonthlyPayment = @MonthlyPayment, Status = @Status, LoanType = @LoanType, Currency = @Currency, StartDate = @StartDate, EndDate = @EndDate, ApprovalDate = @ApprovalDate, DurationMonths = @DurationMonths, LatePaymentFee = @LatePaymentFee, PenaltyRate = @PenaltyRate, Collateral = @Collateral, Notes = @Notes, CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt WHERE LoanID = @LoanID",
+                    "UPDATE Loan SET CustomerID = @CustomerID, ApprovedBy = @ApprovedBy, BranchID = @BranchID, Amount = @Amount, InterestRate = @InterestRate, TotalAmount = @TotalAmount, MonthlyPayment = @MonthlyPayment, Status = @Status, LoanType = @LoanType, Currency = @Currency, StartDate = @StartDate, EndDate = @EndDate, ApprovalDate = @ApprovalDate, DurationMonths = @DurationMonths, LatePaymentFee = @LatePaymentFee, PenaltyRate = @PenaltyRate, Collateral = @Collateral, Notes = @Notes, CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt WHERE LoanID = @LoanID",
                     connection);
                 command.Parameters.AddWithValue("@LoanID", entity.ID);
                 command.Parameters.AddWithValue("@CustomerID", entity.CustomerID);
@@ -171,7 +171,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("DELETE FROM Loans WHERE LoanID = @LoanID", connection);
+                var command = new SqlCommand("DELETE FROM Loan WHERE LoanID = @LoanID", connection);
                 command.Parameters.AddWithValue("@LoanID", id);
                 command.ExecuteNonQuery();
             }

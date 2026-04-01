@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace XoshBankCore
 {
-    public class Branches : IDeletableDbEntity
+    public class Branch : IDeletableDbEntity
     {
         public int ID { get; set; }
         public string BranchName { get; set; } = string.Empty;

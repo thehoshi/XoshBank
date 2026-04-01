@@ -9,10 +9,10 @@ namespace XoshBankCore.Entities.Repositories
 {
     public interface IUnitOfWork
     {
-        BranchesRepository Branches { get; }
-        LoansRepository Loans { get; }
-        AccountsRepository Accounts { get; }
-        CustomersRepository Customers { get; }
+        IBranchRepository Branches { get; }
+        ILoanRepository Loans { get; }
+        IAccountRepository Accounts { get; }
+        ICustomerRepository Customers { get; }
         ICardRepository Card { get; }
         IEmployeeRepository Employee { get; }
 

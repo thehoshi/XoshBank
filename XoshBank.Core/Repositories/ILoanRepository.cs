@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace XoshBankCore.Entities.Repositories
 {
-    public interface LoansRepository : IBaseRepository<Loans>
+    public interface ILoanRepository : IBaseRepository<Loan>
     {
 
     }

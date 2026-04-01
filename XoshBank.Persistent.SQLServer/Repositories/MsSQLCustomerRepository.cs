@@ -5,11 +5,11 @@ using XoshBankCore.Entities.Repositories;
 
 namespace XoshBank.Persistent.SQLServer.Repositories
 {
-    public class MsSQLCustomersRepository : CustomersRepository
+    public class MsSQLCustomerRepository : ICustomerRepository
     {
         private string connectionString;
 
-        public MsSQLCustomersRepository(string connectionString)
+        public MsSQLCustomerRepository(string connectionString)
         {
             this.connectionString = connectionString;
         }
@@ -19,22 +19,22 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             throw new NotImplementedException();
         }
 
-        public List<Customers> GetAll()
+        public List<Customer> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Customers GetById(int id)
+        public Customer GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(Customers entity)
+        public void Insert(Customer entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Customers entity)
+        public void Update(Customer entity)
         {
             throw new NotImplementedException();
         }

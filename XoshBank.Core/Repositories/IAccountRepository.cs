@@ -9,7 +9,7 @@ using XoshBankCore.Entities.Repositories;
 
 namespace XoshBankCore.Entities.Repositories
 {
-    public interface AccountsRepository : IBaseRepository<Accounts>
+    public interface IAccountRepository : IBaseRepository<Account>
     {
 
     }

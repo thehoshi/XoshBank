@@ -7,7 +7,7 @@ using XoshBank.Entities.Interfaces;
 
 namespace XoshBank.Entities
 {
-    public class Customers : IDeletableDbEntity
+    public class Customer : IDeletableDbEntity
     {
         public int ID { get; set; }
         public string FirstName { get; set; }

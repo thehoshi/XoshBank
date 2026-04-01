@@ -6,11 +6,11 @@ using XoshBankCore.Entities.Repositories;
 
 namespace XoshBank.Persistent.SQLServer.Repositories
 {
-    public class MsSQLAccountsRepository : AccountsRepository
+    public class MsSQLAccountRepository : IAccountRepository
     {
         private readonly string _connectionString;
 
-        public MsSQLAccountsRepository(string connectionString)
+        public MsSQLAccountRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -20,7 +20,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "UPDATE Accounts SET DeletedAt = @DeletedAt WHERE Id = @Id AND DeletedAt IS NULL",
+                    "UPDATE Account SET DeletedAt = @DeletedAt WHERE Id = @Id AND DeletedAt IS NULL",
                     connection);
 
                 command.Parameters.AddWithValue("@DeletedAt", DateTime.Now);
@@ -30,19 +30,19 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             }
         }
 
-        public List<Accounts> GetAll()
+        public List<Account> GetAll()
         {
-            var accounts = new List<Accounts>();
+            var accounts = new List<Account>();
 
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                using (var command = new SqlCommand("SELECT * FROM Accounts", connection))
+                using (var command = new SqlCommand("SELECT * FROM Account", connection))
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        var account = new Accounts
+                        var account = new Account
                         {
                             ID = Convert.ToInt32(reader["AccountsID"]),
                             CustomerID = Convert.ToInt32(reader["CustomerID"]),
@@ -61,17 +61,17 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             return accounts;
         }
 
-        public Accounts GetById(int id)
+        public Account GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(Accounts entity)
+        public void Insert(Account entity)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Accounts entity)
+        public void Update(Account entity)
         {
             throw new NotImplementedException();
         }

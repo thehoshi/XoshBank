@@ -7,7 +7,7 @@ using XoshBank.Entities;
 
 namespace XoshBankCore.Entities.Repositories
 {
-    public interface CustomersRepository : IBaseRepository<Customers>
+    public interface ICustomerRepository : IBaseRepository<Customer>
     {
 
     }
