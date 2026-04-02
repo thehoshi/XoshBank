@@ -16,16 +16,19 @@ namespace XoshBank
     /// </summary>
     public partial class App : Application
     {
-
-        SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder
+        public App()
         {
-            DataSource = "localhost",
-            InitialCatalog = "LibraryManagement",
-            IntegratedSecurity = true
-        };
+            SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder
+            {
+                DataSource = "localhost",
+                InitialCatalog = "LibraryManagement",
+                IntegratedSecurity = true
+            };
 
-        string connectionString = connectionStringBuilder.ConnectionString;
+            string connectionString = connectionStringBuilder.ConnectionString;
 
-        IUnitOfWork db = new MsSQLUnitOfWork(connectionString);
+            IUnitOfWork db = new MsSQLUnitOfWork(connectionString);
+
+        }
     }
 }
