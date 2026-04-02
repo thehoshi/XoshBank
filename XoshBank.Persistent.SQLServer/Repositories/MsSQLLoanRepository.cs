@@ -19,6 +19,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             _connectionString = connectionString;
         }
 
+        #region GetAll
         public List<Loan> GetAll()
         {
             var loans = new List<Loan>();
@@ -61,6 +62,10 @@ namespace XoshBank.Persistent.SQLServer.Repositories
 
             return loans;
         }
+        #endregion
+
+        #region GetByID
+
         public Loan GetById(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -102,6 +107,9 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             return null;
 
         }
+        #endregion
+
+        #region Insert
         public void Insert(Loan entity)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -135,6 +143,9 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 command.ExecuteNonQuery();
             }
         }
+        #endregion
+
+        #region Update
         public void Update(Loan entity)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -166,6 +177,9 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 command.Parameters.AddWithValue("@UpdatedAt", (object)entity.UpdatedAt ?? DBNull.Value);
             }
         }
+        #endregion
+
+        #region Delete
         public void Delete(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -176,6 +190,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 command.ExecuteNonQuery();
             }
         }
+        #endregion
     }
 }
 

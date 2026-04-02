@@ -19,6 +19,7 @@ namespace XoshBank.Persistent.SQLServer
             _connectionString = connectionString;
         }
 
+        #region GetALl
         public List<Branch> GetAll()
         {
             var branches = new List<Branch>();
@@ -52,7 +53,9 @@ namespace XoshBank.Persistent.SQLServer
 
             return branches;
         }
+        #endregion
 
+        #region GetByID
         public Branch GetById(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -87,6 +90,9 @@ namespace XoshBank.Persistent.SQLServer
 
             return null;
         }
+        #endregion 
+
+        #region Insert
         public void Insert(Branch entity)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -108,6 +114,9 @@ namespace XoshBank.Persistent.SQLServer
                 command.ExecuteNonQuery();
             }
         }
+        #endregion
+
+        #region Update
         public void Update(Branch entity)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -130,6 +139,9 @@ namespace XoshBank.Persistent.SQLServer
                 command.ExecuteNonQuery();
             }
         }
+        #endregion
+
+        #region delete
         public void Delete(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -142,5 +154,6 @@ namespace XoshBank.Persistent.SQLServer
                 command.ExecuteNonQuery();
             }
         }
+        #endregion
     }
 }

@@ -51,7 +51,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="Views\App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
@@ -59,7 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
+    <Compile Include="Views\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -101,6 +101,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image\XoshBank.Photo.Background.Main.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XoshBank.Core\XoshBank.Core.csproj">
+      <Project>{25c543d9-d122-4dea-8502-231b8b4d5dc1}</Project>
+      <Name>XoshBank.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XoshBank.Persistent.SQLServer\XoshBank.Persistent.SQLServer.csproj">
+      <Project>{fa322679-56ea-4428-8fcd-18b61343c89f}</Project>
+      <Name>XoshBank.Persistent.SQLServer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
