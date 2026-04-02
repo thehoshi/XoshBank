@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Security.Principal;
-using XoshBank.Entities;
 using XoshBankCore;
 using XoshBankCore.Entities.Repositories;
 
