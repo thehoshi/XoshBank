@@ -32,14 +32,21 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MaxWidth="180"/>
-            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="*" MaxWidth="260"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Border Grid.Column="0" Background="#FF9AAE">
             <ScrollViewer>
                 <StackPanel Margin="0">
                     <Button Style="{StaticResource ButtonMenu}" Content="Customers"/>
                     <Button Style="{StaticResource ButtonMenu}" Content="Accounts"/>
+                    <Button Style="{StaticResource ButtonMenu}" Content="Cards"/>
+                    <Button Style="{StaticResource ButtonMenu}" Content="PaymentTemplates"/>
+                    <Button Style="{StaticResource ButtonMenu}" Content="Loans"/>
+                    <Button Style="{StaticResource ButtonMenu}" Content="Employees"/>
+                    <Button Style="{StaticResource ButtonMenu}" Content="Branches"/>
+                    <Button Style="{StaticResource ButtonMenu}" Content="ATMLocations"/>
+
                 </StackPanel>
             </ScrollViewer>
             </Border>
