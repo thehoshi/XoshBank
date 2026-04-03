@@ -57,6 +57,8 @@
     </ApplicationDefinition>
     <Compile Include="Models\AccountFormModel.cs" />
     <Compile Include="Models\AccountUIModel.cs" />
+    <Compile Include="Models\CustomerFormModel.cs" />
+    <Compile Include="Models\CustomerUIModel.cs" />
     <Compile Include="Views\UserControl\BranchesControl.xaml.cs">
       <DependentUpon>BranchesControl.xaml</DependentUpon>
     </Compile>
