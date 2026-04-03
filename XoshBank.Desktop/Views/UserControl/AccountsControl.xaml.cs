@@ -18,7 +18,7 @@ namespace XoshBank.Views.UserControl
     /// <summary>
     /// Interaction logic for AccountsControl.xaml
     /// </summary>
-    public partial class AccountsControl : UserControl
+    public partial class AccountsControl : System.Windows.Controls.UserControl
     {
         public AccountsControl()
         {

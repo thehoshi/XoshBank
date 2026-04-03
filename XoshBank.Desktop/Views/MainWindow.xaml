@@ -6,7 +6,47 @@
         xmlns:local="clr-namespace:XoshBank"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="ButtonMenu">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="BorderThickness" Value="5"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Height" Value="55"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="Border">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#E75480"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" MaxWidth="180"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Column="0" Background="#FF9AAE">
+            <ScrollViewer>
+                <StackPanel Margin="0">
+                    <Button Style="{StaticResource ButtonMenu}" Content="Customers"/>
+                    <Button Style="{StaticResource ButtonMenu}" Content="Accounts"/>
+                </StackPanel>
+            </ScrollViewer>
+            </Border>
+        <Border Grid.Column="1">
+            <Grid  Margin="0,0,0,0" Background="#f2f2f2" Name="grdCenter" >
+                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="Fill" Source="/Image/XoshBank.Photo.Background.Main.png"  />
+            </Grid>
+        </Border>
     </Grid>
 </Window>
