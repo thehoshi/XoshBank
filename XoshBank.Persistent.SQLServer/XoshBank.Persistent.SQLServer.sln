@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XoshBank.Persistent.SQLServer", "XoshBank.Persistent.SQLServer.csproj", "{FA322679-56EA-4428-8FCD-18B61343C89F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XoshBank.Core", "..\XoshBank.Core\XoshBank.Core.csproj", "{25C543D9-D122-4DEA-8502-231B8B4D5DC1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FA322679-56EA-4428-8FCD-18B61343C89F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA322679-56EA-4428-8FCD-18B61343C89F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA322679-56EA-4428-8FCD-18B61343C89F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA322679-56EA-4428-8FCD-18B61343C89F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25C543D9-D122-4DEA-8502-231B8B4D5DC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25C543D9-D122-4DEA-8502-231B8B4D5DC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25C543D9-D122-4DEA-8502-231B8B4D5DC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25C543D9-D122-4DEA-8502-231B8B4D5DC1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4077905-CAA5-44BA-B6D4-082A97C2E508}
+	EndGlobalSection
+EndGlobal

@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XoshBank.App.Entities;
+using XoshBankCore;
+using XoshBankCore.Entities.Repositories;
 
-namespace XoshBank.App.Repositories
+namespace XoshBankCore.Entites.Repositories
 {
     public interface IATMLocationRepository : IBaseRepository<ATMLocation>
     {
