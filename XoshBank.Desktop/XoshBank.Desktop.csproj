@@ -146,6 +146,8 @@
       <Name>XoshBank.Persistent.SQLServer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Image\Gemini_Generated_Image_96k53i96k53i96k5-removebg-preview.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
