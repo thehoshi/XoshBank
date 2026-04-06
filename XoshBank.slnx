@@ -3,3 +3,5 @@
   <Project Path="XoshBank.Desktop/XoshBank.Desktop.csproj" Id="3e1057c6-2999-4937-be27-e181d87388db" />
   <Project Path="XoshBank.Persistent.SQLServer/XoshBank.Persistent.SQLServer.csproj" Id="fa322679-56ea-4428-8fcd-18b61343c89f" />
 </Solution>
+
+

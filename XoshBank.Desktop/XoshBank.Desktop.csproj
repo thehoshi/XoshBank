@@ -55,8 +55,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\OpenAccountsCommand.cs" />
+    <Compile Include="Command\OpenCustomersCommand.cs" />
+    <Compile Include="Models\AccountFormModel.cs" />
+    <Compile Include="Models\AccountUIModel.cs" />
+    <Compile Include="Models\CustomerFormModel.cs" />
+    <Compile Include="Models\CustomerUIModel.cs" />
+    <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="Views\UserControl\AccountsControl.xaml.cs">
+      <DependentUpon>AccountsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControl\BranchesControl.xaml.cs">
       <DependentUpon>BranchesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControl\CustomersControl.xaml.cs">
+      <DependentUpon>CustomersControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControl\LoansControl.xaml.cs">
       <DependentUpon>LoansControl.xaml</DependentUpon>
@@ -73,7 +86,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\UserControl\AccountsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControl\BranchesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControl\CustomersControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
