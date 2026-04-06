@@ -29,7 +29,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     {
                         var atm = new ATMLocation
                         {
-                            Id = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0,
+                            ID = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0,
                             Name = reader["Name"] as string,
                             City = reader["City"] as string,
                             Address = reader["Address"] as string,
@@ -60,7 +60,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                         {
                             return new ATMLocation
                             {
-                                Id = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0,
+                                ID = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0,
                                 Name = reader["Name"] as string,
                                 City = reader["City"] as string,
                                 Address = reader["Address"] as string,
@@ -106,7 +106,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 using (var command = new SqlCommand(
                     "UPDATE ATMLocations SET Name=@Name, City=@City, Address=@Address, Latitude=@Latitude, Longitude=@Longitude, IsActive=@IsActive WHERE Id=@Id", connection))
                 {
-                    command.Parameters.AddWithValue("@Id", atm.Id);
+                    command.Parameters.AddWithValue("@Id", atm.ID);
                     command.Parameters.AddWithValue("@Name", atm.Name);
                     command.Parameters.AddWithValue("@City", atm.City);
                     command.Parameters.AddWithValue("@Address", atm.Address);

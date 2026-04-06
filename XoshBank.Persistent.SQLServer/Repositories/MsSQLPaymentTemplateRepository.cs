@@ -18,7 +18,6 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             _connectionString = connectionString;
         }
 
-        #region GetAll
         public List<PaymentTemplate> GetAll()
         {
             var List = new List<PaymentTemplate>();
@@ -32,7 +31,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     {
                         var pt = new PaymentTemplate
                         {
-                            Id = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0,
+                            ID = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0,
                             TemplateName = reader["TemplateName"] as string,
                             ServiceName = reader["ServiceName"] as string,
                             CustomerCode = reader["CustomerCode"] as string,
@@ -47,10 +46,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             }
             return List;
         }
-        #endregion
 
-
-        #region GetById
         public PaymentTemplate GetById(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -65,7 +61,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                         {
                             return new PaymentTemplate
                             {
-                                Id = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0,
+                                ID = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0,
                                 TemplateName = reader["TemplateName"] as string,
                                 ServiceName = reader["ServiceName"] as string,
                                 CustomerCode = reader["CustomerCode"] as string,
@@ -80,9 +76,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             }
             return null;
         }
-        #endregion
 
-        #region Insert
         public void Insert (PaymentTemplate pt)
         {
             using(var connection = new SqlConnection(_connectionString))
@@ -102,9 +96,6 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             }
         }
 
-        #endregion
-
-        #region Update
         public void Update (PaymentTemplate pt)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -113,7 +104,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 using(var command = new SqlCommand(
                     "UPDATE PaymentTemplates  SET Templatename =@TemplateName, ServiceName = @ServiceName, CustomerCode = @CustomerCode, Amount = @Amount, IsActive = @IsActive, CreatedDate = @CreatedDate, CardId = @CardId WHERE Id = @Id", connection))
                 {
-                    command.Parameters.AddWithValue("Id", pt.Id);
+                    command.Parameters.AddWithValue("Id", pt.ID);
                     command.Parameters.AddWithValue("TemplateName", pt.TemplateName);
                     command.Parameters.AddWithValue("ServiceName", pt.ServiceName);
                     command.Parameters.AddWithValue("CustomerCode", pt.CustomerCode);
@@ -125,24 +116,18 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 }
             }
         }
-        #endregion
 
-        #region Delete
-        public void Delete (PaymentTemplate pt)
+        public void Delete(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
                 using(var command = new SqlCommand ("DELETE FROM PaymentTemplates WHERE Id = @Id", connection))
                 {
-                    command.Parameters.AddWithValue ("Id", pt.Id);
+                    command.Parameters.AddWithValue ("Id", id);
                     command.ExecuteNonQuery ();
                 }
             }
         }
-        #endregion
-
     }
-
-
 }

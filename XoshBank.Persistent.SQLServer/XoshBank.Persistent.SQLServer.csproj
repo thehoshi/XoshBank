@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-=======
 <Project Sdk="Microsoft.NET.Sdk">
 
->>>>>>> c59e9b958630ce1f13e13f795423a5217d5efcf8
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
@@ -15,21 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
-    <Compile Include="Repositories\MsSQLAccountRepository.cs" />
-    <Compile Include="Repositories\MsSQLATMLocationRepository.cs" />
-    <Compile Include="Repositories\MsSQLBranchRepository.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\MsSQLCardRepository.cs" />
-    <Compile Include="Repositories\MsSQLCustomerRepository.cs" />
-    <Compile Include="Repositories\MsSQLEmployeeRepository.cs" />
-    <Compile Include="Repositories\MsSQLLoanRepository.cs" />
-    <Compile Include="Repositories\MsSQLPaymentTemplateRepository.cs" />
-    <Compile Include="Repositories\MsSQLUnitOfWork.cs" />
-=======
     <ProjectReference Include="..\XoshBank.Core\XoshBank.Core.csproj" />
->>>>>>> c59e9b958630ce1f13e13f795423a5217d5efcf8
   </ItemGroup>
 
 </Project>
