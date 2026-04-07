@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using XoshBank.ViewModels;
 using XoshBank.Views.UserControl;
 
 namespace XoshBank
@@ -24,6 +25,8 @@ namespace XoshBank
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainPageViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

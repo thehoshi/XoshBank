@@ -42,9 +42,9 @@
                     <Button Style="{StaticResource ButtonMenu}" Command="{Binding OpenAccounts}" CommandParameter="{Binding ElementName=ImageGrid}" Content="Accounts" Click="Button_Click"/>
                     <Button Style="{StaticResource ButtonMenu}" Content="Cards"/>
                     <Button Style="{StaticResource ButtonMenu}" Content="Templates"/>
-                    <Button Style="{StaticResource ButtonMenu}" Content="Loans" Click="Loans_Click"/>
+                    <Button Style="{StaticResource ButtonMenu}" Command="{Binding OpenLoans}" CommandParameter="{Binding ElementName=ImageGrid}" Content="Loans"/>
                     <Button Style="{StaticResource ButtonMenu}" Content="Employees"/>
-                    <Button Style="{StaticResource ButtonMenu}" Content="Branches" Click="Branches_Click"/>
+                    <Button Style="{StaticResource ButtonMenu}" Command="{Binding OpenBranches}" CommandParameter="{Binding ElementName=ImageGrid}" Content="Branches"/>
                     <Button Style="{StaticResource ButtonMenu}" Content="ATM"/>
 
                 </StackPanel>
