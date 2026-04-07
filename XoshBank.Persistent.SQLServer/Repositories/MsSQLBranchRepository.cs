@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using XoshBankCore;
 using XoshBankCore.Entities;
 using XoshBankCore.Entities.Repositories;
@@ -27,7 +27,7 @@ namespace XoshBank.Persistent.SQLServer
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                using (var command = new SqlCommand("SELECT * FROM Branch", connection))
+                using (var command = new SqlCommand("SELECT * FROM Branches WHERE BranchID = @BranchID", connection))
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -62,7 +62,7 @@ namespace XoshBank.Persistent.SQLServer
             {
                 connection.Open();
                 using (var command = new SqlCommand(
-                    "SELECT * FROM Branch WHERE Id = @Id",
+                    "SELECT * FROM Branches WHERE Id = @Id",
                     connection))
                 {
                     command.Parameters.AddWithValue("@Id", id);

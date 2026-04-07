@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using System.Security.Authentication.ExtendedProtection;
 using XoshBank.App.Entities;
 using XoshBank.App.Repositories;
