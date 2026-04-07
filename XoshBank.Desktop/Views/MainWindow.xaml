@@ -39,7 +39,7 @@
             <ScrollViewer>
                 <StackPanel Margin="0">
                     <Button Style="{StaticResource ButtonMenu}" Command="{Binding OpenCustomers}" CommandParameter="{Binding ElementName=ImageGrid}" Content="Customers" Click="Button_Click"/>
-                    <Button Style="{StaticResource ButtonMenu}" Content="Accounts"/>
+                    <Button Style="{StaticResource ButtonMenu}" Command="{Binding OpenAccounts}" CommandParameter="{Binding ElementName=ImageGrid}" Content="Accounts" Click="Button_Click"/>
                     <Button Style="{StaticResource ButtonMenu}" Content="Cards"/>
                     <Button Style="{StaticResource ButtonMenu}" Content="Templates"/>
                     <Button Style="{StaticResource ButtonMenu}" Content="Loans"/>
