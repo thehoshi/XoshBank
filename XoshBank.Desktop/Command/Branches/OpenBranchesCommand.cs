@@ -7,26 +7,23 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using XoshBank.Views.UserControl;
 
-
-namespace XoshBank.Command
+namespace XoshBank.Command.Branches
 {
-    public class OpenAccountsCommand : ICommand
+    public class OpenBranchesCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
-
         public bool CanExecute(object parameter)
         {
             return true;
         }
-
         public void Execute(object parameter)
         {
-            AccountsControl accountsControl = new AccountsControl();
+            BranchesControl branchesControl = new BranchesControl();
 
             Grid grid = (Grid)parameter;
 
             grid.Children.Clear();
-            grid.Children.Add(accountsControl);
+            grid.Children.Add(branchesControl);
         }
     }
 }

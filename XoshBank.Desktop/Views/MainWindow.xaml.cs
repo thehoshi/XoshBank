@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using XoshBank.Views.UserControl;
 
 namespace XoshBank
 {
@@ -28,6 +29,19 @@ namespace XoshBank
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void Loans_Click(object sender, RoutedEventArgs e)
+        {
+            var grid = ImageGrid;
+            grid.Children.Clear();
+            grid.Children.Add(new LoansControl());
+        }
+
+        private void Branches_Click(object sender, RoutedEventArgs e)
+        {
+            var grid = ImageGrid;
+            grid.Children.Clear();
+            grid.Children.Add(new BranchesControl());
         }
     }
 }

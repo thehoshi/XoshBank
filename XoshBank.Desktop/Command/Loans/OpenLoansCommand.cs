@@ -7,10 +7,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using XoshBank.Views.UserControl;
 
-
-namespace XoshBank.Command
+namespace XoshBank.Command.Loans
 {
-    public class OpenAccountsCommand : ICommand
+    public class OpenLoansCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
@@ -21,12 +20,13 @@ namespace XoshBank.Command
 
         public void Execute(object parameter)
         {
-            AccountsControl accountsControl = new AccountsControl();
+            LoansControl loansControl = new LoansControl();
 
             Grid grid = (Grid)parameter;
 
             grid.Children.Clear();
-            grid.Children.Add(accountsControl);
+            grid.Children.Add(loansControl);
         }
+
     }
 }

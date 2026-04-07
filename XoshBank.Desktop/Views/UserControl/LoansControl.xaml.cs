@@ -17,7 +17,7 @@ namespace XoshBank.Views.UserControl
     /// <summary>
     /// Interaction logic for LoansControl.xaml
     /// </summary>
-    public partial class LoansControl : Window
+    public partial class LoansControl : System.Windows.Controls.UserControl
     {
         public LoansControl()
         {

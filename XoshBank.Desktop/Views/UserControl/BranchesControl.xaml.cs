@@ -17,7 +17,7 @@ namespace XoshBank.Views.UserControl
     /// <summary>
     /// Interaction logic for BranchesControl.xaml
     /// </summary>
-    public partial class BranchesControl : Window
+    public partial class BranchesControl : System.Windows.Controls.UserControl
     {
         public BranchesControl()
         {

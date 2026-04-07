@@ -55,6 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\Branches\OpenBranchesCommand.cs" />
+    <Compile Include="Command\Loans\OpenLoansCommand.cs" />
     <Compile Include="Command\OpenAccountsCommand.cs" />
     <Compile Include="Command\OpenCustomersCommand.cs" />
     <Compile Include="Models\AccountFormModel.cs" />
@@ -149,5 +151,6 @@
   <ItemGroup>
     <Resource Include="Image\Gemini_Generated_Image_96k53i96k53i96k5-removebg-preview.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
