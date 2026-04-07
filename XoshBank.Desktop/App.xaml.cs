@@ -7,13 +7,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using XoshBank.Persistent.SQLServer.Repositories;
+using XoshBank.ViewModels;
 using XoshBankCore.Entities.Repositories;
 
 namespace XoshBank
-{
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
+{ 
     public partial class App : Application
     {
         public App()
@@ -28,6 +26,11 @@ namespace XoshBank
             string connectionString = connectionStringBuilder.ConnectionString;
 
             IUnitOfWork db = new MsSQLUnitOfWork(connectionString);
+
+            MainWindow mainWindow = new MainWindow();
+            MainPageViewModel mainPageViewModel = new MainPageViewModel();
+            mainWindow.DataContext = mainPageViewModel;
+            mainWindow.Show();
 
         }
     }

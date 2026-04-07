@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
+using XoshBank.Views.UserControl;
 
 
 namespace XoshBank.Command
@@ -14,12 +16,17 @@ namespace XoshBank.Command
 
         public bool CanExecute(object parameter)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            CustomersControl customersControl = new CustomersControl();
+
+            Grid grid = (Grid)parameter;
+
+            grid.Children.Clear();
+            grid.Children.Add(customersControl);
         }
     }
 }

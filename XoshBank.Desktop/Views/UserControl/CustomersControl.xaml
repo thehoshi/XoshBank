@@ -6,7 +6,116 @@
              xmlns:local="clr-namespace:XoshBank.Views.UserControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
-</UserControl>
+
+    <Border Background="Pink" BorderThickness="5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" Background="#FF9AAE" BorderThickness="3">
+                    <TextBlock Height="25"
+                           FontSize="18"
+                           Background="#FF9AAE"
+                           TextAlignment="Center"
+                           FontWeight="Medium"
+                           Text="Customers"/>
+                </Border>
+
+                <Grid Grid.Row="1" Background="LightPink">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0" Style="{StaticResource grdForm}" Margin="0 0 30 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Margin="5" FontSize="15">First Name</TextBlock>
+                            <TextBox Margin="5" Text="{Binding CurrentCustomer.FirstName}"/>
+
+                            <TextBlock Margin="5" FontSize="15">Last Name</TextBlock>
+                            <TextBox Margin="5" Text="{Binding CurrentCustomer.LastName}"/>
+
+                            <TextBlock Margin="5" FontSize="15">Date of Birth</TextBlock>
+                            <DatePicker Margin="5" SelectedDate="{Binding CurrentCustomer.DateOfBirth}"/>
+
+                            <TextBlock Margin="5" FontSize="15">Phone</TextBlock>
+                            <TextBox Margin="5" Text="{Binding CurrentCustomer.PhoneNumber}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Margin="5" FontSize="15">Email</TextBlock>
+                            <TextBox Margin="5" Text="{Binding CurrentCustomer.Email}"/>
+
+                            <TextBlock Margin="5" FontSize="15">Address</TextBlock>
+                            <TextBox Margin="5" Text="{Binding CurrentCustomer.Address}"/>
+
+                            <TextBlock Margin="5" FontSize="15">FIN Code</TextBlock>
+                            <TextBox Margin="5" Text="{Binding CurrentCustomer.FINCode}"/>
+                        </StackPanel>
+                    </Grid>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center"
+            Background="#D14B72"
+            Margin="10">
+                        <Button Command="{Binding Add}" Style="{StaticResource btnAdd}"/>
+                        <Button Command="{Binding Save}" Style="{StaticResource btnSave}"/>
+                        <Button Command="{Binding Edit}" Style="{StaticResource btnChange}"/>
+                        <Button Command="{Binding Delete}" Style="{StaticResource btnDelete}"/>
+                        <Button Command="{Binding Reject}" Style="{StaticResource btnReject}"/>
+                    </StackPanel>
+                </Grid>
+
+                <ListView Grid.Row="2"
+                      ItemsSource="{Binding Customers}"
+                      SelectedItem="{Binding SelectedCustomer}"
+                      Style="{StaticResource listView}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="No" Width="40" DisplayMemberBinding="{Binding No}"/>
+                            <GridViewColumn Header="First Name" Width="120" DisplayMemberBinding="{Binding FirstName}"/>
+                            <GridViewColumn Header="Last Name" Width="120" DisplayMemberBinding="{Binding LastName}"/>
+                            <GridViewColumn Header="Birth Date" Width="120" DisplayMemberBinding="{Binding DateOfBirth}"/>
+                            <GridViewColumn Header="Phone" Width="120" DisplayMemberBinding="{Binding PhoneNumber}"/>
+                            <GridViewColumn Header="Email" Width="180" DisplayMemberBinding="{Binding Email}"/>
+                            <GridViewColumn Header="Address" Width="200" DisplayMemberBinding="{Binding Address}"/>
+                            <GridViewColumn Header="FIN" Width="120" DisplayMemberBinding="{Binding FINCode}"/>
+                        </GridView>
+                    </ListView.View>
+
+                    <ListView.ItemContainerStyle>
+                        <Style BasedOn="{StaticResource listViewItem}" TargetType="{x:Type ListViewItem}" />
+                    </ListView.ItemContainerStyle>
+                </ListView>
+
+                <Grid Grid.Row="3" Style="{StaticResource grdSearch}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <WrapPanel Grid.Column="0">
+                        <Label Content="Search:" FontSize="15" Margin="10,10,0,0" Width="100"/>
+                        <TextBox Style="{StaticResource txtSearch}"/>
+                    </WrapPanel>
+
+                    <Button Grid.Column="1"
+                        Command="{Binding Export}"
+                        Style="{StaticResource BaseButton}"
+                        Width="200"
+                        Content="Export"
+                        HorizontalAlignment="Right"/>
+                </Grid>
+
+            </Grid>
+        </Border>
+    </UserControl>
+
