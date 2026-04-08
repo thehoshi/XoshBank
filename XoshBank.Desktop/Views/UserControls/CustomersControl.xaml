@@ -55,46 +55,39 @@
                                    Foreground="#352439"
                                    Margin="0,0,0,10"/>
 
-                        
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8">
-                            <TextBlock Style="{StaticResource LabelStyle}" Text="No"/>
-                            <TextBox Style="{StaticResource ReadOnlyTextStyle}" Text="{Binding SelectedCustomer.No}"/>
-                        </StackPanel>
-
-                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="First Name"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="1" Grid.Column="2">
+                        <StackPanel Grid.Row="1" Grid.Column="1">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Last Name"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.LastName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-        
-                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,0">
+                        <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Date of Birth"/>
                             <DatePicker Style="{StaticResource DatePickerStyle}"
                                         SelectedDate="{Binding SelectedCustomer.DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,8,0">
+                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Phone"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="2">
+                        <StackPanel Grid.Row="2" Grid.Column="1">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Email"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.Email, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         
-                        <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,8,8,0">
+                        <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,8,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Address"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.Address, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,8,8,0">
+                        <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,8,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="FIN Code"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.FINCode, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
@@ -172,23 +165,24 @@
                         Background="White"
                         CornerRadius="18"
                         Padding="8"
-                        Margin="0,0,14,0"
+                        Margin="0,0,10,0"
                         Effect="{StaticResource SoftShadow}">
+     
+                        <DataGrid
+                        ItemsSource="{Binding Customers}"
+                        SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}" SelectionChanged="DataGrid_SelectionChanged">
 
-                    <DataGrid ItemsSource="{Binding Customers}"
-                              SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="No"          Binding="{Binding No}" Width="Auto"/>
+                                <DataGridTextColumn Header="First Name"  Binding="{Binding FirstName}" Width="*"/>
+                                <DataGridTextColumn Header="Last Name"   Binding="{Binding LastName}" Width="*"/>
+                                <DataGridTextColumn Header="Birth Date"  Binding="{Binding DateOfBirth, StringFormat={}{0:dd.MM.yyyy}}" Width="*"/>
+                                <DataGridTextColumn Header="Phone"       Binding="{Binding PhoneNumber}" Width="*"/>
+                                <DataGridTextColumn Header="Email"       Binding="{Binding Email}" Width="*"/>
+                                <DataGridTextColumn Header="FIN"         Binding="{Binding FINCode}" Width="*"/>
+                            </DataGrid.Columns>
 
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="No"          Binding="{Binding No}" Width="60"/>
-                            <DataGridTextColumn Header="First Name"  Binding="{Binding FirstName}" Width="*"/>
-                            <DataGridTextColumn Header="Last Name"   Binding="{Binding LastName}" Width="*"/>
-                            <DataGridTextColumn Header="Birth Date"  Binding="{Binding DateOfBirth, StringFormat={}{0:dd.MM.yyyy}}" Width="110"/>
-                            <DataGridTextColumn Header="Phone"       Binding="{Binding PhoneNumber}" Width="120"/>
-                            <DataGridTextColumn Header="Email"       Binding="{Binding Email}" Width="150"/>
-                            <DataGridTextColumn Header="FIN"         Binding="{Binding FINCode}" Width="100"/>
-                        </DataGrid.Columns>
-
-                    </DataGrid>
+                        </DataGrid>
                 </Border>
 
             </Grid>
