@@ -34,8 +34,8 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     {
                         loans.Add(new Loan
                         {
-                            ID = reader.GetInt32(0),
-                            CustomerID = reader.GetInt32(1),
+                            ID = reader["LoanID"] != DBNull.Value ? Convert.ToInt32(reader["LoanID"]) : 0,
+                            CustomerID = Convert.ToInt32(reader["CustomerID"]),
                             ApprovedBy = reader.GetInt32(2),
                             BranchID = reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
                             Amount = reader.GetDouble(4),
@@ -175,6 +175,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 command.Parameters.AddWithValue("@Notes", entity.Notes);
                 command.Parameters.AddWithValue("@CreatedAt", (object)entity.CreatedAt ?? DBNull.Value);
                 command.Parameters.AddWithValue("@UpdatedAt", (object)entity.UpdatedAt ?? DBNull.Value);
+                command.ExecuteNonQuery();
             }
         }
         #endregion

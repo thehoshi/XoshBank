@@ -27,7 +27,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                using (var command = new SqlCommand("SELECT * FROM Branches WHERE BranchID = @BranchID", connection))
+                using (var command = new SqlCommand("SELECT * FROM Branches WHERE DeletedAt IS NULL", connection))
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -62,7 +62,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
                 using (var command = new SqlCommand(
-                    "SELECT * FROM Branches WHERE Id = @Id",
+                    "SELECT * FROM Branches WHERE BranchID = @Id",
                     connection))
                 {
                     command.Parameters.AddWithValue("@Id", id);
@@ -99,18 +99,18 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "INSERT INTO Branch (BranchName, City, Address, ManagerName, PhoneNumber, EmployeeCount, OpeningDate, Revenue, Expenses) " +
+                    "INSERT INTO Branches (BranchName, City, Address, ManagerName, PhoneNumber, EmployeeCount, OpeningDate, Revenue, Expenses) " +
                     "VALUES (@BranchName, @City, @Address, @ManagerName, @PhoneNumber, @EmployeeCount, @OpeningDate, @Revenue, @Expenses)",
                     connection);
                 command.Parameters.AddWithValue("@BranchName", entity.BranchName);
                 command.Parameters.AddWithValue("@City", entity.City);
                 command.Parameters.AddWithValue("@Address", entity.Address);
                 command.Parameters.AddWithValue("@ManagerName", entity.ManagerName);
-                command.Parameters.AddWithValue("@PhoneNumber", entity.PhoneNumber);
-                command.Parameters.AddWithValue("@EmployeeCount", entity.EmployeeCount);
-                command.Parameters.AddWithValue("@OpeningDate", entity.OpeningDate);
-                command.Parameters.AddWithValue("@Revenue", entity.Revenue);
-                command.Parameters.AddWithValue("@Expenses", entity.Expenses);
+                command.Parameters.AddWithValue("@PhoneNumber", entity.PhoneNumber); 
+                command.Parameters.AddWithValue("@EmployeeCount", (object)entity.EmployeeCount ?? DBNull.Value);
+                command.Parameters.AddWithValue("@OpeningDate", (object)entity.OpeningDate ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Revenue", (object)entity.Revenue ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Expenses", (object)entity.Expenses ?? DBNull.Value);
                 command.ExecuteNonQuery();
             }
         }
@@ -123,7 +123,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "UPDATE Branch SET BranchName = @BranchName, City = @City, Address = @Address, ManagerName = @ManagerName, PhoneNumber = @PhoneNumber, EmployeeCount = @EmployeeCount, OpeningDate = @OpeningDate, Revenue = @Revenue, Expenses = @Expenses " +
+                    "UPDATE Branches SET BranchName = @BranchName, City = @City, Address = @Address, ManagerName = @ManagerName, PhoneNumber = @PhoneNumber, EmployeeCount = @EmployeeCount, OpeningDate = @OpeningDate, Revenue = @Revenue, Expenses = @Expenses " +
                     "WHERE BranchID = @BranchID",
                     connection);
                 command.Parameters.AddWithValue("@BranchID", entity.ID);
@@ -131,11 +131,11 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 command.Parameters.AddWithValue("@City", entity.City);
                 command.Parameters.AddWithValue("@Address", entity.Address);
                 command.Parameters.AddWithValue("@ManagerName", entity.ManagerName);
-                command.Parameters.AddWithValue("@PhoneNumber", entity.PhoneNumber);
-                command.Parameters.AddWithValue("@EmployeeCount", entity.EmployeeCount);
-                command.Parameters.AddWithValue("@OpeningDate", entity.OpeningDate);
-                command.Parameters.AddWithValue("@Revenue", entity.Revenue);
-                command.Parameters.AddWithValue("@Expenses", entity.Expenses);
+                command.Parameters.AddWithValue("@PhoneNumber", entity.PhoneNumber); 
+                command.Parameters.AddWithValue("@EmployeeCount", (object)entity.EmployeeCount ?? DBNull.Value);
+                command.Parameters.AddWithValue("@OpeningDate", (object)entity.OpeningDate ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Revenue", (object)entity.Revenue ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Expenses", (object)entity.Expenses ?? DBNull.Value);
                 command.ExecuteNonQuery();
             }
         }
@@ -148,7 +148,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "DELETE FROM Branch WHERE BranchID = @Id",
+                    "DELETE FROM Branches WHERE BranchID = @Id",
                     connection);
                 command.Parameters.AddWithValue("@Id", id);
                 command.ExecuteNonQuery();

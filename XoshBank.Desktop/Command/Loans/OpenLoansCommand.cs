@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
-using XoshBank.Views.UserControl;
+using XoshBank.Desktop.Views.UserControls;
 
 namespace XoshBank.Command.Loans
 {

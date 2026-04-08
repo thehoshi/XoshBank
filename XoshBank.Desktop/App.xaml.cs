@@ -9,6 +9,7 @@ using System.Windows;
 using XoshBank.Persistent.SQLServer.Repositories;
 using XoshBank.ViewModels;
 using XoshBankCore.Entities.Repositories;
+using XoshBank.Desktop.Views;
 
 namespace XoshBank
 { 
