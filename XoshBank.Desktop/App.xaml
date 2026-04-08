@@ -4,225 +4,154 @@
              xmlns:local="clr-namespace:XoshBank">
     <Application.Resources>
 
-        <Style TargetType="{x:Type Button}" x:Key="BaseButton">
+        <!-- Shadows -->
+        <DropShadowEffect x:Key="CardShadow" BlurRadius="26" ShadowDepth="8" Opacity="0.16" Color="#8E4A74"/>
+        <DropShadowEffect x:Key="SoftShadow" BlurRadius="16" ShadowDepth="4" Opacity="0.12" Color="#8E4A74"/>
 
-            <Setter Property="Height" Value="32"/>
-            <Setter Property="Margin" Value="6"/>
+        <!-- Brushes -->
+        <LinearGradientBrush x:Key="AppBackground" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FFFDF8FB" Offset="0"/>
+            <GradientStop Color="#FFF9EDF4" Offset="0.45"/>
+            <GradientStop Color="#FFF3DDEB" Offset="1"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="AccentBrush" StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#FFFF4D8D" Offset="0"/>
+            <GradientStop Color="#FFDD5BA3" Offset="1"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="DangerBrush" StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#FFFF6B6B" Offset="0"/>
+            <GradientStop Color="#FFFF4D4F" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- Button Base -->
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="Foreground" Value="#2E2130"/>
+            <Setter Property="Background" Value="#FFFFFFFF"/>
+            <Setter Property="BorderBrush" Value="#E9D8E4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="14"/>
             <Setter Property="Cursor" Value="Hand"/>
-
-            <!-- лёгкая тень -->
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect Color="#000000"
-                              BlurRadius="12"
-                              ShadowDepth="2"
-                              Opacity="0.12"/>
-                </Setter.Value>
-            </Setter>
-
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-
-                        <Border x:Name="border"
-                        CornerRadius="10"
-                        Background="#FFFFFF"
-                        BorderBrush="#E6EAF0"
-                        BorderThickness="1"
-                        Padding="10,5">
-
-                            <ContentPresenter
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        RecognizesAccessKey="True"/>
-
+                        <Border CornerRadius="10"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
-
                         <ControlTemplate.Triggers>
-
-                            <!-- Hover -->
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#F5F8FC"/>
-                                <Setter TargetName="border" Property="BorderBrush" Value="#D6E2F0"/>
+                                <Setter Property="Opacity" Value="0.88"/>
                             </Trigger>
-
-                            <!-- Pressed -->
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#E9F1FB"/>
-                                <Setter TargetName="border" Property="RenderTransform">
+                                <Setter Property="RenderTransform">
                                     <Setter.Value>
                                         <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
-
-                            <!-- Disabled -->
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="border" Property="Opacity" Value="0.4"/>
-                            </Trigger>
-
                         </ControlTemplate.Triggers>
-
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-
         </Style>
 
-        <Style TargetType="{x:Type ListViewItem}"  x:Key="listViewItem">
-            <Setter Property="MinHeight" Value="30"/>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type ListViewItem}">
-                        <Grid Height="{TemplateBinding Height}" Background="{TemplateBinding Background}" >
-                            <GridViewRowPresenter Content="{TemplateBinding Content}" Margin="0" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-            <Style.Triggers>
-                <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
-                    <Setter Property="Background" Value="White" />
-                </Trigger>
-                <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
-                    <Setter Property="Background" Value="LightGray" />
-                </Trigger>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="#5DADE2"/>
-                </Trigger>
-            </Style.Triggers>
+        <!-- Primary Button -->
+        <Style x:Key="PrimaryActionButtonStyle" TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+            <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E14E90"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
         </Style>
 
-        <Style TargetType="{x:Type ListView}" x:Key="listView">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding CurrentState}" Value="2">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-
-                <DataTrigger Binding="{Binding CurrentState}" Value="3">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-            </Style.Triggers>
-            <Setter Property="FontWeight" Value="DemiBold"/>
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible"></Setter>
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Visible"></Setter>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Margin" Value="0"/>
-            <Setter Property="AlternationCount" Value="2"/>
-            <Setter Property="Padding" Value="0"/>
-            <Setter Property="FontSize" Value="14"/>
+        <!-- Danger Button -->
+        <Style x:Key="DangerActionButtonStyle" TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#FF4D4F"/>
+            <Setter Property="BorderBrush" Value="#FF4D4F"/>
         </Style>
 
-        <Style TargetType="{x:Type Grid}" x:Key="grdSearch">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding CurrentState}" Value="2">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding CurrentState}" Value="3">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding CurrentState}" Value="4">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-            </Style.Triggers>
+        <!-- Label -->
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#5A4860"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Margin" Value="0,0,0,4"/>
         </Style>
 
-        <Style TargetType="{x:Type Grid}" x:Key="grdForm">
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding CurrentState}" Value="1">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding CurrentState}" Value="4">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButton}" x:Key="btnAdd">
-            <Setter Property="Content" Value="Add"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding CurrentState}" Value="2">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding CurrentState}" Value="3">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding CurrentState}" Value="4">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButton}" x:Key="btnChange">
-            <Setter Property="Content" Value="Edit"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding CurrentState}" Value="1">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding CurrentState}" Value="2">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding CurrentState}" Value="3">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButton}" x:Key="btnSave">
-            <Setter Property="Content" Value="Save"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding CurrentState}" Value="1">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding CurrentState}" Value="4">
-                    <Setter Property="Visibility" Value="Collapsed"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButton}" x:Key="btnReject">
-            <Setter Property="Content" Value="Reject"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding CurrentState}" Value="1">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource BaseButton}" x:Key="btnDelete">
-            <Setter Property="Content" Value="Delete"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding CurrentState}" Value="1">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding CurrentState}" Value="2">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding CurrentState}" Value="3">
-                    <Setter Property="IsEnabled" Value="False"/>
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="{x:Type TextBox}" x:Key="txtSearch">
-            <Setter Property="Width" Value="600"/>
-            <Setter Property="Margin" Value="6 6"/>
+        <!-- Input -->
+        <Style x:Key="InputStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="Background" Value="#FAF7FB"/>
+            <Setter Property="BorderBrush" Value="#E7D8E4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#2E2130"/>
+            <Setter Property="FontSize" Value="13"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Grid>
-                            <Border CornerRadius="0,5,5,0" Background="#D14B72">
-                                <TextBox Margin="4 3" FontSize="20"/>
-                            </Border>
-                        </Grid>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border CornerRadius="8"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
+        </Style>
+
+        <!-- ReadOnly -->
+        <Style x:Key="ReadOnlyTextStyle" TargetType="TextBox" BasedOn="{StaticResource InputStyle}">
+            <Setter Property="Background" Value="#FFF6F2F7"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+        </Style>
+
+        <!-- DatePicker -->
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Background" Value="#FAF7FB"/>
+            <Setter Property="BorderBrush" Value="#E7D8E4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#2E2130"/>
+            <Setter Property="FontSize" Value="13"/>
+        </Style>
+
+        <!-- DataGrid -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#FFF9F2F7"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="RowHeight" Value="44"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#FFF6ECF4"/>
+            <Setter Property="Foreground" Value="#4A3250"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="#EADAE5"/>
+        </Style>
+
+        <Style TargetType="DataGridCell">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="Foreground" Value="#3A2B40"/>
         </Style>
     </Application.Resources>
 </Application>

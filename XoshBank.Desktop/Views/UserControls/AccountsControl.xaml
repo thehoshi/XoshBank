@@ -6,108 +6,171 @@
              xmlns:local="clr-namespace:XoshBank.Desktop.Views.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border Background="Pink" BorderThickness="5">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+    <Grid Background="{StaticResource AppBackground}">
 
-            <Border Grid.Row="0" Background="#FF9AAE" BorderThickness="3">
-                <TextBlock Height="25"
-                        FontSize="18"
-                        Background="#FF9AAE"
-                        TextAlignment="Center"
-                        FontWeight="Medium"
-                        Text="Accounts"/>
-            </Border>
+        <Border Margin="28" Padding="20" CornerRadius="28" Background="#F8F0F6" Effect="{StaticResource CardShadow}">
+            <Grid>
 
-            <Grid Grid.Row="1" Background="LightPink">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="160"/>
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Column="0" Style="{StaticResource grdForm}" Margin="0 0 30 0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                    <StackPanel Grid.Column="0">
-                        <TextBlock Margin="5" FontSize="15">CustomerID</TextBlock>
-                        <TextBox Margin="5" Text="{Binding CurrentAccount.CustomerID}"/>
+                <Border Grid.Row="1" Grid.Column="0"
+                        Background="White"
+                        CornerRadius="18"
+                        Padding="14,12"
+                        Margin="0,0,14,14"
+                        Effect="{StaticResource SoftShadow}">
 
-                        <TextBlock Margin="5" FontSize="15">Account Number</TextBlock>
-                        <TextBox Margin="5" Text="{Binding CurrentAccount.AccountNumber}"/>
+                    <Grid>
 
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.ColumnSpan="3"
+                                   Text="Account details"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   Foreground="#352439"
+                                   Margin="0,0,0,10"/>
+
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="No"/>
+                            <TextBox Style="{StaticResource ReadOnlyTextStyle}" Text="{Binding SelectedAccount.No}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,8,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Customer ID"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedAccount.CustomerID, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,0,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Account Number"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedAccount.AccountNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,0">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Balance"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedAccount.Balance, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,8,0">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Account Type"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedAccount.AccountType, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="2">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Currency"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedAccount.Currency, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"
+                        Background="#FFFDF9FC"
+                        CornerRadius="18"
+                        Padding="12"
+                        Effect="{StaticResource SoftShadow}">
+
+                    <StackPanel>
+                        <TextBlock Text="Actions"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="#352439"
+                                   Margin="4,2,4,10"/>
+
+                        <Button Style="{StaticResource PrimaryActionButtonStyle}" Content="Add"    Command="{Binding AddCommand}"/>
+                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Save"   Command="{Binding SaveCommand}"/>
+                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Edit"   Command="{Binding EditCommand}"/>
+                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Reject" Command="{Binding RejectCommand}"/>
+                        <Button Style="{StaticResource DangerActionButtonStyle}"  Content="Delete" Command="{Binding DeleteCommand}"/>
                     </StackPanel>
+                </Border>
 
-                    <StackPanel Grid.Column="1">
-                        <TextBlock Margin="5" FontSize="15">Balance</TextBlock>
-                        <DatePicker Margin="5" Text="{Binding CurrentAccount.Balance}"/>
+                <Border Grid.Row="2" Grid.Column="0"
+                        Background="White"
+                        CornerRadius="18"
+                        Padding="14,10"
+                        Margin="0,0,14,14"
+                        Effect="{StaticResource SoftShadow}">
 
-                        <TextBlock Margin="5" FontSize="15">Account Type</TextBlock>
-                        <TextBox Margin="5" Text="{Binding CurrentAccount.AccountType}"/>
+                    <DockPanel LastChildFill="False">
+                        <TextBlock DockPanel.Dock="Left"
+                                   Text="Search"
+                                   FontSize="14"
+                                   Foreground="#5A4860"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
 
+                        <TextBox DockPanel.Dock="Left"
+                                 Width="280"
+                                 Style="{StaticResource InputStyle}"
+                                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <TextBlock Margin="5" FontSize="15">Currency</TextBlock>
-                        <TextBox Margin="5" Text="{Binding CurrentAccount.Currency}"/>
-                    </StackPanel>
-                </Grid>
+                        <Button DockPanel.Dock="Right"
+                                Width="110"
+                                Height="34"
+                                Content="Export"
+                                Command="{Binding ExportCommand}"
+                                Background="{StaticResource AccentBrush}"
+                                Foreground="White"
+                                BorderThickness="0"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Cursor="Hand">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </DockPanel>
+                </Border>
 
-                <StackPanel Grid.Column="1" VerticalAlignment="Center"
-         Background="#D14B72"
-         Margin="10">
-                    <Button Command="{Binding Add}" Style="{StaticResource btnAdd}"/>
-                    <Button Command="{Binding Save}" Style="{StaticResource btnSave}"/>
-                    <Button Command="{Binding Edit}" Style="{StaticResource btnChange}"/>
-                    <Button Command="{Binding Delete}" Style="{StaticResource btnDelete}"/>
-                    <Button Command="{Binding Reject}" Style="{StaticResource btnReject}"/>
-                </StackPanel>
+                <Border Grid.Row="3" Grid.Column="0"
+                        Background="White"
+                        CornerRadius="18"
+                        Padding="8"
+                        Margin="0,0,14,0"
+                        Effect="{StaticResource SoftShadow}">
+
+                    <DataGrid ItemsSource="{Binding Accounts}"
+                              SelectedItem="{Binding SelectedAccount, Mode=TwoWay}">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="No"              Binding="{Binding No}" Width="*"/>
+                            <DataGridTextColumn Header="Customer ID"     Binding="{Binding CustomerID}" Width="*"/>
+                            <DataGridTextColumn Header="Account Number"  Binding="{Binding AccountNumber}" Width="*"/>
+                            <DataGridTextColumn Header="Balance"         Binding="{Binding Balance, StringFormat={}{0:N2}}" Width="*"/>
+                            <DataGridTextColumn Header="Type"            Binding="{Binding AccountType}" Width="*"/>
+                            <DataGridTextColumn Header="Currency"        Binding="{Binding Currency}" Width="*"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                </Border>
+
             </Grid>
+        </Border>
 
-            <ListView Grid.Row="2"
-                   ItemsSource="{Binding Customers}"
-                   SelectedItem="{Binding SelectedCustomer}"
-                   Style="{StaticResource listView}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="No" Width="40" DisplayMemberBinding="{Binding No}"/>
-                        <GridViewColumn Header="CustomerID" Width="120" DisplayMemberBinding="{Binding CustomerID}"/>
-                        <GridViewColumn Header="Account Number" Width="120" DisplayMemberBinding="{Binding AccountNumber}"/>
-                        <GridViewColumn Header="Balance" Width="120" DisplayMemberBinding="{Binding Balance}"/>
-                        <GridViewColumn Header="Account Type" Width="120" DisplayMemberBinding="{Binding AccountType}"/>
-                        <GridViewColumn Header="Currency" Width="180" DisplayMemberBinding="{Binding Currency}"/>
-                    </GridView>
-                </ListView.View>
-
-                <ListView.ItemContainerStyle>
-                    <Style BasedOn="{StaticResource listViewItem}" TargetType="{x:Type ListViewItem}" />
-                </ListView.ItemContainerStyle>
-            </ListView>
-
-            <Grid Grid.Row="3" Style="{StaticResource grdSearch}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <WrapPanel Grid.Column="0">
-                    <Label Content="Search:" FontSize="15" Margin="10,10,0,0" Width="100"/>
-                    <TextBox Style="{StaticResource txtSearch}"/>
-                </WrapPanel>
-
-                <Button Grid.Column="1"
-                     Command="{Binding Export}"
-                     Style="{StaticResource BaseButton}"
-                     Width="200"
-                     Content="Export"
-                     HorizontalAlignment="Right"/>
-            </Grid>
-
-        </Grid>
-    </Border>
+    </Grid>
 </UserControl>

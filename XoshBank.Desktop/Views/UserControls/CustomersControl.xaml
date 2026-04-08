@@ -7,115 +7,193 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Border Background="Pink" BorderThickness="5">
+
+    <Grid Background="{StaticResource AppBackground}">
+
+        <Border Margin="28" Padding="20" CornerRadius="28" Background="#F8F0F6" Effect="{StaticResource CardShadow}">
             <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-            <Border Grid.Row="0" Background="#FF9AAE" BorderThickness="3">
-                    <TextBlock Height="25"
-                           FontSize="18"
-                           Background="#FF9AAE"
-                           TextAlignment="Center"
-                           FontWeight="Medium"
-                           Text="Customers"/>
-                </Border>
+                
+                <Border Grid.Row="1" Grid.Column="0"
+                        Background="White"
+                        CornerRadius="18"
+                        Padding="14,12"
+                        Margin="0,0,14,14"
+                        Effect="{StaticResource SoftShadow}">
 
-                <Grid Grid.Row="1" Background="LightPink">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                    <Grid>
 
-                    <Grid Grid.Column="0" Style="{StaticResource grdForm}" Margin="0 0 30 0">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0">
-                            <TextBlock Margin="5" FontSize="15">First Name</TextBlock>
-                            <TextBox Margin="5" Text="{Binding CurrentCustomer.FirstName}"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                            <TextBlock Margin="5" FontSize="15">Last Name</TextBlock>
-                            <TextBox Margin="5" Text="{Binding CurrentCustomer.LastName}"/>
+                        <TextBlock Grid.ColumnSpan="3"
+                                   Text="Customer details"
+                                   FontSize="14"
+                                   FontWeight="SemiBold"
+                                   Foreground="#352439"
+                                   Margin="0,0,0,10"/>
 
-                            <TextBlock Margin="5" FontSize="15">Date of Birth</TextBlock>
-                            <DatePicker Margin="5" SelectedDate="{Binding CurrentCustomer.DateOfBirth}"/>
-
-                            <TextBlock Margin="5" FontSize="15">Phone</TextBlock>
-                            <TextBox Margin="5" Text="{Binding CurrentCustomer.PhoneNumber}"/>
+                        
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="No"/>
+                            <TextBox Style="{StaticResource ReadOnlyTextStyle}" Text="{Binding SelectedCustomer.No}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Column="1">
-                            <TextBlock Margin="5" FontSize="15">Email</TextBlock>
-                            <TextBox Margin="5" Text="{Binding CurrentCustomer.Email}"/>
-
-                            <TextBlock Margin="5" FontSize="15">Address</TextBlock>
-                            <TextBox Margin="5" Text="{Binding CurrentCustomer.Address}"/>
-
-                            <TextBlock Margin="5" FontSize="15">FIN Code</TextBlock>
-                            <TextBox Margin="5" Text="{Binding CurrentCustomer.FINCode}"/>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,8,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="First Name"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="2">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Last Name"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.LastName, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+        
+                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,0">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Date of Birth"/>
+                            <DatePicker Style="{StaticResource DatePickerStyle}"
+                                        SelectedDate="{Binding SelectedCustomer.DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,8,0">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Phone"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="2">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Email"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.Email, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        
+                        <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,8,8,0">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Address"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.Address, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,8,8,0">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="FIN Code"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.FINCode, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
                     </Grid>
+                </Border>
 
-                <StackPanel Grid.Column="1" VerticalAlignment="Center"
-            Background="#D14B72"
-            Margin="10">
-                        <Button Command="{Binding Add}" Style="{StaticResource btnAdd}"/>
-                        <Button Command="{Binding Save}" Style="{StaticResource btnSave}"/>
-                        <Button Command="{Binding Edit}" Style="{StaticResource btnChange}"/>
-                        <Button Command="{Binding Delete}" Style="{StaticResource btnDelete}"/>
-                        <Button Command="{Binding Reject}" Style="{StaticResource btnReject}"/>
+                
+                <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"
+                        Background="#FFFDF9FC"
+                        CornerRadius="18"
+                        Padding="12"
+                        Effect="{StaticResource SoftShadow}">
+
+                    <StackPanel>
+                        <TextBlock Text="Actions"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="#352439"
+                                   Margin="4,2,4,10"/>
+
+                        <Button Style="{StaticResource PrimaryActionButtonStyle}" Content="Add"    Command="{Binding AddCommand}"/>
+                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Save"   Command="{Binding SaveCommand}"/>
+                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Edit"   Command="{Binding EditCommand}"/>
+                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Reject" Command="{Binding RejectCommand}"/>
+                        <Button Style="{StaticResource DangerActionButtonStyle}"  Content="Delete" Command="{Binding DeleteCommand}"/>
                     </StackPanel>
-                </Grid>
+                </Border>
 
-                <ListView Grid.Row="2"
-                      ItemsSource="{Binding Customers}"
-                      SelectedItem="{Binding SelectedCustomer}"
-                      Style="{StaticResource listView}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="No" Width="40" DisplayMemberBinding="{Binding No}"/>
-                            <GridViewColumn Header="First Name" Width="120" DisplayMemberBinding="{Binding FirstName}"/>
-                            <GridViewColumn Header="Last Name" Width="120" DisplayMemberBinding="{Binding LastName}"/>
-                            <GridViewColumn Header="Birth Date" Width="120" DisplayMemberBinding="{Binding DateOfBirth}"/>
-                            <GridViewColumn Header="Phone" Width="120" DisplayMemberBinding="{Binding PhoneNumber}"/>
-                            <GridViewColumn Header="Email" Width="180" DisplayMemberBinding="{Binding Email}"/>
-                            <GridViewColumn Header="Address" Width="200" DisplayMemberBinding="{Binding Address}"/>
-                            <GridViewColumn Header="FIN" Width="120" DisplayMemberBinding="{Binding FINCode}"/>
-                        </GridView>
-                    </ListView.View>
+                
+                <Border Grid.Row="2" Grid.Column="0"
+                        Background="White"
+                        CornerRadius="18"
+                        Padding="14,10"
+                        Margin="0,0,14,14"
+                        Effect="{StaticResource SoftShadow}">
 
-                    <ListView.ItemContainerStyle>
-                        <Style BasedOn="{StaticResource listViewItem}" TargetType="{x:Type ListViewItem}" />
-                    </ListView.ItemContainerStyle>
-                </ListView>
+                    <DockPanel LastChildFill="False">
+                        <TextBlock DockPanel.Dock="Left"
+                                   Text="Search"
+                                   FontSize="14"
+                                   Foreground="#5A4860"
+                                   VerticalAlignment="Center"
+                                   Margin="0,0,10,0"/>
 
-                <Grid Grid.Row="3" Style="{StaticResource grdSearch}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                        <TextBox DockPanel.Dock="Left"
+                                 Width="280"
+                                 Style="{StaticResource InputStyle}"
+                                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <WrapPanel Grid.Column="0">
-                        <Label Content="Search:" FontSize="15" Margin="10,10,0,0" Width="100"/>
-                        <TextBox Style="{StaticResource txtSearch}"/>
-                    </WrapPanel>
+                        <Button DockPanel.Dock="Right"
+                                Width="110"
+                                Height="34"
+                                Content="Export"
+                                Command="{Binding ExportCommand}"
+                                Background="{StaticResource AccentBrush}"
+                                Foreground="White"
+                                BorderThickness="0"
+                                FontSize="13"
+                                FontWeight="SemiBold"
+                                Cursor="Hand">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="10" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </DockPanel>
+                </Border>
 
-                    <Button Grid.Column="1"
-                        Command="{Binding Export}"
-                        Style="{StaticResource BaseButton}"
-                        Width="200"
-                        Content="Export"
-                        HorizontalAlignment="Right"/>
-                </Grid>
+                
+                <Border Grid.Row="3" Grid.Column="0"
+                        Background="White"
+                        CornerRadius="18"
+                        Padding="8"
+                        Margin="0,0,14,0"
+                        Effect="{StaticResource SoftShadow}">
+
+                    <DataGrid ItemsSource="{Binding Customers}"
+                              SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="No"          Binding="{Binding No}" Width="60"/>
+                            <DataGridTextColumn Header="First Name"  Binding="{Binding FirstName}" Width="*"/>
+                            <DataGridTextColumn Header="Last Name"   Binding="{Binding LastName}" Width="*"/>
+                            <DataGridTextColumn Header="Birth Date"  Binding="{Binding DateOfBirth, StringFormat={}{0:dd.MM.yyyy}}" Width="110"/>
+                            <DataGridTextColumn Header="Phone"       Binding="{Binding PhoneNumber}" Width="120"/>
+                            <DataGridTextColumn Header="Email"       Binding="{Binding Email}" Width="150"/>
+                            <DataGridTextColumn Header="FIN"         Binding="{Binding FINCode}" Width="100"/>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                </Border>
 
             </Grid>
         </Border>
+
+    </Grid>
     </UserControl>
 
