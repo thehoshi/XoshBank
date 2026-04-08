@@ -1,0 +1,312 @@
+﻿<UserControl 
+        x:Class="XoshBank.Desktop.Views.UserControls.BranchesControl"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:XoshBank.Desktop.Views.UserControls"
+        mc:Ignorable="d" 
+        d:DesignHeight="807.2" d:DesignWidth="1107.2">
+
+    <UserControl.Resources>
+        <DropShadowEffect x:Key="CardShadow" BlurRadius="26" ShadowDepth="8" Opacity="0.16" Color="#8E4A74"/>
+        <DropShadowEffect x:Key="SoftShadow" BlurRadius="16" ShadowDepth="4" Opacity="0.12" Color="#8E4A74"/>
+
+        <LinearGradientBrush x:Key="AppBackground" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#FFFDF8FB" Offset="0"/>
+            <GradientStop Color="#FFF9EDF4" Offset="0.45"/>
+            <GradientStop Color="#FFF3DDEB" Offset="1"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="AccentBrush" StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#FFFF4D8D" Offset="0"/>
+            <GradientStop Color="#FFDD5BA3" Offset="1"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="DangerBrush" StartPoint="0,0" EndPoint="1,0">
+            <GradientStop Color="#FFFF6B6B" Offset="0"/>
+            <GradientStop Color="#FFFF4D4F" Offset="1"/>
+        </LinearGradientBrush>
+
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+            <Setter Property="Foreground" Value="#2E2130"/>
+            <Setter Property="Background" Value="#FFFFFFFF"/>
+            <Setter Property="BorderBrush" Value="#E9D8E4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="14"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.94"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <ScaleTransform ScaleX="0.99" ScaleY="0.99"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PrimaryActionButtonStyle" TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+            <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E14E90"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+        <Style x:Key="DangerActionButtonStyle" TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#FF4D4F"/>
+            <Setter Property="BorderBrush" Value="#FF4D4F"/>
+        </Style>
+
+        <Style x:Key="LabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#5A4860"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
+
+        <Style x:Key="InputStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Padding" Value="14,8"/>
+            <Setter Property="Background" Value="#FAF7FB"/>
+            <Setter Property="BorderBrush" Value="#E7D8E4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#2E2130"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border CornerRadius="12"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="0"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ReadOnlyTextStyle" TargetType="TextBox" BasedOn="{StaticResource InputStyle}">
+            <Setter Property="Background" Value="#FFF6F2F7"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+        </Style>
+
+        <Style x:Key="DatePickerStyle" TargetType="DatePicker">
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Background" Value="#FAF7FB"/>
+            <Setter Property="BorderBrush" Value="#E7D8E4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#2E2130"/>
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#FFF9F2F7"/>
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="RowHeight" Value="48"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="CanUserResizeRows" Value="False"/>
+            <Setter Property="SelectionUnit" Value="FullRow"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#FFF6ECF4"/>
+            <Setter Property="Foreground" Value="#4A3250"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+            <Setter Property="BorderBrush" Value="#EADAE5"/>
+        </Style>
+
+        <Style TargetType="DataGridCell">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="Foreground" Value="#3A2B40"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Background="{StaticResource AppBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Margin="28" Padding="20" CornerRadius="28" Background="#F8F0F6" Effect="{StaticResource CardShadow}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="180"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.ColumnSpan="2" Background="#FFFFFFFF" CornerRadius="20" Padding="18,16" Margin="0,0,0,18" Effect="{StaticResource SoftShadow}">
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Left">
+                            <TextBlock Text="Branches" FontSize="30" FontWeight="SemiBold" Foreground="#352439"/>
+                            <TextBlock Text="A soft, simple branch manager with a clean list and editable details." 
+                                       FontSize="13" Foreground="#8E7791" Margin="0,4,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,2,0,0">
+                            <Border Width="10" Height="10" CornerRadius="5" Background="#FF4D8D" Margin="0,0,8,0"/>
+                            <Border Width="10" Height="10" CornerRadius="5" Background="#7B61FF" Margin="0,0,8,0"/>
+                            <Border Width="10" Height="10" CornerRadius="5" Background="#FFB8D0"/>
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="0" Background="#FFFFFFFF" CornerRadius="24" Padding="22" Margin="0,0,14,16" Effect="{StaticResource SoftShadow}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.ColumnSpan="2" Text="Branch details" FontSize="22" FontWeight="SemiBold" Foreground="#352439" Margin="0,0,0,16"/>
+
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,16,16">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="ID"/>
+                            <TextBox Style="{StaticResource ReadOnlyTextStyle}" Text="{Binding SelectedBranch.ID}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,16">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Branch name"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.BranchName, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,16,16">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="City"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.City, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,0,16">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Address"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.Address, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,0,16,16">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Manager name"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.ManagerName, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,0,0,16">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Phone number"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="4" Grid.Column="0" Margin="0,0,16,16">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Employee count"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.EmployeeCount, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="4" Grid.Column="1" Margin="0,0,0,16">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Opening date"/>
+                            <DatePicker Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding SelectedBranch.OpeningDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,0,16,0">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Revenue"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.Revenue, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="5" Grid.Column="1" Margin="0,0,0,0">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Expenses"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.Expenses, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Background="#FFFDF9FC" CornerRadius="24" Padding="16" Margin="0,0,0,16" Effect="{StaticResource SoftShadow}">
+                    <StackPanel>
+                        <TextBlock Text="Actions" FontSize="20" FontWeight="SemiBold" Foreground="#352439" Margin="6,4,6,12"/>
+                        <Button Style="{StaticResource PrimaryActionButtonStyle}" Content="Add" Command="{Binding AddCommand}"/>
+                        <Button Style="{StaticResource ActionButtonStyle}" Content="Save" Command="{Binding SaveCommand}"/>
+                        <Button Style="{StaticResource ActionButtonStyle}" Content="Edit" Command="{Binding EditCommand}"/>
+                        <Button Style="{StaticResource ActionButtonStyle}" Content="Reject" Command="{Binding RejectCommand}"/>
+                        <Button Style="{StaticResource DangerActionButtonStyle}" Content="Delete" Command="{Binding DeleteCommand}"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Row="2" Grid.ColumnSpan="2" Background="#FFFFFFFF" CornerRadius="24" Padding="16" Margin="0,0,0,16" Effect="{StaticResource SoftShadow}">
+                    <DockPanel LastChildFill="True">
+                        <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center" Margin="6,0,16,0">
+                            <TextBlock Text="Search" FontSize="16" Foreground="#5A4860" VerticalAlignment="Center" Margin="0,0,12,0"/>
+                            <TextBox Width="320" Style="{StaticResource InputStyle}" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <Button DockPanel.Dock="Right" Width="132" Height="42" Content="Export" Command="{Binding ExportCommand}"
+                                Background="{StaticResource AccentBrush}" Foreground="White" BorderThickness="0" FontSize="15" FontWeight="SemiBold"
+                                Margin="12,0,0,0" Cursor="Hand">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="14" Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </DockPanel>
+                </Border>
+
+                <Border Grid.Row="3" Grid.ColumnSpan="2" Background="#FFFFFFFF" CornerRadius="24" Padding="10" Effect="{StaticResource SoftShadow}">
+                    <DataGrid ItemsSource="{Binding Branches}"
+                              SelectedItem="{Binding SelectedBranch, Mode=TwoWay}"
+                              RowStyle="{x:Null}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding ID}" Width="70"/>
+                            <DataGridTextColumn Header="Branch Name" Binding="{Binding BranchName}" Width="*"/>
+                            <DataGridTextColumn Header="City" Binding="{Binding City}" Width="130"/>
+                            <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="190"/>
+                            <DataGridTextColumn Header="Manager" Binding="{Binding ManagerName}" Width="150"/>
+                            <DataGridTextColumn Header="Phone" Binding="{Binding PhoneNumber}" Width="140"/>
+                            <DataGridTextColumn Header="Employees" Binding="{Binding EmployeeCount}" Width="100"/>
+                            <DataGridTextColumn Header="Opening Date" Binding="{Binding OpeningDate, StringFormat={}{0:dd.MM.yyyy}}" Width="120"/>
+                            <DataGridTextColumn Header="Revenue" Binding="{Binding Revenue, StringFormat={}{0:N2}}" Width="120"/>
+                            <DataGridTextColumn Header="Expenses" Binding="{Binding Expenses, StringFormat={}{0:N2}}" Width="120"/>
+                            <DataGridTextColumn Header="Deleted At" Binding="{Binding DeletedAt, StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="140"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace XoshBank.Views.UserControl
+namespace XoshBank.Desktop.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for BranchesControl.xaml
+    /// Interaction logic for AccountsControl.xaml
     /// </summary>
-    public partial class BranchesControl : System.Windows.Controls.UserControl
+    public partial class AccountsControl : System.Windows.Controls.UserControl
     {
-        public BranchesControl()
+        public AccountsControl()
         {
             InitializeComponent();
         }

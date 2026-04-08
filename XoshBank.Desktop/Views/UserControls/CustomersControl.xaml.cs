@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 
-namespace XoshBank.Views.UserControl
+namespace XoshBank.Desktop.Views.UserControls
 {
     /// <summary>
     /// Interaction logic for CustomersControl.xaml

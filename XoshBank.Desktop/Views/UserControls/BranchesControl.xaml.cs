@@ -12,16 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace XoshBank.Views.UserControl
+namespace XoshBank.Desktop.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for LoansControl.xaml
+    /// Interaction logic for BranchesControl.xaml
     /// </summary>
-    public partial class LoansControl : System.Windows.Controls.UserControl
+    public partial class BranchesControl : System.Windows.Controls.UserControl
     {
-        public LoansControl()
-        {
-            InitializeComponent();
-        }
+        public BranchesControl() => InitializeComponent();
+
     }
 }

@@ -13,9 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using XoshBank.ViewModels;
-using XoshBank.Views.UserControl;
+using XoshBank.Desktop.Views.UserControls;
 
-namespace XoshBank
+namespace XoshBank.Desktop.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -25,26 +25,6 @@ namespace XoshBank
         public MainWindow()
         {
             InitializeComponent();
-
-            DataContext = new MainPageViewModel();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void Loans_Click(object sender, RoutedEventArgs e)
-        {
-            var grid = ImageGrid;
-            grid.Children.Clear();
-            grid.Children.Add(new LoansControl());
-        }
-
-        private void Branches_Click(object sender, RoutedEventArgs e)
-        {
-            var grid = ImageGrid;
-            grid.Children.Clear();
-            grid.Children.Add(new BranchesControl());
         }
     }
 }

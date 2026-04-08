@@ -8,7 +8,7 @@ using XoshBankCore;
 using XoshBankCore.Entities;
 using XoshBankCore.Entities.Repositories;
 
-namespace XoshBank.Persistent.SQLServer
+namespace XoshBank.Persistent.SQLServer.Repositories
 {
     public class MsSQLBranchRepository : IBranchRepository
     {

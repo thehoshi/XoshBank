@@ -25,7 +25,7 @@ namespace XoshBank
 
             string connectionString = connectionStringBuilder.ConnectionString;
 
-            IUnitOfWork db = new MsSQLUnitOfWork(connectionString);
+            _ = new MsSQLUnitOfWork(connectionString);
 
             MainWindow mainWindow = new MainWindow();
             MainPageViewModel mainPageViewModel = new MainPageViewModel();
