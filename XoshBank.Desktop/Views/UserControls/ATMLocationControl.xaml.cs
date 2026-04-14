@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace XoshBank.Desktop.Views.UserControls
+namespace XoshBank.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for BranchesControl.xaml
+    /// Interaction logic for ATMLocationControl.xaml
     /// </summary>
-    public partial class CardsControl : System.Windows.Controls.UserControl
+    public partial class ATMLocationControl : UserControl
     {
-        public CardsControl()
+        public ATMLocationControl()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

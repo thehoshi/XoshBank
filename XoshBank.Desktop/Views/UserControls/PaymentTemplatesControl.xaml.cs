@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace XoshBank.Desktop.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for BranchesControl.xaml
+    /// Interaction logic for PaymentTemplateControl.xaml
     /// </summary>
-    public partial class CardsControl : System.Windows.Controls.UserControl
+    public partial class PaymentTemplatesControl : UserControl
     {
-        public CardsControl()
+        public PaymentTemplatesControl()
         {
             InitializeComponent();
         }

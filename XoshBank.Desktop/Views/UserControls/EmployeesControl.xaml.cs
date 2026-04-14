@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace XoshBank.Views.UserControls
+namespace XoshBank.Desktop.Views.UserControls
 {
     /// <summary>
     /// Interaction logic for EmployeesControl.xaml
