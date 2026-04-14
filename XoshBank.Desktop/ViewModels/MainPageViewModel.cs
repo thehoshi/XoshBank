@@ -15,5 +15,7 @@ namespace XoshBank.ViewModels
         public OpenCustomersCommand OpenCustomers => new OpenCustomersCommand();
         public OpenLoansCommand OpenLoans => new OpenLoansCommand();
         public OpenBranchesCommand OpenBranches => new OpenBranchesCommand();
+        public OpenCardsCommand OpenCards => new OpenCardsCommand();
+        public OpenEmployeesCommand OpenEmployees => new OpenEmployeesCommand();
     }
 }

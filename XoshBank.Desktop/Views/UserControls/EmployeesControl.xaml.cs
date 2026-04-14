@@ -10,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace XoshBank.Desktop.Views.UserControls
+namespace XoshBank.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for BranchesControl.xaml
+    /// Interaction logic for EmployeesControl.xaml
     /// </summary>
-    public partial class BranchesControl : System.Windows.Controls.UserControl
+    public partial class EmployeesControl : UserControl
     {
-        public BranchesControl() => InitializeComponent();
-
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public EmployeesControl()
         {
-
+            InitializeComponent();
         }
     }
 }

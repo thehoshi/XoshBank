@@ -58,11 +58,17 @@
     <Compile Include="Command\Branches\OpenBranchesCommand.cs" />
     <Compile Include="Command\Loans\OpenLoansCommand.cs" />
     <Compile Include="Command\OpenAccountsCommand.cs" />
+    <Compile Include="Command\OpenCardsCommand.cs" />
     <Compile Include="Command\OpenCustomersCommand.cs" />
+    <Compile Include="Command\OpenEmployeesCommand.cs" />
     <Compile Include="Models\AccountFormModel.cs" />
     <Compile Include="Models\AccountUIModel.cs" />
+    <Compile Include="Models\CardFormModel.cs" />
+    <Compile Include="Models\CardUIModel.cs" />
     <Compile Include="Models\CustomerFormModel.cs" />
     <Compile Include="Models\CustomerUIModel.cs" />
+    <Compile Include="Models\EmployeeFormModel.cs" />
+    <Compile Include="Models\EmployeeUIModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="Views\UserControls\AccountsControl.xaml.cs">
       <DependentUpon>AccountsControl.xaml</DependentUpon>
@@ -70,8 +76,14 @@
     <Compile Include="Views\UserControls\BranchesControl.xaml.cs">
       <DependentUpon>BranchesControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\CardsControl.xaml.cs">
+      <DependentUpon>CardsControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\CustomersControl.xaml.cs">
       <DependentUpon>CustomersControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\EmployeesControl.xaml.cs">
+      <DependentUpon>EmployeesControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\LoansControl.xaml.cs">
       <DependentUpon>LoansControl.xaml</DependentUpon>
@@ -96,7 +108,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\CardsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\CustomersControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\EmployeesControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
