@@ -75,7 +75,9 @@
     <Compile Include="Models\EmployeeUIModel.cs" />
     <Compile Include="Models\PaymentTemplateFormModel.cs" />
     <Compile Include="Models\PaymentTemplateUIModel.cs" />
+    <Compile Include="ViewModels\ATMLocationsControlViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\PaymentTemplatesControlViewModel.cs" />
     <Compile Include="Views\UserControls\AccountsControl.xaml.cs">
       <DependentUpon>AccountsControl.xaml</DependentUpon>
     </Compile>

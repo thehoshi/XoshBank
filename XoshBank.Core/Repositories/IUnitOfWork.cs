@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XoshBank.App.Repositories;
+using XoshBankCore.Entites.Repositories;
 using XoshBankCore.Entities.Repositories;
 
 namespace XoshBankCore.Entities.Repositories
@@ -15,6 +17,9 @@ namespace XoshBankCore.Entities.Repositories
         ICustomerRepository Customers { get; }
         ICardRepository Card { get; }
         IEmployeeRepository Employee { get; }
+
+        IATMLocationRepository ATMLocations { get; }
+        IPaymentTemplateRepository PaymentTemplates { get; }
 
     }
 }
