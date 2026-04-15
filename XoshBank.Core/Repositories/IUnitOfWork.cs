@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XoshBank.App.Repositories;
-using XoshBankCore.Entites.Repositories;
-using XoshBankCore.Entities.Repositories;
 
-namespace XoshBankCore.Entities.Repositories
+namespace XoshBank.Core.Repositories
 {
     public interface IUnitOfWork
     {

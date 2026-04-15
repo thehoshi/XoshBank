@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
-using XoshBankCore;
-using XoshBankCore.Entities.Repositories;
+using XoshBank.Core.Entities;
+using XoshBank.Core.Repositories;
 
 namespace XoshBank.Persistent.SQLServer.Repositories
 {

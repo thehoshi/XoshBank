@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XoshBank.Entities.Interfaces;
+using XoshBank.Core.Entities.Interfaces;
 
-namespace XoshBank.Entities
+namespace XoshBank.Core.Entities
 {
     public class Customer : IDeletableDbEntity
     {

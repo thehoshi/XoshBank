@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 using System.Windows;
+using XoshBank.Core.Repositories;
+using XoshBank.Desktop.Views;
 using XoshBank.Persistent.SQLServer.Repositories;
 using XoshBank.ViewModels;
-using XoshBankCore.Entities.Repositories;
-using XoshBank.Desktop.Views;
 
 namespace XoshBank
 { 
@@ -26,10 +20,10 @@ namespace XoshBank
 
             string connectionString = connectionStringBuilder.ConnectionString;
 
-            _ = new MsSQLUnitOfWork(connectionString);
+            IUnitOfWork unitOfWork = new MsSQLUnitOfWork(connectionString);
 
             MainWindow mainWindow = new MainWindow();
-            MainPageViewModel mainPageViewModel = new MainPageViewModel();
+            MainPageViewModel mainPageViewModel = new MainPageViewModel(unitOfWork);
             mainWindow.DataContext = mainPageViewModel;
             mainWindow.Show();
 

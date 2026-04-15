@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
-using XoshBank.Entities;
+using XoshBank.Core.Entities;
+using XoshBank.Core.Repositories;
 using XoshBank.Desktop.Views.UserControls;
-using XoshBank.ViewModels;
 using XoshBank.Models;
-using XoshBankCore.Entities.Repositories;
-using XoshBankCore.Entities;
+using XoshBank.ViewModels;
 
 
 namespace XoshBank.Command
@@ -39,7 +35,7 @@ namespace XoshBank.Command
             {
                 PaymentTemplateUIModel paymentTemplateUIModel = new PaymentTemplateUIModel
                 {
-                    TemplateName = Template.Name,
+                    TemplateName = Template.TemplateName,
                     ServiceName = Template.ServiceName,
                     Amount = Template.Amount
                 };

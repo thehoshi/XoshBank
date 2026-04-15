@@ -1,11 +1,11 @@
-﻿using XoshBank.Entities.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XoshBank.Core.Entities.Interfaces;
 
-namespace XoshBankCore
+namespace XoshBank.Core.Entities
 {
     public class Branch : IDeletableDbEntity
     {

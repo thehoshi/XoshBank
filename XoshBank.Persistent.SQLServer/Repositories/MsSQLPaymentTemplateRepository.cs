@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
-using System.Security.Authentication.ExtendedProtection;
-using XoshBank.App.Entities;
-using XoshBank.App.Repositories;
-using XoshBankCore.Entities;
-using XoshBankCore.Entities.Repositories;
+using XoshBank.Core.Entities;
+using XoshBank.Core.Repositories;
 
 namespace XoshBank.Persistent.SQLServer.Repositories
 {

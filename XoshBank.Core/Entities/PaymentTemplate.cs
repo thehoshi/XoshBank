@@ -1,8 +1,7 @@
 ﻿using System;
-using XoshBank.Entities;
-using XoshBank.Entities.Interfaces;
+using XoshBank.Core.Entities.Interfaces;
 
-namespace XoshBank.App.Entities
+namespace XoshBank.Core.Entities
 {
     public class PaymentTemplate : IDbEntity
     {

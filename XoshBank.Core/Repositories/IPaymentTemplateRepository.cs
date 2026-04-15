@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XoshBank.App.Entities;
-using XoshBankCore.Entities.Repositories;
+using XoshBank.Core.Entities;
 
-namespace XoshBank.App.Repositories
+namespace XoshBank.Core.Repositories
 {
     public interface IPaymentTemplateRepository : IBaseRepository <PaymentTemplate>
     {

@@ -1,8 +1,7 @@
 ﻿using System;
-using XoshBank.Entities.Interfaces;
+using XoshBank.Core.Entities.Interfaces;
 
-
-namespace XoshBankCore
+namespace XoshBank.Core.Entities
 {
     public class Account : IDeletableDbEntity
     {

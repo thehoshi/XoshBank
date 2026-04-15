@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using XoshBank.Entities;
-using XoshBankCore.Entities.Repositories;
+using XoshBank.Core.Entities;
 
-namespace XoshBankCore.Entities.Repositories
+namespace XoshBank.Core.Repositories
 {
     public interface ICardRepository : IBaseRepository<Card>
     {

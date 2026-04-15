@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Windows.Controls;
 using System.Windows.Input;
-using XoshBank.App.Entities;
+using XoshBank.Core.Entities;
+using XoshBank.Core.Repositories;
 using XoshBank.Models;
 using XoshBank.ViewModels;
 using XoshBank.Views.UserControls;
-using XoshBankCore.Entities.Repositories;
 
 namespace XoshBank.Command
 {
     public class OpenATMLocationCommand : ICommand
     {
         private readonly IUnitOfWork _db;
-
         public OpenATMLocationCommand(IUnitOfWork db)
         {
             _db= db;
@@ -27,9 +26,10 @@ namespace XoshBank.Command
 
         public void Execute(object parameter)
         {
-            List<ATMLocations> Locations =  _db.ATMLocations.GetAll();
+            List<ATMLocation> Locations =  _db.ATMLocations.GetAll();
             
             List<ATMLocationUIModel> ATMLocationUIModels = new List<ATMLocationUIModel>();
+
             foreach (var Location in Locations)
             {
                 ATMLocationUIModel atmocationUIModels = new ATMLocationUIModel 

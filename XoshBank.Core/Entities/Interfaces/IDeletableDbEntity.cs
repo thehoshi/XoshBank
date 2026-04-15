@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XoshBank.Entities.Interfaces
+namespace XoshBank.Core.Entities.Interfaces
 {
     public interface IDeletableDbEntity : IDbEntity
     {

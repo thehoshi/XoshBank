@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
-using XoshBank.Entities;
-using XoshBankCore.Entities.Repositories;
+using XoshBank.Core.Entities;
+using XoshBank.Core.Repositories;
 
-namespace XoshBank.Persistent.SQLServer
+namespace XoshBank.Persistent.SQLServer.Repositories
 {
     public class MsSqlEmployeeRepository : IEmployeeRepository
     {
