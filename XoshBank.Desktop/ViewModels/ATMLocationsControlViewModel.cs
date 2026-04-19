@@ -26,6 +26,8 @@ namespace XoshBank.ViewModels
             }
         }
 
+        public ATMLocationFormModel CurrentATMLocation {  get; set; }
+
         public List<ATMLocationUIModel> Locations {  get; set; }
 
         public AddATMLocationCommand AddATMLocationCommand => new AddATMLocationCommand(this);

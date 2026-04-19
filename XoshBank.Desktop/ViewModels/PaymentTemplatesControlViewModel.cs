@@ -26,6 +26,9 @@ namespace XoshBank.ViewModels
                 
             }
         }
+
+        public PaymentTemplateFormModel CurrentTemplate {  get; set; }
+
     public List<PaymentTemplateUIModel> Templates { get; set; }
 
         public AddPaymentTemplateCommand AddPaymentTemplateCommand => new AddPaymentTemplateCommand(this);
