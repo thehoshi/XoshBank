@@ -9,7 +9,20 @@ namespace XoshBank.ViewModels
 {
     public class PaymentTemplatesControlViewModel
     {
-        public List<PaymentTemplateUIModel> Templates { get; set; }
+        private int _currentState = 1;
+
+        public int CurrentState
+        {
+            get
+            {
+                return _currentState;
+            }
+            set
+            {
+                _currentState= value;
+            }
+        }
+    public List<PaymentTemplateUIModel> Templates { get; set; }
     }
 
 }

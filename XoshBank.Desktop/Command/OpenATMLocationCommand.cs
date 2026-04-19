@@ -8,7 +8,7 @@ using XoshBank.Models;
 using XoshBank.ViewModels;
 using XoshBank.Views.UserControls;
 
-namespace XoshBank.Command
+namespace XoshBank.Desktop.Commands.MainPage
 {
     public class OpenATMLocationCommand : ICommand
     {
@@ -26,6 +26,10 @@ namespace XoshBank.Command
 
         public void Execute(object parameter)
         {
+            ATMLocationControl control = new ATMLocationControl();
+
+            ATMLocationsControlViewModel viewModel = new ATMLocationsControlViewModel();
+
             List<ATMLocation> Locations =  _db.ATMLocations.GetAll();
             
             List<ATMLocationUIModel> ATMLocationUIModels = new List<ATMLocationUIModel>();
@@ -39,10 +43,10 @@ namespace XoshBank.Command
                     Address = Location.Address,
                     IsActive = Location.IsActive,
                 };
+                ATMLocationUIModels.Add(atmocationUIModels);
             }
-            ATMLocationControl control = new ATMLocationControl();
 
-            ATMLocationsControlViewModel viewModel = new ATMLocationsControlViewModel(); 
+            viewModel.Locations = ATMLocationUIModels;
 
             control.DataContext = viewModel;
 

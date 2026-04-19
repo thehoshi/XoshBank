@@ -2,6 +2,8 @@
 using XoshBank.Command.Branches;
 using XoshBank.Command.Loans;
 using XoshBank.Core.Repositories;
+using XoshBank.Desktop.Command;
+using XoshBank.Desktop.Commands.MainPage;
 
 namespace XoshBank.ViewModels
 {

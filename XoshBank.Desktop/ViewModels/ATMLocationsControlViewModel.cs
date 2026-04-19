@@ -9,6 +9,22 @@ namespace XoshBank.ViewModels
 {
     public class ATMLocationsControlViewModel
     {
+        private int _currentState = 1;
+
+        public int CurrentState
+        {
+            get
+            {
+                return _currentState;
+            }
+            set
+            {
+                _currentState = value;
+            }
+        }
+
+
+
         public List<ATMLocationUIModel> Locations {  get; set; }
     }
 }

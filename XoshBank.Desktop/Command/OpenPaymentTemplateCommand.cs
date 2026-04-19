@@ -9,12 +9,11 @@ using XoshBank.Models;
 using XoshBank.ViewModels;
 
 
-namespace XoshBank.Command
+namespace XoshBank.Desktop.Command
 {
     public class OpenPaymentTemplateCommand : ICommand
     {
         public readonly IUnitOfWork _db;
-
         public OpenPaymentTemplateCommand(IUnitOfWork db)
         {
             _db = db;
@@ -27,6 +26,10 @@ namespace XoshBank.Command
         }
         public void Execute(object parameter)
         {
+            PaymentTemplatesControl control = new PaymentTemplatesControl();
+
+            PaymentTemplatesControlViewModel viewModel = new PaymentTemplatesControlViewModel();
+
             List<PaymentTemplate> Templates = _db.PaymentTemplates.GetAll();
 
             List<PaymentTemplateUIModel> TemplatesUIModel = new List<PaymentTemplateUIModel>();
@@ -39,18 +42,18 @@ namespace XoshBank.Command
                     ServiceName = Template.ServiceName,
                     Amount = Template.Amount
                 };
-
+                TemplatesUIModel.Add(paymentTemplateUIModel);
             }
-            PaymentTemplatesControl paymentTemplatesControl = new PaymentTemplatesControl();
 
-            PaymentTemplatesControlViewModel viewModel = new PaymentTemplatesControlViewModel();
+            viewModel.Templates = TemplatesUIModel;
 
-            paymentTemplatesControl.DataContext = viewModel;
+            control.DataContext = viewModel;
 
             Grid grid = (Grid)parameter;
 
             grid.Children.Clear();
-            grid.Children.Add(paymentTemplatesControl);
+
+            grid.Children.Add(control);
         }
     }
 }

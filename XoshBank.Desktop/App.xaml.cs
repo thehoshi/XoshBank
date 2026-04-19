@@ -8,7 +8,7 @@ using XoshBank.ViewModels;
 namespace XoshBank
 { 
     public partial class App : Application
-    {
+    { 
         public App()
         {
             SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder
