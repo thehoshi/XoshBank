@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +8,11 @@ using XoshBank.ViewModels;
 
 namespace XoshBank.Command.PaymentTemplates
 {
-    public class AddPaymentTemplateCommand : ICommand
+    public class SavePaymentTemplateCommand : ICommand
     {
         private readonly PaymentTemplatesControlViewModel viewModel;
 
-        public AddPaymentTemplateCommand(PaymentTemplatesControlViewModel viewModel)
+        public SavePaymentTemplateCommand(PaymentTemplatesControlViewModel viewModel)
         {
             viewModel = viewModel;
         }
@@ -27,7 +26,7 @@ namespace XoshBank.Command.PaymentTemplates
 
         public void Execute(object parameter)
         {
-            viewModel.CurrentState = 2;
+            throw new NotImplementedException();
         }
     }
 }

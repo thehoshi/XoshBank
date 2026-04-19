@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using XoshBank.ViewModels;
 
-namespace XoshBank.Command.PaymentTemplates
+namespace XoshBank.Command.ATMLocations
 {
-    public class AddPaymentTemplateCommand : ICommand
+    public class SaveATMLocationCommand : ICommand
     {
-        private readonly PaymentTemplatesControlViewModel viewModel;
+        private readonly ATMLocationsControlViewModel viewModel;
 
-        public AddPaymentTemplateCommand(PaymentTemplatesControlViewModel viewModel)
+        public SaveATMLocationCommand(ATMLocationsControlViewModel viewModel)
         {
             viewModel = viewModel;
         }
@@ -27,7 +26,7 @@ namespace XoshBank.Command.PaymentTemplates
 
         public void Execute(object parameter)
         {
-            viewModel.CurrentState = 2;
+            throw new NotImplementedException();
         }
     }
 }

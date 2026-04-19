@@ -59,6 +59,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command\ATMLocations\AddATMLocationCommand.cs" />
+    <Compile Include="Command\ATMLocations\RejectATMLocationCommand.cs" />
+    <Compile Include="Command\ATMLocations\SaveATMLocationCommand.cs" />
     <Compile Include="Command\Branches\OpenBranchesCommand.cs" />
     <Compile Include="Command\Loans\OpenLoansCommand.cs" />
     <Compile Include="Command\OpenAccountsCommand.cs" />
@@ -68,6 +70,8 @@
     <Compile Include="Command\OpenEmployeesCommand.cs" />
     <Compile Include="Command\OpenPaymentTemplateCommand.cs" />
     <Compile Include="Command\PaymentTemplates\AddPaymentTemplateCommand.cs" />
+    <Compile Include="Command\PaymentTemplates\RejectPaymentTemplateCommand.cs" />
+    <Compile Include="Command\PaymentTemplates\SavePaymentTemplateCommand.cs" />
     <Compile Include="Models\AccountFormModel.cs" />
     <Compile Include="Models\AccountUIModel.cs" />
     <Compile Include="Models\CardFormModel.cs" />
