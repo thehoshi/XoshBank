@@ -8,6 +8,7 @@ using XoshBank.ViewModels;
 using XoshBank.Core.Entities;
 using XoshBank.Models;
 using XoshBank.Enums;
+using System.Windows;
 
 namespace XoshBank.Command.ATMLocations
 {
@@ -29,25 +30,59 @@ namespace XoshBank.Command.ATMLocations
 
         public void Execute(object parameter)
         {
-            ATMLocation Location = new ATMLocation
-            {
-                Name = viewModel.CurrentATMLocation.Name,
-                City = viewModel.CurrentATMLocation.City,
-                Address = viewModel.CurrentATMLocation.Address,
-                IsActive = viewModel.CurrentATMLocation.IsActive,
-            };
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure to save it?", "Question", MessageBoxButton.YesNo,MessageBoxImage.Question);
 
-            viewModel.DB.ATMLocations.Add(Location);
+            if (messageBoxResult != MessageBoxResult.Yes)
+                return;
+
+                ATMLocation Location = new ATMLocation
+                {
+                    ID = viewModel.CurrentATMLocation.Id,
+                    Name = viewModel.CurrentATMLocation.Name,
+                    City = viewModel.CurrentATMLocation.City,
+                    Address = viewModel.CurrentATMLocation.Address,
+                    IsActive = viewModel.CurrentATMLocation.IsActive,
+                };
+            
+            if(ATMLocation.Id > 0)
+            {
+                viewModel.DB.ATMLocations.Update(Location);
+
+                ATMLocationUIModel locationUIModel = new ATMLocationUIModel
+                {   No = viewModel.SelectedLocation.No, 
+                    ID = Location.ID,
+                    Name = Location.Name,
+                    City = Location.City,
+                    Address = Location.Address,
+                    IsActive = Location.IsActive,
+                };
+                int selectedATMIndex = viewModel.SelectedLocation.No - 1;
+                viewModel.Locations[selectedATMIndex] = locationUIModel;
+            }
+            else
+            {
+                viewModel.DB.ATMLocations.Add(Location);
+                ATMLocationUIModel locationUIModel = new ATMLocationUIModel
+                {
+                    No = viewModel.Locations.Count + 1,
+                    ID = Location.ID,
+                    Name = Location.Name,
+                    City = Location.City,
+                    Address = Location.Address,
+                    IsActive = Location.IsActive,
+                };
+
+            }
 
 
             //mapping from UI model to entity
             ATMLocationUIModel LocationUIModel = new ATMLocationUIModel
             {
+                ID = Location.ID,
                 Name = Location.Name,
                 City = Location.City,
                 Address = Location.Address,
                 IsActive = Location.IsActive,
-                ID = viewModel.Locations.Count + 1,
             };
 
 
@@ -55,6 +90,8 @@ namespace XoshBank.Command.ATMLocations
 
             viewModel.CurrentState = ViewState.Default;
             viewModel.CurrentATMLocation = new ATMLocationFormModel();
+
+            MessageBox.Show("ATM saved successfully!", "Succsess", MessageBoxButton.OK);
         }
     }
 }
