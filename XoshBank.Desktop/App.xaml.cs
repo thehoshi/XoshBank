@@ -14,8 +14,10 @@ namespace XoshBank
             SqlConnectionStringBuilder connectionStringBuilder = new SqlConnectionStringBuilder
             {
                 DataSource = "localhost",
-                InitialCatalog = "LibraryManagement",
-                IntegratedSecurity = true
+                InitialCatalog = "XoshBank",
+                IntegratedSecurity = true,
+                TrustServerCertificate = true,
+                Encrypt = false
             };
 
             string connectionString = connectionStringBuilder.ConnectionString;
