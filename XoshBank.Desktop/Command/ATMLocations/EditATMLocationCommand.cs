@@ -5,20 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using XoshBank.Enums;
-using XoshBank.Models;
 using XoshBank.ViewModels;
 
-namespace XoshBank.Command.PaymentTemplates
+namespace XoshBank.Command.ATMLocations
 {
-    public class RejectPaymentTemplateCommand : ICommand
+    public class EditATMLocationCommand : ICommand
     {
-        private readonly PaymentTemplatesControlViewModel viewModel;
+        private readonly ATMLocationsControlViewModel viewModel;
 
-        public RejectPaymentTemplateCommand(PaymentTemplatesControlViewModel viewModel)
+        public EditATMLocationCommand( ATMLocationsControlViewModel viewModel)
         {
             viewModel = viewModel;
         }
-
         public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
@@ -28,9 +26,7 @@ namespace XoshBank.Command.PaymentTemplates
 
         public void Execute(object parameter)
         {
-            viewModel.CurrentTemplate=new PaymentTemplateFormModel();
-            viewModel.SelectedTemplate = null;
-
+            viewModel.CurrentState = ViewState.Edit;
         }
     }
 }

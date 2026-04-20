@@ -56,6 +56,37 @@ namespace XoshBank.ViewModels
             }
         }
 
+        
+        private ATMLocationUIModel _selectedLocation;
+
+        public ATMLocationUIModel SelectedLocation
+        {
+            get {
+                return _selectedLocation;
+                }
+            set
+            {
+                _selectedLocation = value;
+                OnPropertyChanged(nameof(SelectedLocation));
+                if (value != null)
+                {
+                    CurrentState = ViewState.Selected;
+                    CurrentATMLocation = new ATMLocationFormModel
+                    {
+                        Id = SelectedLocation.ID,
+                        Name = SelectedLocation.Name,
+                        City = SelectedLocation.City,
+                        Address = SelectedLocation.Address,
+                        IsActive = SelectedLocation.IsActive,
+                    };
+                }
+                else
+                {
+                    CurrentState=ViewState.Default;
+                    CurrentATMLocation = new ATMLocationFormModel(); 
+                }
+            }
+        }
         public ObservableCollection<ATMLocationUIModel> Locations {  get; set; }
 
         #endregion
@@ -64,11 +95,16 @@ namespace XoshBank.ViewModels
         #region Commands
         public AddATMLocationCommand AddATMLocationCommand => new AddATMLocationCommand(this);
 
+        public EditATMLocationCommand EditATMLocationCommand => new EditATMLocationCommand(this);
+
         public RejectATMLocationCommand RejectATMLocationCommand => new RejectATMLocationCommand(this);
 
         public SaveATMLocationCommand SaveATMLocationCommand => new SaveATMLocationCommand(this);
 
-        
+        public DeleteATMLocationCommand DeleteATMLocationCommand => new DeleteATMLocationCommand(this);
+
+        public ExportATMLocationCommand exportATMLocationCommand => new ExportATMLocationCommand(this);
+
         #endregion
 
 

@@ -41,11 +41,11 @@
                     <Button Style="{StaticResource ButtonMenu}" Command="{Binding OpenCustomers}" CommandParameter="{Binding ElementName=ImageGrid}" Content="Customers"/>
                     <Button Style="{StaticResource ButtonMenu}" Command="{Binding OpenAccounts}" CommandParameter="{Binding ElementName=ImageGrid}" Content="Accounts"/>
                     <Button Style="{StaticResource ButtonMenu}" Command="{Binding OpenCards}" CommandParameter="{Binding ElementName=ImageGrid}" Content="Cards" Click="Button_Click_3"/>
-                    <Button Style="{StaticResource ButtonMenu}" Content="Templates"/>
+                    <Button Style="{StaticResource ButtonMenu}" Command="{Binding OpenPaymentTemplate}" CommandParameter="{Binding ElementName=ImageGrid}"  Content="Templates"/>
                     <Button Style="{StaticResource ButtonMenu}" Command="{Binding OpenLoans}" CommandParameter="{Binding ElementName=ImageGrid}" Content="Loans"/>
                     <Button Style="{StaticResource ButtonMenu}" Command="{Binding OpenEmployees}" CommandParameter="{Binding ElementName=ImageGrid}" Content="Employees"/>
                     <Button Style="{StaticResource ButtonMenu}" Command="{Binding OpenBranches}" CommandParameter="{Binding ElementName=ImageGrid}" Content="Branches"/>
-                    <Button Style="{StaticResource ButtonMenu}" Content="ATM"/>
+                    <Button Style="{StaticResource ButtonMenu}" Command="{Binding OpenATMLocation}" CommandParameter="{Binding ElementName=ImageGrid}" Content="ATM"/>
 
                 </StackPanel>
             </ScrollViewer>

@@ -56,7 +56,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     {
                         var atm = new ATMLocation
                         {
-                            ID = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0,
+                            ID = reader["ATMID"] != DBNull.Value ? Convert.ToInt32(reader["ATMID"]) : 0,
                             Name = reader["Name"] as string,
                             City = reader["City"] as string,
                             Address = reader["Address"] as string,

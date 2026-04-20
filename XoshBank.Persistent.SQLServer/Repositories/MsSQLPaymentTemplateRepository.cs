@@ -54,7 +54,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     {
                         var pt = new PaymentTemplate
                         {
-                            ID = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0,
+                            ID = reader["TemplateID"] != DBNull.Value ? Convert.ToInt32(reader["TemplateID"]) : 0,
                             TemplateName = reader["TemplateName"] as string,
                             ServiceName = reader["ServiceName"] as string,
                             CustomerCode = reader["CustomerCode"] as string,

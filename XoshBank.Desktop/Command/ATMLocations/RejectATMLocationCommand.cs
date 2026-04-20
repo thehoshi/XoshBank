@@ -28,8 +28,8 @@ namespace XoshBank.Command.ATMLocations
 
         public void Execute(object parameter)
         {
-            viewModel.CurrentState = ViewState.Default;
             viewModel.CurrentATMLocation = new ATMLocationFormModel();
+            viewModel.SelectedLocation = null;
         }
     }
 }

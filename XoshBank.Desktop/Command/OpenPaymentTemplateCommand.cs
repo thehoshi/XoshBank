@@ -40,6 +40,7 @@ namespace XoshBank.Command
             {
                 PaymentTemplateUIModel paymentTemplateUIModel = new PaymentTemplateUIModel
                 {
+                    ID = Template.ID,
                     TemplateName = Template.TemplateName,
                     ServiceName = Template.ServiceName,
                     Amount = Template.Amount
@@ -49,7 +50,7 @@ namespace XoshBank.Command
 
             viewModel.Templates = new ObservableCollection<PaymentTemplateUIModel>(TemplatesUIModel);
 
-            viewModel.CurrentTemplate = new PaymentTemplateFormModel();
+            viewModel.SelectedTemplate = new PaymentTemplateUIModel();
 
             viewModel.CurrentState = ViewState.Default;
 

@@ -40,6 +40,7 @@ namespace XoshBank.Command
             {
                 ATMLocationUIModel atmocationUIModels = new ATMLocationUIModel 
                 {
+                    ID = Location.ID,
                     Name = Location.Name,
                     City = Location.City,
                     Address = Location.Address,

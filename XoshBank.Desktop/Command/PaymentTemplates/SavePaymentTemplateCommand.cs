@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using XoshBank.Core.Entities;
 using XoshBank.Enums;
@@ -29,32 +30,72 @@ namespace XoshBank.Command.PaymentTemplates
 
         public void Execute(object parameter)
         {
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure to save it?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (messageBoxResult != MessageBoxResult.Yes)
+                return;
+
             PaymentTemplate Template = new PaymentTemplate
             {
-                TemplateName = viewModel.CurrentTemplate.TemplateName,
-                ServiceName = viewModel.CurrentTemplate.ServiceName,
-                CustomerCode = viewModel.CurrentTemplate.CustomerCode,
-                Amount = viewModel.CurrentTemplate.Amount,
-                IsActive = viewModel.CurrentTemplate.IsActive,
+                ID = viewModel.SelectedTemplate.ID, 
+                TemplateName = viewModel.SelectedTemplate.TemplateName,
+                ServiceName = viewModel.SelectedTemplate.ServiceName,
+                CustomerCode = viewModel.SelectedTemplate.CustomerCode,
+                Amount = viewModel.SelectedTemplate.Amount,
+                IsActive = viewModel.SelectedTemplate.IsActive,
 
             };
 
-            viewModel.DB.PaymentTemplates.Add(Template);
+            if (viewModel.CurrentTemplate.Id > 0)
+            {
+                viewModel.DB.PaymentTemplates.Update(Template);
+
+                PaymentTemplateUIModel updatedTemplateUIModel = new PaymentTemplateUIModel
+                {
+                    ID = Template.ID,
+                    TemplateName = Template.TemplateName,
+                    ServiceName = Template.ServiceName,
+                    Amount = Template.Amount,
+                    IsActive = Template.IsActive,
+                };
+
+                int selectedTemplateIndex = viewModel.SelectedTemplate.No - 1;
+                viewModel.Templates[selectedTemplateIndex] = updatedTemplateUIModel;
+            }
+            else
+            {
+                viewModel.DB.PaymentTemplates.Add(Template);
+                PaymentTemplateUIModel newtemplateUIModel = new PaymentTemplateUIModel
+                {
+                    ID = Template.ID,
+                    TemplateName = Template.TemplateName,
+                    ServiceName = Template.ServiceName,
+                    Amount = Template.Amount,
+                    IsActive = Template.IsActive,
+                };
+
+            }
+
+
 
             //mapping from UI model to entity
             PaymentTemplateUIModel templateUIModel = new PaymentTemplateUIModel
             {
+                ID = Template.ID,
                 TemplateName = Template.TemplateName,
                 ServiceName = Template.ServiceName,
                 Amount = Template.Amount,
-                IsActive=Template.IsActive,
+                IsActive = Template.IsActive
             };
 
             viewModel.Templates.Add(templateUIModel);
 
             viewModel.CurrentState = ViewState.Default;
 
-            viewModel.CurrentTemplate = new PaymentTemplateFormModel();
+            viewModel.SelectedTemplate = new PaymentTemplateUIModel();
+
+            MessageBox.Show("Template saved successfully!", "Succsess", MessageBoxButton.OK);
+
         }
     }
 }

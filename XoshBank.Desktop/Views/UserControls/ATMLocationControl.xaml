@@ -90,18 +90,22 @@
                     Background="White" CornerRadius="18"
                     Padding="14,10" Margin="0,0,14,14"
                     Effect="{StaticResource SoftShadow}">
+                    
+                    
                     <DockPanel LastChildFill="False">
                         <TextBlock DockPanel.Dock="Left" Text="Search"
                                FontSize="14" Foreground="#5A4860"
                                VerticalAlignment="Center"/>
                         <TextBox DockPanel.Dock="Left" Width="200"
                              Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                             Margin="10,0,0,0"/>
+                             Margin="10,0,0,0"
+                              VerticalContentAlignment="Center"/>
+
                         <Button DockPanel.Dock="Right" Width="110" Height="34"
                             Content="Export" Command="{Binding ExportCommand}"
                             Background="{StaticResource AccentBrush}"
                             Foreground="White" BorderThickness="0"
-                            FontSize="13" FontWeight="SemiBold" Cursor="Hand">
+                            FontSize="13" FontWeight="SemiBold" Cursor="Hand" Click="Button_Click_1">
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
                                     <Border CornerRadius="10" Background="{TemplateBinding Background}">

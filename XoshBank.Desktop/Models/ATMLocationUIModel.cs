@@ -9,6 +9,7 @@ namespace XoshBank.Models
 {
     public class ATMLocationUIModel
     {
+        public int No {  get; set; }
         public int ID { get; set; }
         public string Name { get; set; }
         public string City { get; set; }

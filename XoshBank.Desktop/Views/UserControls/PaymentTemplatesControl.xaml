@@ -93,7 +93,8 @@
                                VerticalAlignment="Center"/>
                         <TextBox DockPanel.Dock="Left" Width="200"
                              Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                             Margin="10,0,0,0"/>
+                             Margin="10,0,0,0"
+                             VerticalContentAlignment = "Center"/>
                         <Button DockPanel.Dock="Right" Width="110" Height="34"
                             Content="Export" Command="{Binding ExportCommand}"
                             Background="{StaticResource AccentBrush}"
