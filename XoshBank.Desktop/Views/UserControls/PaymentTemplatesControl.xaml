@@ -44,27 +44,27 @@
 
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Template Name"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedPaymentTemplate.TemplateName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentTemplate.TemplateName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Service Name"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedPaymentTemplate.ServiceName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentTemplate.ServiceName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Customer Code"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedPaymentTemplate.CustomerCode, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentTemplate.CustomerCode, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Amount"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedPaymentTemplate.Amount, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentTemplate.Amount, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Card ID"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedPaymentTemplate.CardId, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentTemplate.CardId, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </Grid>
                 </Border>

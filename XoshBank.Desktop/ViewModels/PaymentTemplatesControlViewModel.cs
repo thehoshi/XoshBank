@@ -5,15 +5,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XoshBank.Command.PaymentTemplates;
+using XoshBank.Core.Repositories;
+using XoshBank.Enums;
 using XoshBank.Models;
 
 namespace XoshBank.ViewModels
 {
     public class PaymentTemplatesControlViewModel : INotifyPropertyChanged
     {
-        private int _currentState = 1;
+        private readonly IUnitOfWork _db;
 
-        public int CurrentState
+        public PaymentTemplatesControlViewModel(IUnitOfWork db)
+        {
+            _db = db;
+
+        }
+
+        #region Properties
+
+        public IUnitOfWork DB => _db;
+
+        private ViewState _currentState;
+
+        public ViewState CurrentState
         {
             get
             {
@@ -31,11 +45,21 @@ namespace XoshBank.ViewModels
 
     public List<PaymentTemplateUIModel> Templates { get; set; }
 
+        #endregion
+
+
+
+
+        #region Commands
         public AddPaymentTemplateCommand AddPaymentTemplateCommand => new AddPaymentTemplateCommand(this);
 
         public RejectPaymentTemplateCommand RejectPaymentTemplateCommand => new RejectPaymentTemplateCommand(this);
 
         public SavePaymentTemplateCommand savePaymentTemplateCommand => new SavePaymentTemplateCommand(this);
+
+        #endregion
+
+        #region INotifyPropertyChanged Implementation
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -43,6 +67,7 @@ namespace XoshBank.ViewModels
         {
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
     }
 
 }

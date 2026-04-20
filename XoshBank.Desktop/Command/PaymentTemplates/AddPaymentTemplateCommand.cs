@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using XoshBank.Enums;
 using XoshBank.ViewModels;
 
 namespace XoshBank.Command.PaymentTemplates
@@ -27,7 +28,7 @@ namespace XoshBank.Command.PaymentTemplates
 
         public void Execute(object parameter)
         {
-            viewModel.CurrentState = 2;
+            viewModel.CurrentState = ViewState.Add;
         }
     }
 }

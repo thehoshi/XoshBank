@@ -25,7 +25,7 @@ namespace XoshBank.Command.ATMLocations
 
         public void Execute(object parameter)
         {
-            _viewModel.CurrentState = 2;
+            _viewModel.CurrentState = Enums.ViewState.Add;
         }
     }
 }

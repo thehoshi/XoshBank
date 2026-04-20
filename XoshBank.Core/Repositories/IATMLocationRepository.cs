@@ -9,7 +9,7 @@ namespace XoshBank.Core.Repositories
 {
     public interface IATMLocationRepository : IBaseRepository<ATMLocation>
     {
-        
+        void Add(ATMLocation location);
          
     }
 }

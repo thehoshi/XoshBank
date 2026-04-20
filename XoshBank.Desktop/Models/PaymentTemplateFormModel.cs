@@ -4,7 +4,6 @@ namespace XoshBank.Models
 {
     public class PaymentTemplateFormModel
     {
-       public int Id { get; set; } 
         public string TemplateName { get; set; }
         public string ServiceName { get; set; }
         public string CustomerCode {  get; set; }

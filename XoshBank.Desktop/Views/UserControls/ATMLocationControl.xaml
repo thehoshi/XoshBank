@@ -45,27 +45,27 @@
 
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Name"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedATMLocation.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentATMLocation.Name, UpdateSourceTrigger=PropertyChanged}" TextChanged="TextBox_TextChanged"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="City"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedATMLocation.City, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentATMLocation.City, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Address"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedATMLocation.Address, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentATMLocation.Address, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Latitude"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedATMLocation.Latitude, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentATMLocation.Latitude, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Longitude"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedATMLocation.Longitude, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentATMLocation.Longitude, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </Grid>
                 </Border>

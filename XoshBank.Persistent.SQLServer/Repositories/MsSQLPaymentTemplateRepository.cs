@@ -15,6 +15,32 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             _connectionString = connectionString;
         }
 
+        public void Add(PaymentTemplate template)
+        {
+            if (template == null) return;
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string query = "INSERT INTO PaymentTemplates (TemplateName, ServiceName, CustomerCode, Amount, IsActive, CreatedDate, CardId) " +
+                               "VALUES (@TemplateName, @ServiceName, @CustomerCode, @Amount, @IsActive, @CreatedDate, @CardId)";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@TemplateName", template.TemplateName);
+                    command.Parameters.AddWithValue("@ServiceName", template.ServiceName);
+                    command.Parameters.AddWithValue("@CustomerCode", template.CustomerCode);
+                    command.Parameters.AddWithValue("@Amount", template.Amount);
+                    command.Parameters.AddWithValue("@IsActive", template.IsActive);
+                    command.Parameters.AddWithValue("@CreatedDate", template.CreatedDate);
+                    command.Parameters.AddWithValue("@CardId", template.CardId);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         public List<PaymentTemplate> GetAll()
         {
             var List = new List<PaymentTemplate>();

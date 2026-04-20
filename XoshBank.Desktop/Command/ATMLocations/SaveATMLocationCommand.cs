@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using XoshBank.ViewModels;
+using XoshBank.Core.Entities;
+using XoshBank.Models;
+using XoshBank.Enums;
 
 namespace XoshBank.Command.ATMLocations
 {
@@ -26,7 +29,32 @@ namespace XoshBank.Command.ATMLocations
 
         public void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            ATMLocation Location = new ATMLocation
+            {
+                Name = viewModel.CurrentATMLocation.Name,
+                City = viewModel.CurrentATMLocation.City,
+                Address = viewModel.CurrentATMLocation.Address,
+                IsActive = viewModel.CurrentATMLocation.IsActive,
+            };
+
+            viewModel.DB.ATMLocations.Add(Location);
+
+
+            //mapping from UI model to entity
+            ATMLocationUIModel LocationUIModel = new ATMLocationUIModel
+            {
+                Name = Location.Name,
+                City = Location.City,
+                Address = Location.Address,
+                IsActive = Location.IsActive,
+                ID = viewModel.Locations.Count + 1,
+            };
+
+
+            viewModel.Locations.Add(LocationUIModel);
+
+            viewModel.CurrentState = ViewState.Default;
+            viewModel.CurrentATMLocation = new ATMLocationFormModel();
         }
     }
 }

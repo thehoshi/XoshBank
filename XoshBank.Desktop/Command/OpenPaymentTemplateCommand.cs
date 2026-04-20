@@ -28,7 +28,7 @@ namespace XoshBank.Desktop.Command
         {
             PaymentTemplatesControl control = new PaymentTemplatesControl();
 
-            PaymentTemplatesControlViewModel viewModel = new PaymentTemplatesControlViewModel();
+            PaymentTemplatesControlViewModel viewModel = new PaymentTemplatesControlViewModel(_db);
 
             List<PaymentTemplate> Templates = _db.PaymentTemplates.GetAll();
 
@@ -46,6 +46,8 @@ namespace XoshBank.Desktop.Command
             }
 
             viewModel.Templates = TemplatesUIModel;
+
+            viewModel.CurrentTemplate = new PaymentTemplateFormModel();
 
             control.DataContext = viewModel;
 

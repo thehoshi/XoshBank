@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using XoshBank.Core.Entities;
 using XoshBank.Core.Repositories;
+using XoshBank.Enums;
 using XoshBank.Models;
 using XoshBank.ViewModels;
 using XoshBank.Views.UserControls;
@@ -28,7 +30,7 @@ namespace XoshBank.Desktop.Commands.MainPage
         {
             ATMLocationControl control = new ATMLocationControl();
 
-            ATMLocationsControlViewModel viewModel = new ATMLocationsControlViewModel();
+            ATMLocationsControlViewModel viewModel = new ATMLocationsControlViewModel(_db);
 
             List<ATMLocation> Locations =  _db.ATMLocations.GetAll();
             
@@ -46,10 +48,14 @@ namespace XoshBank.Desktop.Commands.MainPage
                 ATMLocationUIModels.Add(atmocationUIModels);
             }
 
-            viewModel.Locations = ATMLocationUIModels;
+            viewModel.Locations = new ObservableCollection<ATMLocationUIModel>(ATMLocationUIModels);
+
+            viewModel.CurrentATMLocation = new ATMLocationFormModel();
+
+            viewModel.CurrentState = ViewState.Default;
 
             control.DataContext = viewModel;
-
+ 
             Grid grid =(Grid)parameter;
 
             grid.Children.Clear();

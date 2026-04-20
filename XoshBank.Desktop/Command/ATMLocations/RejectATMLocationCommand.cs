@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using XoshBank.Enums;
+using XoshBank.Models;
 using XoshBank.ViewModels;
 
 namespace XoshBank.Command.ATMLocations
@@ -26,7 +28,8 @@ namespace XoshBank.Command.ATMLocations
 
         public void Execute(object parameter)
         {
-            viewModel.CurrentState = 1;
+            viewModel.CurrentState = ViewState.Default;
+            viewModel.CurrentATMLocation = new ATMLocationFormModel();
         }
     }
 }

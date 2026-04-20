@@ -15,6 +15,33 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             _connectionString = connectionString;
         }
 
+       
+        public void Add(ATMLocation location)
+        {
+            if (location == null) return;
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                    connection.Open();
+
+                    string query = "INSERT INTO ATMLocations (Name, City, Address, Latitude, Longitude, IsActive) " +
+                                   "VALUES (@Name, @City, @Address, @Latitude, @Longitude, @IsActive)";
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Name", location.Name);
+                        command.Parameters.AddWithValue("@City", location.City);
+                        command.Parameters.AddWithValue("@Address", location.Address);
+                        command.Parameters.AddWithValue("@Latitude", location.Latitude);
+                        command.Parameters.AddWithValue("@Longitude", location.Longitude);
+                        command.Parameters.AddWithValue("@IsActive", location.IsActive);
+
+                        command.ExecuteNonQuery();
+                    }
+            }
+        }
+        
+
         #region GetAll
         public List<ATMLocation> GetAll()
         {

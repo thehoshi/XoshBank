@@ -9,6 +9,6 @@ namespace XoshBank.Core.Repositories
 {
     public interface IPaymentTemplateRepository : IBaseRepository <PaymentTemplate>
     {
-
+        void Add(PaymentTemplate Template);
     }
 }
