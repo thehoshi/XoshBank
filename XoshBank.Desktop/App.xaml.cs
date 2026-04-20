@@ -15,11 +15,7 @@ namespace XoshBank
             {
                 DataSource = "localhost",
                 InitialCatalog = "XoshBank",
-                IntegratedSecurity = true
-                InitialCatalog = "XoshBank",
-                IntegratedSecurity = true,
-                TrustServerCertificate = true,
-                Encrypt = false
+                TrustServerCertificate = true
             };
 
             string connectionString = connectionStringBuilder.ConnectionString;
