@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System.Windows.Input;
 using XoshBank.Core.Entities;
 using XoshBank.Core.Repositories;
 using XoshBank.Desktop.Views.UserControls;
+using XoshBank.Enums;
 using XoshBank.Models;
 using XoshBank.ViewModels;
 
 
-namespace XoshBank.Desktop.Command
+namespace XoshBank.Desktop.Command.MainPage
 {
     public class OpenPaymentTemplateCommand : ICommand
     {
@@ -45,9 +47,11 @@ namespace XoshBank.Desktop.Command
                 TemplatesUIModel.Add(paymentTemplateUIModel);
             }
 
-            viewModel.Templates = TemplatesUIModel;
+            viewModel.Templates = new ObservableCollection<PaymentTemplateUIModel>(TemplatesUIModel);
 
             viewModel.CurrentTemplate = new PaymentTemplateFormModel();
+
+            viewModel.CurrentState = ViewState.Default;
 
             control.DataContext = viewModel;
 

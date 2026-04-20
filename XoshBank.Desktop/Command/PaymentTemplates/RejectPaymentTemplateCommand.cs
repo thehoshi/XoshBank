@@ -28,6 +28,7 @@ namespace XoshBank.Command.PaymentTemplates
         public void Execute(object parameter)
         {
             viewModel.CurrentState = ViewState.Default;
+            viewModel.CurrentTemplate=new Models.PaymentTemplateFormModel();
         }
     }
 }

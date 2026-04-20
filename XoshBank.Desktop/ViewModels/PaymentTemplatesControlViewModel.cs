@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -41,9 +42,22 @@ namespace XoshBank.ViewModels
             }
         }
 
-        public PaymentTemplateFormModel CurrentTemplate {  get; set; }
+        private ATMLocationFormModel _currentForm;
 
-    public List<PaymentTemplateUIModel> Templates { get; set; }
+        public PaymentTemplateFormModel CurrentTemplate
+        {
+            get
+            {
+                return CurrentTemplate;
+            }
+            set
+            {
+                CurrentTemplate= value;
+                OnPropertyChanged(nameof(CurrentTemplate));
+            }
+        }
+
+    public ObservableCollection<PaymentTemplateUIModel> Templates { get; set; }
 
         #endregion
 
