@@ -10,7 +10,7 @@ using XoshBank.Models;
 using XoshBank.ViewModels;
 using XoshBank.Views.UserControls;
 
-namespace XoshBank.Desktop.Commands.MainPage
+namespace XoshBank.Command
 {
     public class OpenATMLocationCommand : ICommand
     {

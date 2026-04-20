@@ -11,6 +11,9 @@ namespace XoshBank.Enums
         Default = 1,
         Add,
         Edit,
+        Reject,
+        Save,
+        Delete,
         Selected
     }
 }

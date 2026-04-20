@@ -61,7 +61,12 @@
     <Compile Include="Command\ATMLocations\AddATMLocationCommand.cs" />
     <Compile Include="Command\ATMLocations\RejectATMLocationCommand.cs" />
     <Compile Include="Command\ATMLocations\SaveATMLocationCommand.cs" />
+    <Compile Include="Command\Branches\AddBranchesCommand.cs" />
+    <Compile Include="Command\Branches\DeleteBranchesCommand.cs" />
+    <Compile Include="Command\Branches\EditBranchesCommand.cs" />
     <Compile Include="Command\Branches\OpenBranchesCommand.cs" />
+    <Compile Include="Command\Branches\RejectBranchesCommand.cs" />
+    <Compile Include="Command\Branches\SaveBranchesCommand.cs" />
     <Compile Include="Command\Loans\OpenLoansCommand.cs" />
     <Compile Include="Command\OpenAccountsCommand.cs" />
     <Compile Include="Command\OpenCardsCommand.cs" />
@@ -85,6 +90,7 @@
     <Compile Include="Models\PaymentTemplateFormModel.cs" />
     <Compile Include="Models\PaymentTemplateUIModel.cs" />
     <Compile Include="ViewModels\ATMLocationsControlViewModel.cs" />
+    <Compile Include="ViewModels\BranchesControlViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\PaymentTemplatesControlViewModel.cs" />
     <Compile Include="Views\UserControls\AccountsControl.xaml.cs">

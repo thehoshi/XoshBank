@@ -11,7 +11,7 @@ using XoshBank.Models;
 using XoshBank.ViewModels;
 
 
-namespace XoshBank.Desktop.Command.MainPage
+namespace XoshBank.Command
 {
     public class OpenPaymentTemplateCommand : ICommand
     {
