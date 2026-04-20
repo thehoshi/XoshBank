@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using XoshBank.Command.PaymentTemplates;
@@ -42,21 +43,53 @@ namespace XoshBank.ViewModels
             }
         }
 
-        private ATMLocationFormModel _currentForm;
+        private PaymentTemplateFormModel _currentTemplate;
 
         public PaymentTemplateFormModel CurrentTemplate
         {
             get
             {
-                return CurrentTemplate;
+                return _currentTemplate;
             }
             set
             {
-                CurrentTemplate= value;
-                OnPropertyChanged(nameof(CurrentTemplate));
+                _currentTemplate = value;
+                OnPropertyChanged(nameof(_currentTemplate));
             }
         }
 
+        private PaymentTemplateUIModel _selectedTemplate;
+
+        public PaymentTemplateUIModel SelectedTemplate
+        {
+            get
+            {
+                return _selectedTemplate;
+            }
+            set
+            {
+                _selectedTemplate = value;
+                OnPropertyChanged(nameof(_selectedTemplate));
+                if (value != null)
+                {
+                    CurrentState = ViewState.Selected;
+                    CurrentTemplate = new PaymentTemplateFormModel
+                    {
+                        Id = SelectedTemplate.ID,
+                        TemplateName = SelectedTemplate.TemplateName,
+                        ServiceName = SelectedTemplate.ServiceName,
+                        CustomerCode = SelectedTemplate.CustomerCode,
+                        Amount = SelectedTemplate.Amount,
+                        IsActive = SelectedTemplate.IsActive,
+                    };
+                }
+                else
+                {
+                    CurrentState = ViewState.Default;
+                    CurrentTemplate = new PaymentTemplateFormModel();
+                }
+            }
+        }
     public ObservableCollection<PaymentTemplateUIModel> Templates { get; set; }
 
         #endregion
@@ -67,9 +100,14 @@ namespace XoshBank.ViewModels
         #region Commands
         public AddPaymentTemplateCommand AddPaymentTemplateCommand => new AddPaymentTemplateCommand(this);
 
+        public EditPaymentTemplateCommand EditPaymentTemplateCommand => new EditPaymentTemplateCommand(this);
         public RejectPaymentTemplateCommand RejectPaymentTemplateCommand => new RejectPaymentTemplateCommand(this);
 
         public SavePaymentTemplateCommand savePaymentTemplateCommand => new SavePaymentTemplateCommand(this);
+
+        public DeletePaymentTemplateCommand deletePaymentTemplateCommand => new DeletePaymentTemplateCommand(this);
+
+        public ExportPaymentTemplateCommand exportPaymentTemplateCommand => new ExportPaymentTemplateCommand(this);
 
         #endregion
 
@@ -79,7 +117,7 @@ namespace XoshBank.ViewModels
 
         private void OnPropertyChanged(string propertyName)
         {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

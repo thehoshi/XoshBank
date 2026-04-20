@@ -4,6 +4,7 @@ namespace XoshBank.Core.Entities
 {
     public class ATMLocation : IDbEntity
     {
+        public static int Id { get; set; }
         public int ID {  get; set; }
         public string Name { get; set; }
         public string City { get; set; }
