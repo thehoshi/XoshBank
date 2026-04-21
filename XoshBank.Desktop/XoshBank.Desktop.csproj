@@ -200,6 +200,11 @@
     <Compile Include="Command\Branches\OpenBranchesCommand.cs" />
     <Compile Include="Command\Branches\RejectBranchesCommand.cs" />
     <Compile Include="Command\Branches\SaveBranchesCommand.cs" />
+    <Compile Include="Command\Customers\AddCustomerCommand.cs" />
+    <Compile Include="Command\Customers\DeleteCustomerCommand.cs" />
+    <Compile Include="Command\Customers\EditCustomerCommand.cs" />
+    <Compile Include="Command\Customers\RejectCustomerCommand.cs" />
+    <Compile Include="Command\Customers\SaveCustomerCommand.cs" />
     <Compile Include="Command\Loans\OpenLoansCommand.cs" />
     <Compile Include="Command\Accounts\OpenAccountsCommand.cs" />
     <Compile Include="Command\OpenCardsCommand.cs" />

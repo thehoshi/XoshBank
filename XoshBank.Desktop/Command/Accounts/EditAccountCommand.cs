@@ -23,7 +23,7 @@ namespace XoshBank.Command.Accounts
         }
         public void Execute(object parameter)
         {
-            _viewModel.CurrentState = ViewState.Add;
+            _viewModel.CurrentState = ViewState.Edit;
         }
     }
 }
