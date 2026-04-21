@@ -59,7 +59,7 @@ namespace XoshBank.Command.Branches
             viewModel.CurrentBranch = new BranchFormModel();
             viewModel.CurrentState = ViewState.Default;
 
-            control.DataContext = viewModel;
+            branchesControl.DataContext = viewModel;
 
             Grid grid = (Grid)parameter;
 
