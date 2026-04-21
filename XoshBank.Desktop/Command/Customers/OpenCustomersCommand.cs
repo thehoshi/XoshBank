@@ -8,7 +8,7 @@ using System.Windows.Input;
 using XoshBank.Desktop.Views.UserControls;
 
 
-namespace XoshBank.Command
+namespace XoshBank.Command.Customers
 {
     public class OpenCustomersCommand : ICommand
     {
