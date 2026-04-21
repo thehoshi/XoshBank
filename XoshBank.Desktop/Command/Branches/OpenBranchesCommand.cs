@@ -5,10 +5,12 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using XoshBank.Core.Entities;
 using XoshBank.Core.Repositories;
-using XoshBank.Desktop.ViewModels;
+using XoshBank.ViewModels;
 using XoshBank.Desktop.Views.UserControls;
+using XoshBank.Views.UserControls;
 using XoshBank.Enums;
 using XoshBank.Models;
+using XoshBank.Desktop.ViewModels;
 
 namespace XoshBank.Command.Branches
 {

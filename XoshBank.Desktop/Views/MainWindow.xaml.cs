@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using XoshBank.ViewModels;
 using XoshBank.Desktop.Views.UserControls;
 
-namespace XoshBank.Desktop.Views
+namespace XoshBank.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

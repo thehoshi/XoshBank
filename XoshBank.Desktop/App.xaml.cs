@@ -4,6 +4,7 @@ using XoshBank.Core.Repositories;
 using XoshBank.Desktop.Views;
 using XoshBank.Persistent.SQLServer.Repositories;
 using XoshBank.ViewModels;
+using XoshBank.Views;
 
 namespace XoshBank
 { 

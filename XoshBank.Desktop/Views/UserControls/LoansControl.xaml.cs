@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace XoshBank.Desktop.Views.UserControls
+namespace XoshBank.Views.UserControls
 {
     /// <summary>
     /// Interaction logic for LoansControl.xaml
