@@ -50,7 +50,7 @@ namespace XoshBank.Command
 
             viewModel.AllTemplates = TemplatesUIModel;
 
-            viewModel._Templates = new ObservableCollection<PaymentTemplateUIModel>(TemplatesUIModel);
+            viewModel.Templates = new ObservableCollection<PaymentTemplateUIModel>(TemplatesUIModel);
 
             viewModel.SelectedTemplate = new PaymentTemplateUIModel();
 

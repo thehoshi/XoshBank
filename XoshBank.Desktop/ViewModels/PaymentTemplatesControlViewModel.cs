@@ -90,18 +90,18 @@ namespace XoshBank.ViewModels
                 }
             }
         }
-        private ObservableCollection<PaymentTemplateUIModel> Templates { get; set; }
 
-        public ObservableCollection<PaymentTemplateUIModel> _Templates
+        private ObservableCollection<PaymentTemplateUIModel> _templates { get; set; }
+        public ObservableCollection<PaymentTemplateUIModel> Templates
         {
             get
             {
-                return _Templates; ;
+                return _templates;
             }
             set
             {
-                Templates = value;
-                OnPropertyChanged(nameof(_Templates));
+                _templates = value;
+                OnPropertyChanged(nameof(Templates));
             }
         }
 
