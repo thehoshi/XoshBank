@@ -2,7 +2,7 @@
 
 namespace XoshBank.Core.Entities
 {
-    public class ATMLocation : IDbEntity
+    public class location : IDbEntity
     {
         public static int Id { get; set; }
         public int ID {  get; set; }

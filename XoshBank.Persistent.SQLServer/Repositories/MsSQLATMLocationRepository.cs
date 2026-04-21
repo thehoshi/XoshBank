@@ -16,7 +16,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
         }
 
        
-        public void Add(ATMLocation location)
+        public void Add(location location)
         {
             if (location == null) return;
 
@@ -43,9 +43,9 @@ namespace XoshBank.Persistent.SQLServer.Repositories
         
 
         #region GetAll
-        public List<ATMLocation> GetAll()
+        public List<location> GetAll()
         {
-            var atmLocations = new List<ATMLocation>();
+            var atmLocations = new List<location>();
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
@@ -54,7 +54,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 {
                     while (reader.Read())
                     {
-                        var atm = new ATMLocation
+                        var atm = new location
                         {
                             ID = reader["ATMID"] != DBNull.Value ? Convert.ToInt32(reader["ATMID"]) : 0,
                             Name = reader["Name"] as string,
@@ -73,7 +73,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
         #endregion
 
         #region GetById
-        public ATMLocation GetById(int id)
+        public location GetById(int id)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -85,7 +85,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     {
                         if (reader.Read())
                         {
-                            return new ATMLocation
+                            return new location
                             {
                                 ID = reader["Id"] != DBNull.Value ? Convert.ToInt32(reader["Id"]) : 0,
                                 Name = reader["Name"] as string,
@@ -104,7 +104,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
         #endregion
 
         #region Insert
-        public void Insert(ATMLocation atm)
+        public void Insert(location atm)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -125,7 +125,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
         #endregion
 
         #region Update
-        public void Update(ATMLocation atm)
+        public void Update(location atm)
         {
             using (var connection = new SqlConnection(_connectionString))
             {

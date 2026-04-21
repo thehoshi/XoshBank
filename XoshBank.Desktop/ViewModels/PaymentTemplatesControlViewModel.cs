@@ -90,7 +90,62 @@ namespace XoshBank.ViewModels
                 }
             }
         }
-    public ObservableCollection<PaymentTemplateUIModel> Templates { get; set; }
+        private ObservableCollection<PaymentTemplateUIModel> Templates { get; set; }
+
+        public ObservableCollection<PaymentTemplateUIModel> _Templates
+        {
+            get
+            {
+                return _Templates; ;
+            }
+            set
+            {
+                Templates = value;
+                OnPropertyChanged(nameof(_Templates));
+            }
+        }
+
+        public List<PaymentTemplateUIModel> AllTemplates { get; set; }
+
+        public string _searchText;
+
+        public string SearchText
+        {
+            get
+            {
+                return _searchText;
+            }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+
+                List<PaymentTemplateUIModel> templates = new List<PaymentTemplateUIModel>();
+
+                if (string.IsNullOrWhiteSpace(SearchText))
+                {
+                    Templates = new ObservableCollection<PaymentTemplateUIModel>(AllTemplates);
+                }
+                else
+                {
+                    var lowerSearchText = SearchText.ToLower();
+
+                    foreach (PaymentTemplateUIModel template in AllTemplates)
+                    {
+                        if (template.TemplateName.ToLower().Contains(lowerSearchText))
+                        {
+                            templates.Add(template);
+                        }
+                        else if (template.ServiceName != null && template.ServiceName.ToLower().Contains(lowerSearchText))
+                        {
+                            templates.Add(template);
+                        }
+                    }
+                    Templates = new ObservableCollection<PaymentTemplateUIModel>(templates);
+                }
+            }
+        }
+
 
         #endregion
 

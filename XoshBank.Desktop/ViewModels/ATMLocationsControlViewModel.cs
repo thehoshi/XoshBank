@@ -87,7 +87,61 @@ namespace XoshBank.ViewModels
                 }
             }
         }
-        public ObservableCollection<ATMLocationUIModel> Locations {  get; set; }
+
+        private ObservableCollection<ATMLocationUIModel> _locations;
+        public ObservableCollection<ATMLocationUIModel> Locations
+        {
+            get
+            {
+                return Locations;
+            }
+            set
+            {
+                Locations = value;
+                OnPropertyChanged(nameof(Locations));
+            }
+        }
+
+        public List<ATMLocationUIModel> Alllocations { get; set; }
+
+        private string _searchText;
+        public string SearchText
+        {
+            get
+            {
+                return _searchText;
+            }
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged(nameof(SearchText));
+
+                List<ATMLocationUIModel> location = new List<ATMLocationUIModel>();
+
+                if (string.IsNullOrWhiteSpace(SearchText))
+                {
+                    Locations = new ObservableCollection<ATMLocationUIModel>(Alllocations);
+                }
+                else
+                {
+                    var lowerSearchText = SearchText.ToLower();
+
+                    foreach (ATMLocationUIModel locationUIModel in Alllocations)
+                    {
+                        if (locationUIModel.Name.ToLower(). Contains(lowerSearchText))
+                        {
+                            location.Add(locationUIModel);
+                        }
+                        else if (locationUIModel.City != null &&locationUIModel.City.ToLower().Contains(lowerSearchText))
+                        {
+                            location.Add(locationUIModel);
+                        }
+                    }
+
+                    Locations = new ObservableCollection<ATMLocationUIModel>(location);
+                }
+            }
+        }
 
         #endregion
 

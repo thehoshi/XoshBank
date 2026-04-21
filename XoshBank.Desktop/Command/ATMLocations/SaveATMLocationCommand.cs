@@ -35,7 +35,7 @@ namespace XoshBank.Command.ATMLocations
             if (messageBoxResult != MessageBoxResult.Yes)
                 return;
 
-                ATMLocation Location = new ATMLocation
+                location Location = new location
                 {
                     ID = viewModel.CurrentATMLocation.Id,
                     Name = viewModel.CurrentATMLocation.Name,
@@ -44,7 +44,7 @@ namespace XoshBank.Command.ATMLocations
                     IsActive = viewModel.CurrentATMLocation.IsActive,
                 };
             
-            if(ATMLocation.Id > 0)
+            if(location.Id > 0)
             {
                 viewModel.DB.ATMLocations.Update(Location);
 

@@ -32,7 +32,7 @@ namespace XoshBank.Command
 
             ATMLocationsControlViewModel viewModel = new ATMLocationsControlViewModel(_db);
 
-            List<ATMLocation> Locations =  _db.ATMLocations.GetAll();
+            List<location> Locations =  _db.ATMLocations.GetAll();
             
             List<ATMLocationUIModel> ATMLocationUIModels = new List<ATMLocationUIModel>();
 
@@ -48,6 +48,7 @@ namespace XoshBank.Command
                 };
                 ATMLocationUIModels.Add(atmocationUIModels);
             }
+            viewModel.Alllocations = ATMLocationUIModels;
 
             viewModel.Locations = new ObservableCollection<ATMLocationUIModel>(ATMLocationUIModels);
 
