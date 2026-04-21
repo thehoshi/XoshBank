@@ -9,7 +9,7 @@ namespace XoshBank.Models
     public class BranchUIModel
     {
         public int No {  get; set; }
-        public string BranchName { get; set; }
+        public string AccountNumber { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
         public string ManagerName { get; set; }

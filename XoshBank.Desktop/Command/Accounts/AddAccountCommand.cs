@@ -1,0 +1,30 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using XoshBank.Desktop.ViewModels;
+using XoshBank.Enums;
+using XoshBank.ViewModels;
+
+namespace XoshBank.Command.Accounts
+{
+    public class AddAccountCommand
+    {
+        private readonly AccountsControlViewModel _viewModel;
+        public AddAccountCommand(AccountsControlViewModel viewModel)
+        {
+            _viewModel = viewModel;
+        }
+
+        public event EventHandler CanExecuteChanged;
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+        public void Execute(object parameter)
+        {
+            _viewModel.CurrentState = ViewState.Add;
+        }
+    }
+}

@@ -183,6 +183,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\Accounts\AddAccountCommand.cs" />
+    <Compile Include="Command\Accounts\DeleteAccountCommand.cs" />
+    <Compile Include="Command\Accounts\EditAccountCommand.cs" />
+    <Compile Include="Command\Accounts\RejectAccountCommand.cs" />
+    <Compile Include="Command\Accounts\SaveAccountCommand.cs" />
     <Compile Include="Command\ATMLocations\AddATMLocationCommand.cs" />
     <Compile Include="Command\ATMLocations\DeleteATMLocationCommand.cs" />
     <Compile Include="Command\ATMLocations\EditATMLocationCommand.cs" />
@@ -220,6 +225,7 @@
     <Compile Include="Models\EmployeeUIModel.cs" />
     <Compile Include="Models\PaymentTemplateFormModel.cs" />
     <Compile Include="Models\PaymentTemplateUIModel.cs" />
+    <Compile Include="ViewModels\AccountsControlViewModel.cs" />
     <Compile Include="ViewModels\ATMLocationsControlViewModel.cs" />
     <Compile Include="ViewModels\BranchesControlViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />

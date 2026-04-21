@@ -28,7 +28,7 @@ namespace XoshBank.Command.Branches
         }
         public void Execute(object parameter)
         {
-            BranchesControl branchesControl = new BranchesControl();
+            Views.UserControls.AccountsControl branchesControl = new Views.UserControls.AccountsControl();
 
             BranchesControlViewModel viewModel = new BranchesControlViewModel(_db);
 
@@ -42,7 +42,7 @@ namespace XoshBank.Command.Branches
                 BranchUIModel branchUIModel = new BranchUIModel
                 {
                     No = no++,
-                    BranchName = branch.BranchName,
+                    AccountNumber = branch.BranchName,
                     City = branch.City,
                     Address = branch.Address,
                     ManagerName = branch.ManagerName,
