@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using System.Data.SqlClient;
 using System.Windows;
 using XoshBank.Core.Repositories;
 using XoshBank.Desktop.Views;
@@ -16,6 +17,7 @@ namespace XoshBank
             {
                 DataSource = "localhost",
                 InitialCatalog = "XoshBank",
+                IntegratedSecurity = true,
                 TrustServerCertificate = true
             };
 
