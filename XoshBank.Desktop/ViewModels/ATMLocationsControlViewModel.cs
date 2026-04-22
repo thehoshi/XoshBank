@@ -93,11 +93,11 @@ namespace XoshBank.ViewModels
         {
             get
             {
-                return Locations;
+                return _locations;
             }
             set
             {
-                Locations = value;
+                _locations = value;
                 OnPropertyChanged(nameof(Locations));
             }
         }
