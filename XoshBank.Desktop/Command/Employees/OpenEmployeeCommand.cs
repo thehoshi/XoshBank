@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using XoshBank.Desktop.Views.UserControls;
-using XoshBank.Views.UserControls;
-
 
 namespace XoshBank.Command
 {
-    public class OpenCardsCommand : ICommand
+    public class OpenEmployeeCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
@@ -22,12 +16,13 @@ namespace XoshBank.Command
 
         public void Execute(object parameter)
         {
-            CardsControl cardsControl = new CardsControl();
+            EmployeesControl employeesControl = new EmployeesControl();
 
             Grid grid = (Grid)parameter;
 
             grid.Children.Clear();
-            grid.Children.Add(cardsControl);
+            grid.Children.Add(employeesControl);
         }
     }
 }
+
