@@ -28,7 +28,7 @@ namespace XoshBank.Command.Branches
         }
         public void Execute(object parameter)
         {
-            Views.UserControls.AccountsControl branchesControl = new Views.UserControls.AccountsControl();
+            Views.UserControls.BranchesControl branchesControl = new Views.UserControls.BranchesControl();
 
             BranchesControlViewModel viewModel = new BranchesControlViewModel(_db);
 

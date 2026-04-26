@@ -32,7 +32,7 @@ namespace XoshBank.Command.Accounts
         }
         public void Execute(object parameter)
         {
-            var accountsControl = new Views.UserControls.AccountsControl();
+            var accountsControl = new Views.UserControls.BranchesControl();
 
             var viewModel = new AccountsControlViewModel(_db);
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Enums;
 
@@ -22,6 +23,12 @@ namespace XoshBank.Command.Branches
         }
         public void Execute(object parameter)
         {
+            if (_viewModel.SelectedBranch == null)
+            {
+                MessageBox.Show("Please select a branch to edit.", "Warning",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             _viewModel.CurrentState = ViewState.Edit;
         }
     }

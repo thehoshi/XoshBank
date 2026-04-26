@@ -57,7 +57,8 @@ namespace XoshBank.Desktop.ViewModels
                         EmployeeCount = SelectedBranch.EmployeeCount,
                         OpeningDate = SelectedBranch.OpeningDate,
                         Revenue = SelectedBranch.Revenue,
-                        Expenses = SelectedBranch.Expenses
+                        Expenses = SelectedBranch.Expenses,
+                        DeletedAt = SelectedBranch.DeletedAt
                     };
                 }
                 else

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Enums;
+using XoshBank.Models;
 
 namespace XoshBank.Command.Branches
 {
@@ -22,7 +23,9 @@ namespace XoshBank.Command.Branches
         }
         public void Execute(object parameter)
         {
-            _viewModel.CurrentState = ViewState.Reject;
+            _viewModel.SelectedBranch = null;
+            _viewModel.CurrentBranch = new BranchFormModel();
+            _viewModel.CurrentState = ViewState.Default;
         }
     }
 }

@@ -220,10 +220,10 @@
     <Compile Include="Command\Loans\OpenLoansCommand.cs" />
     <Compile Include="Command\Accounts\OpenAccountsCommand.cs" />
     <Compile Include="Command\Cards\OpenCardCommand.cs" />
-    <Compile Include="Command\OpenATMLocationCommand.cs" />
+    <Compile Include="Command\ATMLocations\OpenATMLocationCommand.cs" />
     <Compile Include="Command\Customers\OpenCustomersCommand.cs" />
     <Compile Include="Command\Employees\OpenEmployeeCommand.cs" />
-    <Compile Include="Command\OpenPaymentTemplateCommand.cs" />
+    <Compile Include="Command\PaymentTemplates\OpenPaymentTemplateCommand.cs" />
     <Compile Include="Command\PaymentTemplates\AddPaymentTemplateCommand.cs" />
     <Compile Include="Command\PaymentTemplates\DeletePaymentTemplateCommand.cs" />
     <Compile Include="Command\PaymentTemplates\EditPaymentTemplateCommand.cs" />

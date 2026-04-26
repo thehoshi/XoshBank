@@ -17,9 +17,9 @@ namespace XoshBank.Views.UserControls
     /// <summary>
     /// Interaction logic for BranchesControl.xaml
     /// </summary>
-    public partial class AccountsControl : System.Windows.Controls.UserControl
+    public partial class BranchesControl : System.Windows.Controls.UserControl
     {
-        public AccountsControl() => InitializeComponent();
+        public BranchesControl() => InitializeComponent();
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
