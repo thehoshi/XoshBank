@@ -22,7 +22,7 @@ namespace XoshBank.Command.Branches
         }
         public void Execute(object parameter)
         {
-            _viewModel.CurrentState = ViewState.Reject;
+            _viewModel.CurrentState = ViewState.Delete;
         }
     }
 }
