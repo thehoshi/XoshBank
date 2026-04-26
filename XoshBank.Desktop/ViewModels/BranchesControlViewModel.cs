@@ -48,11 +48,12 @@ namespace XoshBank.Desktop.ViewModels
                     CurrentState = ViewState.Selected;
                     CurrentBranch = new BranchFormModel
                     {
-                        BranchName = SelectedBranch.AccountNumber,
+                        ID = SelectedBranch.ID,
+                        BranchName = SelectedBranch.BranchName,
                         City = SelectedBranch.City,
                         Address = SelectedBranch.Address,
                         ManagerName = SelectedBranch.ManagerName,
-                        PhoneNumber = SelectedBranch.PhoneNUmber,
+                        PhoneNumber = SelectedBranch.PhoneNumber,
                         EmployeeCount = SelectedBranch.EmployeeCount,
                         OpeningDate = SelectedBranch.OpeningDate,
                         Revenue = SelectedBranch.Revenue,
@@ -96,7 +97,7 @@ namespace XoshBank.Desktop.ViewModels
                     var upper = SearchValue.ToUpper();
                     foreach (BranchUIModel b in AllBranches)
                     {
-                        if (b.AccountNumber?.ToUpper().Contains(upper) == true ||
+                        if (b.BranchName?.ToUpper().Contains(upper) == true ||
                             b.City?.ToUpper().Contains(upper) == true ||
                             b.ManagerName?.ToUpper().Contains(upper) == true)
                         {

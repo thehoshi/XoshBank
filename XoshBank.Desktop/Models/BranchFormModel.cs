@@ -8,6 +8,7 @@ namespace XoshBank.Models
 {
     public class BranchFormModel
     {
+        public int ID { get; set; }
         public string BranchName { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
@@ -17,5 +18,6 @@ namespace XoshBank.Models
         public DateTime? OpeningDate { get; set; }
         public double? Revenue { get; set; }
         public double? Expenses { get; set; }
+        public DateTime? DeletedAt { get; set; }
     }
 }

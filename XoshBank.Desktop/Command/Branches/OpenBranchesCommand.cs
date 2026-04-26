@@ -41,16 +41,17 @@ namespace XoshBank.Command.Branches
             {
                 BranchUIModel branchUIModel = new BranchUIModel
                 {
-                    No = no++,
-                    AccountNumber = branch.BranchName,
+                    ID = no++,
+                    BranchName = branch.BranchName,
                     City = branch.City,
                     Address = branch.Address,
                     ManagerName = branch.ManagerName,
-                    PhoneNUmber = branch.PhoneNumber,
+                    PhoneNumber = branch.PhoneNumber,
                     EmployeeCount = branch.EmployeeCount,
                     OpeningDate = branch.OpeningDate,
                     Revenue = branch.Revenue,
-                    Expenses = branch.Expenses
+                    Expenses = branch.Expenses,
+                    DeletedAt = branch.DeletedAt
                 };
                 branchUIModels.Add(branchUIModel);
             }
