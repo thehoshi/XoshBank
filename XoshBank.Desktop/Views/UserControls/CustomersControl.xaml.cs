@@ -8,12 +8,13 @@ namespace XoshBank.Desktop.Views.UserControls
     /// </summary>
     public partial class CustomersControl : System.Windows.Controls.UserControl
     {
-        public CustomersControl()
-        {
-            InitializeComponent();
-        }
+        public CustomersControl() => InitializeComponent();
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }

@@ -8,6 +8,7 @@ namespace XoshBank.Models
 {
     public class CustomerUIModel
     {
+        public int ID { get; set; }
         public int No { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

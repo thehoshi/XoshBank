@@ -246,6 +246,7 @@
     <Compile Include="ViewModels\ATMLocationsControlViewModel.cs" />
     <Compile Include="ViewModels\BranchesControlViewModel.cs" />
     <Compile Include="ViewModels\CardsControlViewModel.cs" />
+    <Compile Include="ViewModels\CustomersControlViewModel.cs" />
     <Compile Include="ViewModels\EmployeesControlViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\PaymentTemplatesControlViewModel.cs" />
