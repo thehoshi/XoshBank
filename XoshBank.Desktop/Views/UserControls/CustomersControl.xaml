@@ -136,7 +136,7 @@
                         <TextBox DockPanel.Dock="Left"
                                  Width="280"
                                  Style="{StaticResource InputStyle}"
-                                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                                 Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <Button DockPanel.Dock="Right"
                                 Width="110"

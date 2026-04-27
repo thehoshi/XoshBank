@@ -47,7 +47,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                string query = "SELECT * FROM Account";
+                string query = "SELECT * FROM Accounts";
                 using (var command = new SqlCommand(query, connection))
                 using (var reader = command.ExecuteReader())
                 {

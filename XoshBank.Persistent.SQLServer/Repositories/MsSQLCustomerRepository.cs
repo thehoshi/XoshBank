@@ -20,7 +20,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "DELETE Accounts WHERE AccountsID = @Id";
+                string query = "DELETE FROM Customers WHERE CustomerID = @Id";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Id", id);
@@ -59,20 +59,14 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                         customers.DateOfBirth = Convert.ToDateTime(reader["DateOfBirth"]);
                         customers.Email = Convert.ToString(reader["Email"]);
                         customers.PhoneNumber = Convert.ToString(reader["PhoneNumber"]);
-                        customers.Address = Convert.ToString(reader["Address"]);
                         customers.FINCode = Convert.ToString(reader["FINCode"]);
                         customers.CreatedAt = Convert.ToDateTime(reader["CreatedAt"]);
-                        customers.DeletedAt = Convert.ToDateTime(reader["DeletedAt"]);
-
+                        customers.Address = reader["Address"] == DBNull.Value ? null : Convert.ToString(reader["Address"]);
+                        customers.DeletedAt = reader["DeletedAt"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["DeletedAt"]);
                         customer.Add(customers);
                     }
 
-                    int rowsCount = command.ExecuteNonQuery();
-
-                    if (rowsCount != 1)
-                        throw new Exception("Something went wrong while updating user");
-                    else
-                        Console.WriteLine("The operation was completed successfully");
+                   
                 }
                 return customer;
             }
@@ -129,8 +123,8 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
 
-                string query = "INSERT INTO Customers(FirstName,LastName,DateOfBirt,PhoneNumber,Email,Address,FINCode,CreatedAt,DeletedAt) " +
-                    "VALUES(@FirstName,@LastName,@BirthDate,@PhoneNumber,@Emaile,@Address,@FINCode,@CreatedAt,@DeletedAT)";
+                string query = "INSERT INTO Customers(FirstName,LastName,DateOfBirth,PhoneNumber,Email,Address,FINCode,CreatedAt) " +
+                "VALUES(@FirstName,@LastName,@DateOfBirth,@PhoneNumber,@Email,@Address,@FINCode,@CreatedAt)";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@FirstName", customers.FirstName);
@@ -141,7 +135,6 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     command.Parameters.AddWithValue("@Address", customers.Address);
                     command.Parameters.AddWithValue("@FINCode", customers.FINCode);
                     command.Parameters.AddWithValue("@CreatedAt", customers.CreatedAt);
-                    command.Parameters.AddWithValue("@DeletedAt", customers.DeletedAt);
 
                     int rowsCount = command.ExecuteNonQuery();
 
@@ -160,8 +153,10 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "UPDATE Transactions SET FirstName = @FirstName, LastName = @LastName, DateOfBirth = @DateOfBirth, PhoneNumber = @PhoneNumber " +
-                    "Email = @Email, Address = @Address, FINCode = @FINCode ,CreatedAt = @CreatedAt, DeletedAt = @DeletedAt WHERE CustomerID = @Id";
+                string query = "UPDATE Customers SET FirstName = @FirstName, LastName = @LastName, " +
+                "DateOfBirth = @DateOfBirth, PhoneNumber = @PhoneNumber, " +
+                "Email = @Email, Address = @Address, FINCode = @FINCode " +
+                "WHERE CustomerID = @Id";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@FirstName", customer.FirstName);
@@ -171,8 +166,6 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     command.Parameters.AddWithValue("@Email", customer.Email);
                     command.Parameters.AddWithValue("@Address", customer.Address);
                     command.Parameters.AddWithValue("@FINCode", customer.FINCode);
-                    command.Parameters.AddWithValue("@CreatedAt", customer.CreatedAt);
-                    command.Parameters.AddWithValue("@DeletedAt", customer.DeletedAt);
                     command.Parameters.AddWithValue("@Id", customer.ID);
                     int rowsCount = command.ExecuteNonQuery();
                     if (rowsCount != 1)

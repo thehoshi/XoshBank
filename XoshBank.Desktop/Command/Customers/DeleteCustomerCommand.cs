@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using XoshBank.Enums;
+using XoshBank.Models;
 using XoshBank.ViewModels;
 
 namespace XoshBank.Command.Customers
@@ -18,13 +20,27 @@ namespace XoshBank.Command.Customers
         }
 
         public event EventHandler CanExecuteChanged;
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
+        public bool CanExecute(object parameter) => true;
+
         public void Execute(object parameter)
         {
-            _viewModel.CurrentState = ViewState.Delete;
+            if (_viewModel.SelectedCustomer == null) return;
+
+            var result = MessageBox.Show("Are you sure you want to delete this customer?",
+                "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result != MessageBoxResult.Yes) return;
+
+            int id = _viewModel.SelectedCustomer.ID;
+            int index = _viewModel.Customers.IndexOf(_viewModel.SelectedCustomer);
+
+            _viewModel.DB.Customers.Delete(id);
+            _viewModel.AllCustomers.RemoveAt(index);
+            _viewModel.Customers.RemoveAt(index);
+
+            _viewModel.SelectedCustomer = null;
+            _viewModel.CurrentCustomer = new CustomerFormModel();
+            _viewModel.CurrentState = ViewState.Default;
+            MessageBox.Show("Customer deleted successfully!", "Success", MessageBoxButton.OK);
         }
     }
 }

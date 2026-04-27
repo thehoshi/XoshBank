@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using XoshBank.Enums;
 using XoshBank.ViewModels;
@@ -18,13 +19,17 @@ namespace XoshBank.Command.Customers
         }
 
         public event EventHandler CanExecuteChanged;
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
+        public bool CanExecute(object parameter) => true;
+
         public void Execute(object parameter)
         {
-            _viewModel.CurrentState = ViewState.Delete;
+            if (_viewModel.SelectedCustomer == null)
+            {
+                MessageBox.Show("Please select a customer to edit.", "Warning",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            _viewModel.CurrentState = ViewState.Edit;
         }
     }
 }

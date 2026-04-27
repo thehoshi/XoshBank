@@ -12,6 +12,7 @@ using XoshBank.Desktop.ViewModels;
 using XoshBank.Desktop.Views.UserControls;
 using XoshBank.Enums;
 using XoshBank.Models;
+using XoshBank.ViewModels;
 
 
 namespace XoshBank.Command.Customers
@@ -32,35 +33,32 @@ namespace XoshBank.Command.Customers
         {
             CustomersControl customersControl = new CustomersControl();
 
-            BranchesControlViewModel viewModel = new BranchesControlViewModel(_db);
+            CustomersControlViewModel viewModel = new CustomersControlViewModel(_db);
 
-            List<Branch> branches = _db.Branches.GetAll();
+            List<Customer> customers = _db.Customers.GetAll();
 
-            List<BranchUIModel> branchUIModels = new List<BranchUIModel>();
+            List<CustomerUIModel> customerUIModels = new List<CustomerUIModel>();
 
-            foreach (Branch branch in branches)
+            foreach (Customer customer in customers)
             {
-                BranchUIModel branchUIModel = new BranchUIModel
+                CustomerUIModel customerUIModel = new CustomerUIModel
                 {
-                    ID = branch.ID,
-                    BranchName = branch.BranchName,
-                    City = branch.City,
-                    Address = branch.Address,
-                    ManagerName = branch.ManagerName,
-                    PhoneNumber = branch.PhoneNumber,
-                    EmployeeCount = branch.EmployeeCount,
-                    OpeningDate = branch.OpeningDate,
-                    Revenue = branch.Revenue,
-                    Expenses = branch.Expenses,
-                    DeletedAt = branch.DeletedAt
+                    ID = customer.ID,
+                    FirstName = customer.FirstName,
+                    LastName = customer.LastName,
+                    Address = customer.Address,
+                    PhoneNumber = customer.PhoneNumber,
+                    Email = customer.Email,
+                    DateOfBirth = customer.DateOfBirth,
+                    FINCode = customer.FINCode,
                 };
-                branchUIModels.Add(branchUIModel);
+                customerUIModels.Add(customerUIModel);
             }
 
-            viewModel.AllBranches = branchUIModels;
-            viewModel.Branches = new ObservableCollection<BranchUIModel>(branchUIModels);
+            viewModel.AllCustomers = customerUIModels;
+            viewModel.Customers = new ObservableCollection<CustomerUIModel>(customerUIModels);
 
-            viewModel.CurrentBranch = new BranchFormModel();
+            viewModel.CurrentCustomer = new CustomerFormModel();
             viewModel.CurrentState = ViewState.Default;
 
             customersControl.DataContext = viewModel;

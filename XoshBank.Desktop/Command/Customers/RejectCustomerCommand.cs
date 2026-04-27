@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using XoshBank.Enums;
+using XoshBank.Models;
 using XoshBank.ViewModels;
 
 namespace XoshBank.Command.Customers
@@ -18,13 +19,13 @@ namespace XoshBank.Command.Customers
         }
 
         public event EventHandler CanExecuteChanged;
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
+        public bool CanExecute(object parameter) => true;
+
         public void Execute(object parameter)
         {
-            _viewModel.CurrentState = ViewState.Reject;
+            _viewModel.SelectedCustomer = null;
+            _viewModel.CurrentCustomer = new CustomerFormModel();
+            _viewModel.CurrentState = ViewState.Default;
         }
     }
 }
