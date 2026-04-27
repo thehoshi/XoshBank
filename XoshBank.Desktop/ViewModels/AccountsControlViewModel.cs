@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using XoshBank.Command.Accounts;
 using XoshBank.Command.Branches;
+using XoshBank.Command.Customers;
 using XoshBank.Core.Repositories;
 using XoshBank.Enums;
 using XoshBank.Models;
@@ -113,8 +114,19 @@ namespace XoshBank.ViewModels
         public DeleteAccountCommand Delete => new DeleteAccountCommand(this);
 
         #endregion
+
+        #region property changed
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        #endregion
+
+        #region commands
+        public AddAccountCommand AddCommand => new AddAccountCommand(this);
+        public SaveAccountCommand SaveCommand => new SaveAccountCommand(this);
+        public EditAccountCommand EditCommand => new EditAccountCommand(this);
+        public RejectAccountCommand RejectCommand => new RejectAccountCommand(this);
+        public DeleteAccountCommand DeleteCommand => new DeleteAccountCommand(this);
+        #endregion
     }
 }
