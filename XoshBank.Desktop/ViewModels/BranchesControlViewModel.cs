@@ -114,11 +114,11 @@ namespace XoshBank.Desktop.ViewModels
 
         #region commands
 
-        public AddBranchesCommand Add => new AddBranchesCommand(this);
-        public SaveBranchesCommand Save => new SaveBranchesCommand(this);
-        public EditBranchesCommand Edit => new EditBranchesCommand(this);
-        public RejectBranchesCommand Reject => new RejectBranchesCommand(this);
-        public DeleteBranchesCommand Delete => new DeleteBranchesCommand(this);
+        public AddBranchesCommand AddCommand => new AddBranchesCommand(this);
+        public SaveBranchesCommand SaveCommand => new SaveBranchesCommand(this);
+        public EditBranchesCommand EditCommand => new EditBranchesCommand(this);
+        public RejectBranchesCommand RejectCommand => new RejectBranchesCommand(this);
+        public DeleteBranchesCommand DeleteCommand => new DeleteBranchesCommand(this);
 
         #endregion
 

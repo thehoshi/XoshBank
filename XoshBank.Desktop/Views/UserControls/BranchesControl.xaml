@@ -177,6 +177,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -188,7 +189,7 @@
 
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="ID"/>
-                            <TextBox Style="{StaticResource ReadOnlyTextStyle}" Text="{Binding SelectedBranch.ID}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.ID}" TextChanged="TextBox_TextChanged"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,8,8">
@@ -221,9 +222,18 @@
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.EmployeeCount, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="3" Margin="0,0,0,0">
+                        <StackPanel Grid.Row="2" Grid.Column="3" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Opening date"/>
                             <DatePicker Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding SelectedBranch.OpeningDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="4" Margin="0,0,8,0">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Revenue"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.Revenue, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="2" Grid.Column="4" Margin="0,0,8,0">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Expenses"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.Expenses, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -257,22 +267,22 @@
                     </DockPanel>
                 </Border>
 
-                <Border Grid.Row="3" Grid.Column="0" Background="#FFFFFFFF" CornerRadius="18" Padding="8" Margin="0,0,14,0" Effect="{StaticResource SoftShadow}">
+                <Border Grid.Row="3" Grid.Column="0" Background="#FFFFFFFF" CornerRadius="18" Padding="2" Margin="0,0,14,0" Effect="{StaticResource SoftShadow}" >
                     <DataGrid ItemsSource="{Binding Branches}"
                               SelectedItem="{Binding SelectedBranch, Mode=TwoWay}"
                               RowStyle="{x:Null}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID"           Binding="{Binding ID}"                                              Width="55"/>
-                            <DataGridTextColumn Header="Branch Name"  Binding="{Binding BranchName}"                                      Width="*"/>
-                            <DataGridTextColumn Header="City"         Binding="{Binding City}"                                            Width="110"/>
-                            <DataGridTextColumn Header="Address"      Binding="{Binding Address}"                                         Width="170"/>
-                            <DataGridTextColumn Header="Manager"      Binding="{Binding ManagerName}"                                     Width="130"/>
-                            <DataGridTextColumn Header="Phone"        Binding="{Binding PhoneNumber}"                                     Width="120"/>
-                            <DataGridTextColumn Header="Employees"    Binding="{Binding EmployeeCount}"                                   Width="85"/>
-                            <DataGridTextColumn Header="Opening Date" Binding="{Binding OpeningDate, StringFormat={}{0:dd.MM.yyyy}}"      Width="110"/>
-                            <DataGridTextColumn Header="Revenue"      Binding="{Binding Revenue,     StringFormat={}{0:N2}}"              Width="100"/>
-                            <DataGridTextColumn Header="Expenses"     Binding="{Binding Expenses,    StringFormat={}{0:N2}}"              Width="100"/>
-                            <DataGridTextColumn Header="Deleted At"   Binding="{Binding DeletedAt,   StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="130"/>
+                            <DataGridTextColumn Header="ID"           Binding="{Binding ID}"                                              Width="50"/>
+                            <DataGridTextColumn Header="Branch Name"  Binding="{Binding BranchName}"                                      Width="100"/>
+                            <DataGridTextColumn Header="City"         Binding="{Binding City}"                                            Width="50"/>
+                            <DataGridTextColumn Header="Address"      Binding="{Binding Address}"                                         Width="100"/>
+                            <DataGridTextColumn Header="Manager"      Binding="{Binding ManagerName}"                                     Width="100"/>
+                            <DataGridTextColumn Header="Phone"        Binding="{Binding PhoneNumber}"                                     Width="70"/>
+                            <DataGridTextColumn Header="Employees"    Binding="{Binding EmployeeCount}"                                   Width="70"/>
+                            <DataGridTextColumn Header="Opening Date" Binding="{Binding OpeningDate, StringFormat={}{0:dd.MM.yyyy}}"      Width="70"/>
+                            <DataGridTextColumn Header="Revenue"      Binding="{Binding Revenue,     StringFormat={}{0:N2}}"              Width="70"/>
+                            <DataGridTextColumn Header="Expenses"     Binding="{Binding Expenses,    StringFormat={}{0:N2}}"              Width="70"/>
+                            <DataGridTextColumn Header="Deleted At"   Binding="{Binding DeletedAt,   StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="70"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

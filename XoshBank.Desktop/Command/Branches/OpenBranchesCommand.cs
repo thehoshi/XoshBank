@@ -36,12 +36,11 @@ namespace XoshBank.Command.Branches
 
             List<BranchUIModel> branchUIModels = new List<BranchUIModel>();
 
-            int no = 1;
             foreach (Branch branch in branches)
             {
                 BranchUIModel branchUIModel = new BranchUIModel
                 {
-                    ID = no++,
+                    ID = branch.ID,
                     BranchName = branch.BranchName,
                     City = branch.City,
                     Address = branch.Address,

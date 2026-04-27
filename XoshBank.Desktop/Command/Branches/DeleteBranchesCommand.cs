@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Enums;
 using XoshBank.Models;
 
 namespace XoshBank.Command.Branches
 {
-    public class DeleteBranchesCommand
+    public class DeleteBranchesCommand : ICommand
     {
         private readonly BranchesControlViewModel _viewModel;
         public DeleteBranchesCommand(BranchesControlViewModel viewModel)
@@ -31,31 +32,11 @@ namespace XoshBank.Command.Branches
             if (result != MessageBoxResult.Yes) return;
 
             int id = _viewModel.SelectedBranch.ID;
-            int index = _viewModel.SelectedBranch.ID - 1;
+            int index = _viewModel.Branches.IndexOf(_viewModel.SelectedBranch);
 
             _viewModel.DB.Branches.Delete(id);
             _viewModel.AllBranches.RemoveAt(index);
             _viewModel.Branches.RemoveAt(index);
-
-            for (int i = index; i < _viewModel.Branches.Count; i++)
-            {
-                var item = _viewModel.Branches[i];
-                var renumbered = new BranchUIModel
-                {
-                    ID = i + 1,
-                    BranchName = item.BranchName,
-                    City = item.City,
-                    Address = item.Address,
-                    ManagerName = item.ManagerName,
-                    PhoneNumber = item.PhoneNumber,
-                    EmployeeCount = item.EmployeeCount,
-                    OpeningDate = item.OpeningDate,
-                    Revenue = item.Revenue,
-                    Expenses = item.Expenses
-                };
-                _viewModel.Branches[i] = renumbered;
-                _viewModel.AllBranches[i] = renumbered;
-            }
 
             _viewModel.SelectedBranch = null;
             _viewModel.CurrentBranch = new BranchFormModel();

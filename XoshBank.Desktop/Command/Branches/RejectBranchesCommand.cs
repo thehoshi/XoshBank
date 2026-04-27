@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Enums;
 using XoshBank.Models;
 
 namespace XoshBank.Command.Branches
 {
-    public class RejectBranchesCommand
+    public class RejectBranchesCommand : ICommand
     {
         private readonly BranchesControlViewModel _viewModel;
         public RejectBranchesCommand(BranchesControlViewModel viewModel)

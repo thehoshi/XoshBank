@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Enums;
 
 namespace XoshBank.Command.Branches
 {
-    public class EditBranchesCommand
+    public class EditBranchesCommand : ICommand
     {
         private readonly BranchesControlViewModel _viewModel;
         public EditBranchesCommand(BranchesControlViewModel viewModel)

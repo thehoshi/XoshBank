@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using XoshBank.Core.Entities;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Enums;
@@ -11,7 +12,7 @@ using XoshBank.Models;
 
 namespace XoshBank.Command.Branches
 {
-    public class SaveBranchesCommand
+    public class SaveBranchesCommand : ICommand
     {
         private readonly BranchesControlViewModel _viewModel;
         public SaveBranchesCommand(BranchesControlViewModel viewModel)
@@ -26,31 +27,34 @@ namespace XoshBank.Command.Branches
         public void Execute(object parameter)
         {
             var result = MessageBox.Show("Are you sure you want to save?",
-    "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result != MessageBoxResult.Yes) return;
+
+            var source = _viewModel.CurrentBranch ?? new BranchFormModel();
 
             var branch = new Branch
             {
-                BranchName = _viewModel.CurrentBranch.BranchName,
-                City = _viewModel.CurrentBranch.City,
-                Address = _viewModel.CurrentBranch.Address,
-                ManagerName = _viewModel.CurrentBranch.ManagerName,
-                PhoneNumber = _viewModel.CurrentBranch.PhoneNumber,
-                EmployeeCount = _viewModel.CurrentBranch.EmployeeCount,
-                OpeningDate = _viewModel.CurrentBranch.OpeningDate,
-                Revenue = _viewModel.CurrentBranch.Revenue,
-                Expenses = _viewModel.CurrentBranch.Expenses,
+                BranchName = source.BranchName,
+                City = source.City,
+                Address = source.Address,
+                ManagerName = source.ManagerName,
+                PhoneNumber = source.PhoneNumber,
+                EmployeeCount = source.EmployeeCount,
+                OpeningDate = source.OpeningDate,
+                Revenue = source.Revenue,
+                Expenses = source.Expenses,
             };
 
-            if (_viewModel.SelectedBranch != null && _viewModel.SelectedBranch.ID > 0)
+            var isEdit = _viewModel.SelectedBranch != null && _viewModel.SelectedBranch.ID > 0;
+            if (isEdit)
             {
                 branch.ID = _viewModel.SelectedBranch.ID;
                 _viewModel.DB.Branches.Update(branch);
 
-                int index = _viewModel.SelectedBranch.ID - 1;
+                int index = _viewModel.Branches.IndexOf(_viewModel.SelectedBranch);
                 var updated = new BranchUIModel
                 {
-                    ID = _viewModel.SelectedBranch.ID,
+                    ID = branch.ID,
                     BranchName = branch.BranchName,
                     City = branch.City,
                     Address = branch.Address,
@@ -61,8 +65,11 @@ namespace XoshBank.Command.Branches
                     Revenue = branch.Revenue,
                     Expenses = branch.Expenses
                 };
-                _viewModel.AllBranches[index] = updated;
-                _viewModel.Branches[index] = updated;
+                if (index >= 0)
+                {
+                    _viewModel.AllBranches[index] = updated;
+                    _viewModel.Branches[index] = updated;
+                }
                 MessageBox.Show("Branch updated successfully!", "Success", MessageBoxButton.OK);
             }
             else
@@ -70,7 +77,7 @@ namespace XoshBank.Command.Branches
                 _viewModel.DB.Branches.Insert(branch);
                 var newModel = new BranchUIModel
                 {
-                    ID = _viewModel.AllBranches.Count + 1,
+                    ID = branch.ID,
                     BranchName = branch.BranchName,
                     City = branch.City,
                     Address = branch.Address,
