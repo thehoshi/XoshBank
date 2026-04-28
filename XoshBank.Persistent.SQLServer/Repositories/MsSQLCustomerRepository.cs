@@ -132,7 +132,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     command.Parameters.AddWithValue("@DateOfBirth", customers.DateOfBirth);
                     command.Parameters.AddWithValue("@PhoneNumber", customers.PhoneNumber);
                     command.Parameters.AddWithValue("@Email", customers.Email);
-                    command.Parameters.AddWithValue("@Address", customers.Address);
+                    command.Parameters.AddWithValue("@Address", customers.Address ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@FINCode", customers.FINCode);
                     command.Parameters.AddWithValue("@CreatedAt", customers.CreatedAt);
 
