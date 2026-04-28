@@ -27,7 +27,6 @@ namespace XoshBank.Command.Customers
         }
         public void Execute(object parameter)
         {
-            _viewModel.CurrentState = ViewState.Save;
             var result = MessageBox.Show("Are you sure you want to save?",
                 "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result != MessageBoxResult.Yes) return;
@@ -45,7 +44,8 @@ namespace XoshBank.Command.Customers
                 Email = source.Email,
                 CreatedAt = DateTime.Now
             };
-            var isEdit = _viewModel.SelectedCustomer != null && _viewModel.SelectedCustomer.ID > 0;
+            var isEdit = _viewModel.SelectedCustomer != null && _viewModel.SelectedCustomer.ID > 0
+              && _viewModel.CurrentState == ViewState.Edit;
             if (isEdit)
             {
                 customer.ID = _viewModel.SelectedCustomer.ID;
