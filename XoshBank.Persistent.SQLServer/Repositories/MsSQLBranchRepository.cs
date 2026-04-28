@@ -96,18 +96,21 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 connection.Open();
                 var command = new SqlCommand(
                     "INSERT INTO Branches (BranchName, City, Address, ManagerName, PhoneNumber, EmployeeCount, OpeningDate, Revenue, Expenses) " +
-                    "VALUES (@BranchName, @City, @Address, @ManagerName, @PhoneNumber, @EmployeeCount, @OpeningDate, @Revenue, @Expenses)",
+                    "VALUES (@BranchName, @City, @Address, @ManagerName, @PhoneNumber, @EmployeeCount, @OpeningDate, @Revenue, @Expenses); " +
+                    "SELECT SCOPE_IDENTITY();", 
                     connection);
-                command.Parameters.AddWithValue("@BranchName", entity.BranchName);
-                command.Parameters.AddWithValue("@City", entity.City);
-                command.Parameters.AddWithValue("@Address", entity.Address);
-                command.Parameters.AddWithValue("@ManagerName", entity.ManagerName);
-                command.Parameters.AddWithValue("@PhoneNumber", entity.PhoneNumber); 
+
+                command.Parameters.AddWithValue("@BranchName", (object)entity.BranchName ?? DBNull.Value);
+                command.Parameters.AddWithValue("@City", (object)entity.City ?? DBNull.Value);
+                command.Parameters.AddWithValue("@Address", (object)entity.Address ?? DBNull.Value);
+                command.Parameters.AddWithValue("@ManagerName", (object)entity.ManagerName ?? DBNull.Value);
+                command.Parameters.AddWithValue("@PhoneNumber", (object)entity.PhoneNumber ?? DBNull.Value);
                 command.Parameters.AddWithValue("@EmployeeCount", (object)entity.EmployeeCount ?? DBNull.Value);
                 command.Parameters.AddWithValue("@OpeningDate", (object)entity.OpeningDate ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Revenue", (object)entity.Revenue ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Expenses", (object)entity.Expenses ?? DBNull.Value);
-                command.ExecuteNonQuery();
+
+                entity.ID = Convert.ToInt32(command.ExecuteScalar());
             }
         }
         #endregion
@@ -119,10 +122,8 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "UPDATE Branches SET BranchName = @BranchName, City = @City, Address = @Address, ManagerName = @ManagerName, PhoneNumber = @PhoneNumber, EmployeeCount = @EmployeeCount, OpeningDate = @OpeningDate, Revenue = @Revenue, Expenses = @Expenses " +
-                    "WHERE BranchID = @BranchID",
+                    "UPDATE Branches SET BranchName = @BranchName, City = @City, Address = @Address, ManagerName = @ManagerName, PhoneNumber = @PhoneNumber, EmployeeCount = @EmployeeCount, OpeningDate = @OpeningDate, Revenue = @Revenue, Expenses = @Expenses ",
                     connection);
-                command.Parameters.AddWithValue("@BranchID", entity.ID);
                 command.Parameters.AddWithValue("@BranchName", entity.BranchName);
                 command.Parameters.AddWithValue("@City", entity.City);
                 command.Parameters.AddWithValue("@Address", entity.Address);
@@ -144,8 +145,10 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "DELETE FROM Branches WHERE BranchID = @Id",
+                    "UPDATE Branches SET DeletedAt = @DeletedAt WHERE BranchID = @Id",
                     connection);
+
+                command.Parameters.AddWithValue("@DeletedAt", DateTime.Now);
                 command.Parameters.AddWithValue("@Id", id);
                 command.ExecuteNonQuery();
             }

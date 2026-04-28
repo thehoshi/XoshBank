@@ -49,8 +49,7 @@ namespace XoshBank.Command.Branches
                     EmployeeCount = branch.EmployeeCount,
                     OpeningDate = branch.OpeningDate,
                     Revenue = branch.Revenue,
-                    Expenses = branch.Expenses,
-                    DeletedAt = branch.DeletedAt
+                    Expenses = branch.Expenses
                 };
                 branchUIModels.Add(branchUIModel);
             }

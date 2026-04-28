@@ -189,63 +189,150 @@
 
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="ID"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.ID}" TextChanged="TextBox_TextChanged"/>
+                            <TextBox Style="{StaticResource ReadOnlyTextStyle}" Text="{Binding SelectedBranch.ID}" TextChanged="TextBox_TextChanged"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Branch name"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.BranchName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.BranchName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="City"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.City, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.City, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="1" Grid.Column="3" Margin="0,0,0,8">
+                        <StackPanel Grid.Row="1" Grid.Column="3" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Address"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.Address, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.Address, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,0">
+                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Manager"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.ManagerName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.ManagerName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,8,0">
+                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Phone"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,0,8,0">
+                        <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Employees"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.EmployeeCount, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.EmployeeCount, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="3" Margin="0,0,8,0">
+                        <StackPanel Grid.Row="2" Grid.Column="3" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Opening date"/>
-                            <DatePicker Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding SelectedBranch.OpeningDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <DatePicker Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding CurrentBranch.OpeningDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="1" Grid.Column="4" Margin="0,0,8,0">
+                        <StackPanel Grid.Row="1" Grid.Column="4" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Revenue"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.Revenue, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.Revenue, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
-                        <StackPanel Grid.Row="2" Grid.Column="4" Margin="0,0,8,0">
+
+                        <StackPanel Grid.Row="2" Grid.Column="4" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Expenses"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedBranch.Expenses, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.Expenses, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </Grid>
                 </Border>
                 
                 <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Background="#FFFDF9FC" CornerRadius="18" Padding="12" Margin="0,0,0,0" Effect="{StaticResource SoftShadow}">
                     <StackPanel>
-                        <TextBlock Text="Actions" FontSize="16" FontWeight="SemiBold" Foreground="#352439" Margin="4,2,4,10"/>
-                        <Button Style="{StaticResource PrimaryActionButtonStyle}" Content="Add"    Command="{Binding AddCommand}"/>
-                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Save"   Command="{Binding SaveCommand}"/>
-                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Edit"   Command="{Binding EditCommand}"/>
-                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Reject" Command="{Binding RejectCommand}"/>
-                        <Button Style="{StaticResource DangerActionButtonStyle}"  Content="Delete" Command="{Binding DeleteCommand}"/>
+                        <TextBlock Text="Actions" FontSize="16" FontWeight="SemiBold" Foreground="#352439" Margin="4,2,4,10"></TextBlock>
+
+                        <!-- Add -->
+                        <Button Command="{Binding AddCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource PrimaryActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="4">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Add
+                        </Button>
+
+                        <!-- Save -->
+                        <Button Command="{Binding SaveCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="4">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Save
+                        </Button>
+
+                        <!-- Edit -->
+                        <Button Command="{Binding EditCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Edit
+                        </Button>
+
+                        <!-- Reject -->
+                        <Button Command="{Binding RejectCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Reject
+                        </Button>
+
+                        <!-- Delete -->
+                        <Button Command="{Binding DeleteCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource DangerActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Delete
+                        </Button>
                     </StackPanel>
                 </Border>
 
@@ -272,17 +359,16 @@
                               SelectedItem="{Binding SelectedBranch, Mode=TwoWay}"
                               RowStyle="{x:Null}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID"           Binding="{Binding ID}"                                              Width="50"/>
+                            <DataGridTextColumn Header="ID"           Binding="{Binding ID}"                                              Width="40"/>
                             <DataGridTextColumn Header="Branch Name"  Binding="{Binding BranchName}"                                      Width="100"/>
-                            <DataGridTextColumn Header="City"         Binding="{Binding City}"                                            Width="50"/>
+                            <DataGridTextColumn Header="City"         Binding="{Binding City}"                                            Width="70"/>
                             <DataGridTextColumn Header="Address"      Binding="{Binding Address}"                                         Width="100"/>
                             <DataGridTextColumn Header="Manager"      Binding="{Binding ManagerName}"                                     Width="100"/>
                             <DataGridTextColumn Header="Phone"        Binding="{Binding PhoneNumber}"                                     Width="70"/>
                             <DataGridTextColumn Header="Employees"    Binding="{Binding EmployeeCount}"                                   Width="70"/>
-                            <DataGridTextColumn Header="Opening Date" Binding="{Binding OpeningDate, StringFormat={}{0:dd.MM.yyyy}}"      Width="70"/>
-                            <DataGridTextColumn Header="Revenue"      Binding="{Binding Revenue,     StringFormat={}{0:N2}}"              Width="70"/>
-                            <DataGridTextColumn Header="Expenses"     Binding="{Binding Expenses,    StringFormat={}{0:N2}}"              Width="70"/>
-                            <DataGridTextColumn Header="Deleted At"   Binding="{Binding DeletedAt,   StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="70"/>
+                            <DataGridTextColumn Header="Opening Date" Binding="{Binding OpeningDate, StringFormat={}{0:dd.MM.yyyy}}"      Width="100"/>
+                            <DataGridTextColumn Header="Revenue"      Binding="{Binding Revenue,     StringFormat={}{0:N2}}"              Width="100"/>
+                            <DataGridTextColumn Header="Expenses"     Binding="{Binding Expenses,    StringFormat={}{0:N2}}"              Width="100"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
