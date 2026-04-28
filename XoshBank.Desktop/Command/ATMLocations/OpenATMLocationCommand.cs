@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.Metrics;
 using System.Windows.Controls;
 using System.Windows.Input;
 using XoshBank.Core.Entities;
@@ -36,10 +37,12 @@ namespace XoshBank.Command
             
             List<ATMLocationUIModel> ATMLocationUIModels = new List<ATMLocationUIModel>();
 
+            int counter = 1;
             foreach (var Location in Locations)
             {
                 ATMLocationUIModel atmocationUIModels = new ATMLocationUIModel 
                 {
+                    No = counter++,
                     ID = Location.ID,
                     Name = Location.Name,
                     City = Location.City,

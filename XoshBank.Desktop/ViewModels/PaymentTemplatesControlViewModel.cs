@@ -149,9 +149,6 @@ namespace XoshBank.ViewModels
 
         #endregion
 
-
-
-
         #region Commands
         public AddPaymentTemplateCommand AddPaymentTemplateCommand => new AddPaymentTemplateCommand(this);
 
