@@ -12,8 +12,8 @@ namespace XoshBank.Core.Repositories
         ILoanRepository Loans { get; }
         IAccountRepository Accounts { get; }
         ICustomerRepository Customers { get; }
-        ICardRepository Card { get; }
-        IEmployeeRepository Employee { get; }
+        ICardRepository Cards { get; }
+        IEmployeeRepository Employees { get; }
 
         IATMLocationRepository ATMLocations { get; }
         IPaymentTemplateRepository PaymentTemplates { get; }

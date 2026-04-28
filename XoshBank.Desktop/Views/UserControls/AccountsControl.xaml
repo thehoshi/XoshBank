@@ -7,8 +7,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="{StaticResource AppBackground}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="397*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
 
-        <Border Margin="28" Padding="20" CornerRadius="28" Background="#F8F0F6" Effect="{StaticResource CardShadow}">
+        <Border Margin="28,28,22,28" Padding="20" CornerRadius="28" Background="#F8F0F6" Effect="{StaticResource CardShadow}">
             <Grid>
 
                 <Grid.ColumnDefinitions>

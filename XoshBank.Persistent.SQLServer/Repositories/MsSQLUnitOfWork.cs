@@ -15,8 +15,8 @@ namespace XoshBank.Persistent.SQLServer.Repositories
         public ILoanRepository Loans => new MsSQLLoanRepository(_connectionString);
         public IAccountRepository Accounts => new MsSQLAccountRepository(_connectionString);
         public ICustomerRepository Customers => new MsSQLCustomerRepository(_connectionString);
-        public ICardRepository Card => new MsSqlCardRepository(_connectionString);
-        public IEmployeeRepository Employee => new MsSqlEmployeeRepository(_connectionString);
+        public ICardRepository Cards => new MsSqlCardRepository(_connectionString);
+        public IEmployeeRepository Employees => new MsSqlEmployeeRepository(_connectionString);
 
         public IATMLocationRepository ATMLocations => new MsSQLATMLocationRepository(_connectionString);
 

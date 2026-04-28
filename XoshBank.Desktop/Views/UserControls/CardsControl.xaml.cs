@@ -10,19 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace XoshBank.Desktop.Views.UserControls
+namespace XoshBank.Views.UserControls
 {
     /// <summary>
     /// Interaction logic for BranchesControl.xaml
     /// </summary>
     public partial class CardsControl : System.Windows.Controls.UserControl
     {
-        public CardsControl()
+        public CardsControl() => InitializeComponent();
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            InitializeComponent();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

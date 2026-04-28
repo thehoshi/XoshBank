@@ -4,6 +4,7 @@ using XoshBank.Command.Loans;
 using XoshBank.Core.Repositories;
 using XoshBank.Command.Accounts;
 using XoshBank.Command.Customers;
+using XoshBank.Command.Cards;
 
 namespace XoshBank.ViewModels
 {
@@ -19,8 +20,8 @@ namespace XoshBank.ViewModels
         public OpenCustomersCommand OpenCustomers => new OpenCustomersCommand(_unitOfWork);
         public OpenLoansCommand OpenLoans => new OpenLoansCommand();
         public OpenBranchesCommand OpenBranches => new OpenBranchesCommand(_unitOfWork);
-        public OpenCardCommand OpenCards => new OpenCardCommand();
-        public OpenEmployeeCommand OpenEmployees => new OpenEmployeeCommand();
+        public OpenCardsCommand OpenCards => new OpenCardsCommand(_unitOfWork);
+        public OpenEmployeeCommand OpenEmployee => new OpenEmployeeCommand();
         public OpenATMLocationCommand OpenATMLocation => new OpenATMLocationCommand(_unitOfWork);
         public OpenPaymentTemplateCommand OpenPaymentTemplate => new OpenPaymentTemplateCommand(_unitOfWork);
     }

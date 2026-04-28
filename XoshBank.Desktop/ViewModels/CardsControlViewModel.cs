@@ -48,12 +48,12 @@ namespace XoshBank.Desktop.ViewModels
                     CurrentState = ViewState.Selected;
                     CurrentCard = new CardFormModel
                     {
-                        CardNumber = SelectedCard.CardNumber,
-                        ExpiryDate = SelectedCard.ExpiryDate,
-                        CVV = SelectedCard.CVV,
-                        CardType = SelectedCard.CardType,
-                        Balance = SelectedCard.Balance,
-                        AccountId = SelectedCard.AccountId
+                        CardNumber = value.CardNumber,
+                        ExpiryDate = value.ExpiryDate,
+                        CVV = value.CVV,
+                        CardType = value.CardType,
+                        Balance = value.Balance,
+                        AccountId = value.AccountId
                     };
                 }
                 else
@@ -94,7 +94,9 @@ namespace XoshBank.Desktop.ViewModels
                     foreach (CardUIModel c in AllCards)
                     {
                         if (c.CardNumber?.ToUpper().Contains(upper) == true ||
-                            c.CardType?.ToUpper().Contains(upper) == true)
+                            c.CardType?.ToUpper().Contains(upper) == true ||
+                            c.AccountId.ToString().Contains(upper) ||
+                            c.IsActive.ToString().ToUpper().Contains(upper))
                         {
                             filtered.Add(c);
                         }
@@ -108,12 +110,13 @@ namespace XoshBank.Desktop.ViewModels
 
         #region commands
 
-        public AddCardCommand Add => new AddCardCommand(this);
-        public SaveCardCommand Save => new SaveCardCommand(this);
-        public EditCardCommand Edit => new EditCardCommand(this);
-        public RejectCardCommand Reject => new RejectCardCommand(this);
-        public DeleteCardCommand Delete => new DeleteCardCommand(this);
-        public ExportCardCommand Export => new ExportCardCommand(this);
+        public AddCardsCommand AddCommand => new AddCardsCommand(this);
+        public SaveCardsCommand SaveCommand => new SaveCardsCommand(this);
+        public EditCardsCommand EditCommand => new EditCardsCommand(this);
+        public RejectCardsCommand RejectCommand => new RejectCardsCommand(this);
+        public DeleteCardsCommand DeleteCommand => new DeleteCardsCommand(this);
+        public ExportCardsCommand ExportCommand => new ExportCardsCommand(this);
+
         #endregion
 
         #region property changed

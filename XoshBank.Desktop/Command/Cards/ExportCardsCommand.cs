@@ -10,11 +10,11 @@ using XoshBank.Desktop.ViewModels;
 
 namespace XoshBank.Command.Cards
 {
-    public class ExportCardCommand : ICommand
+    public class ExportCardsCommand : ICommand
     {
         private readonly CardsControlViewModel viewModel;
 
-        public ExportCardCommand(CardsControlViewModel viewModel)
+        public ExportCardsCommand(CardsControlViewModel viewModel)
         {
             this.viewModel = viewModel;
         }

@@ -1,28 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Input;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Enums;
+using XoshBank.Models;
 
 namespace XoshBank.Command.Cards
 {
-    public class AddCardCommand
+    public class AddCardsCommand : ICommand
     {
         private readonly CardsControlViewModel _viewModel;
-        public AddCardCommand(CardsControlViewModel viewModel)
+
+        public AddCardsCommand(CardsControlViewModel viewModel)
         {
             _viewModel = viewModel;
         }
 
         public event EventHandler CanExecuteChanged;
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
+
+        public bool CanExecute(object parameter) => true;
+
         public void Execute(object parameter)
         {
+            _viewModel.SelectedCard = null;
+            _viewModel.CurrentCard = new CardFormModel();
             _viewModel.CurrentState = ViewState.Add;
         }
     }
