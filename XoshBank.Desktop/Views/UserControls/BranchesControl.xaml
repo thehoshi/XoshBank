@@ -48,14 +48,12 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Opacity" Value="0.88"/>
+                                <Setter Property="Background" Value="#FFF3DDEB" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="RenderTransform">
-                                    <Setter.Value>
-                                        <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
-                                    </Setter.Value>
-                                </Setter>
+                                <Setter Property="Background" Value="#FFDD5BA3"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -355,21 +353,37 @@
                 </Border>
 
                 <Border Grid.Row="3" Grid.Column="0" Background="#FFFFFFFF" CornerRadius="18" Padding="2" Margin="0,0,14,0" Effect="{StaticResource SoftShadow}" >
+                    
                     <DataGrid ItemsSource="{Binding Branches}"
                         SelectedItem="{Binding SelectedBranch, Mode=TwoWay}"
-                        IsReadOnly="True"
-                        RowStyle="{x:Null}">
+                        SelectionUnit="FullRow"
+                        IsReadOnly="True">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Background" Value="White"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#FFDD5BA3"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FFF3DDEB"/>
+                                    </Trigger>
+                                    
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID"           Binding="{Binding ID}"                                              Width="40"/>
                             <DataGridTextColumn Header="Branch Name"  Binding="{Binding BranchName}"                                      Width="100"/>
                             <DataGridTextColumn Header="City"         Binding="{Binding City}"                                            Width="70"/>
-                            <DataGridTextColumn Header="Address"      Binding="{Binding Address}"                                         Width="100"/>
-                            <DataGridTextColumn Header="Manager"      Binding="{Binding ManagerName}"                                     Width="100"/>
-                            <DataGridTextColumn Header="Phone"        Binding="{Binding PhoneNumber}"                                     Width="70"/>
+                            <DataGridTextColumn Header="Address"      Binding="{Binding Address}"                                         Width="170"/>
+                            <DataGridTextColumn Header="Manager"      Binding="{Binding ManagerName}"                                     Width="120"/>
+                            <DataGridTextColumn Header="Phone"        Binding="{Binding PhoneNumber}"                                     Width="110"/>
                             <DataGridTextColumn Header="Employees"    Binding="{Binding EmployeeCount}"                                   Width="70"/>
                             <DataGridTextColumn Header="Opening Date" Binding="{Binding OpeningDate, StringFormat={}{0:dd.MM.yyyy}}"      Width="100"/>
-                            <DataGridTextColumn Header="Revenue"      Binding="{Binding Revenue,     StringFormat={}{0:N2}}"              Width="100"/>
-                            <DataGridTextColumn Header="Expenses"     Binding="{Binding Expenses,    StringFormat={}{0:N2}}"              Width="100"/>
+                            <DataGridTextColumn Header="Revenue"      Binding="{Binding Revenue,     StringFormat={}{0:N2}}"              Width="80"/>
+                            <DataGridTextColumn Header="Expenses"     Binding="{Binding Expenses,    StringFormat={}{0:N2}}"              Width="80"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

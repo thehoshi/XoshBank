@@ -32,15 +32,19 @@ namespace XoshBank.Command.Branches
             if (result != MessageBoxResult.Yes) return;
 
             int id = _viewModel.SelectedBranch.ID;
-            int index = _viewModel.Branches.IndexOf(_viewModel.SelectedBranch);
 
             _viewModel.DB.Branches.Delete(id);
-            _viewModel.AllBranches.RemoveAt(index);
-            _viewModel.Branches.RemoveAt(index);
+
+            var inAll = _viewModel.AllBranches.FirstOrDefault(b => b.ID == id);
+            var inFiltered = _viewModel.Branches.FirstOrDefault(b => b.ID == id);
+
+            if (inAll != null) _viewModel.AllBranches.Remove(inAll);
+            if (inFiltered != null) _viewModel.Branches.Remove(inFiltered);
 
             _viewModel.SelectedBranch = null;
             _viewModel.CurrentBranch = new BranchFormModel();
             _viewModel.CurrentState = ViewState.Default;
+
             MessageBox.Show("Branch deleted successfully!", "Success", MessageBoxButton.OK);
         }
     }
