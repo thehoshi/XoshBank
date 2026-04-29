@@ -8,10 +8,10 @@ using XoshBank.Enums;
 
 namespace XoshBank.Command.Employees
 {
-    public class SaveEmployeeCommand
+    public class SaveEmployeesCommand
     {
         private readonly EmployeesControlViewModel _viewModel;
-        public SaveEmployeeCommand(EmployeesControlViewModel viewModel)
+        public SaveEmployeesCommand(EmployeesControlViewModel viewModel)
         {
             _viewModel = viewModel;
         }

@@ -110,12 +110,12 @@ namespace XoshBank.Desktop.ViewModels
 
         #region commands
 
-        public AddEmployeeCommand Add => new AddEmployeeCommand(this);
-        public SaveEmployeeCommand Save => new SaveEmployeeCommand(this);
-        public EditEmployeeCommand Edit => new EditEmployeeCommand(this);
-        public RejectEmployeeCommand Reject => new RejectEmployeeCommand(this);
+        public AddEmployeesCommand Add => new AddEmployeesCommand(this);
+        public SaveEmployeesCommand Save => new SaveEmployeesCommand(this);
+        public EditEmployeesCommand Edit => new EditEmployeesCommand(this);
+        public RejectEmployeesCommand Reject => new RejectEmployeesCommand(this);
         public DeleteEmployeeCommand Delete => new DeleteEmployeeCommand(this);
-        public ExportEmployeeCommand Export => new ExportEmployeeCommand(this);
+        public ExportEmployeesCommand Export => new ExportEmployeesCommand(this);
         #endregion
 
         #region property changed
