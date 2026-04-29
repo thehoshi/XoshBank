@@ -13,7 +13,7 @@ using XoshBank.Models;
 
 namespace XoshBank.ViewModels
 {
-    public class CustomersControlViewModel
+    public class CustomersControlViewModel : INotifyPropertyChanged
     {
         private readonly IUnitOfWork _db;
         public CustomersControlViewModel(IUnitOfWork db)
