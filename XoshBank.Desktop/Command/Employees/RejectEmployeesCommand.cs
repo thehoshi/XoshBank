@@ -8,10 +8,10 @@ using XoshBank.Enums;
 
 namespace XoshBank.Command.Employees
 {
-    public class EditEmployeeCommand
+    public class RejectEmployeesCommand
     {
         private readonly EmployeesControlViewModel _viewModel;
-        public EditEmployeeCommand(EmployeesControlViewModel viewModel)
+        public RejectEmployeesCommand(EmployeesControlViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -23,7 +23,7 @@ namespace XoshBank.Command.Employees
         }
         public void Execute(object parameter)
         {
-            _viewModel.CurrentState = ViewState.Edit;
+            _viewModel.CurrentState = ViewState.Reject;
         }
     }
 }

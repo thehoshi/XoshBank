@@ -10,11 +10,11 @@ using XoshBank.Desktop.ViewModels;
 
 namespace XoshBank.Command.Employees
 {
-    public class ExportEmployeeCommand : ICommand
+    public class ExportEmployeesCommand : ICommand
     {
         private readonly EmployeesControlViewModel viewModel;
 
-        public ExportEmployeeCommand(EmployeesControlViewModel viewModel)
+        public ExportEmployeesCommand(EmployeesControlViewModel viewModel)
         {
             this.viewModel = viewModel;
         }

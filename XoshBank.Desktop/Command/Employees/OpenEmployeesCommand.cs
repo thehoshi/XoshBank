@@ -5,7 +5,7 @@ using XoshBank.Desktop.Views.UserControls;
 
 namespace XoshBank.Command
 {
-    public class OpenEmployeeCommand : ICommand
+    public class OpenEmployeesCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
