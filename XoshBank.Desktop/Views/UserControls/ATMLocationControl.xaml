@@ -122,7 +122,7 @@
                     Background="White" CornerRadius="18"
                     Padding="8" Margin="0,0,14,0"
                     Effect="{StaticResource SoftShadow}">
-                    <DataGrid ItemsSource="{Binding ATMLocations}"
+                    <DataGrid ItemsSource="{Binding Locations}"
                           SelectedItem="{Binding SelectedATMLocation, Mode=TwoWay}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="No"      Binding="{Binding No}"        Width="*"/>

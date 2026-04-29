@@ -197,6 +197,7 @@
     <Compile Include="Command\Branches\AddBranchesCommand.cs" />
     <Compile Include="Command\Branches\DeleteBranchesCommand.cs" />
     <Compile Include="Command\Branches\EditBranchesCommand.cs" />
+    <Compile Include="Command\Branches\ExportBranchesCommand.cs" />
     <Compile Include="Command\Branches\OpenBranchesCommand.cs" />
     <Compile Include="Command\Branches\RejectBranchesCommand.cs" />
     <Compile Include="Command\Branches\SaveBranchesCommand.cs" />

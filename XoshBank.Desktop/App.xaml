@@ -153,5 +153,97 @@
             <Setter Property="Padding" Value="12,0"/>
             <Setter Property="Foreground" Value="#3A2B40"/>
         </Style>
+
+        <Style TargetType="{x:Type Button}" x:Key="BaseActionButton">
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" CornerRadius="10"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.3"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.88"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="btnAdd" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseActionButton}">
+            <Setter Property="Content" Value="Add"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="4">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="btnSave" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseActionButton}">
+            <Setter Property="Content" Value="Save"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="4">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="btnEdit" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseActionButton}">
+            <Setter Property="Content" Value="Edit"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="btnDelete" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseActionButton}">
+            <Setter Property="Content" Value="Delete"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="btnReject" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseActionButton}">
+            <Setter Property="Content" Value="Reject"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

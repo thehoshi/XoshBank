@@ -27,14 +27,18 @@ namespace XoshBank.Command.Branches
         }
         public void Execute(object parameter)
         {
+            if (_viewModel.CurrentBranch == null)
+                _viewModel.CurrentBranch = new BranchFormModel();
+
             var result = MessageBox.Show("Are you sure you want to save?",
                 "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result != MessageBoxResult.Yes) return;
 
-            var source = _viewModel.CurrentBranch ?? new BranchFormModel();
+            var source = _viewModel.CurrentBranch;
 
             var branch = new Branch
             {
+                ID = _viewModel.CurrentBranch.ID, 
                 BranchName = source.BranchName,
                 City = source.City,
                 Address = source.Address,
