@@ -18,7 +18,7 @@ namespace XoshBank.Command.ATMLocations
 
         public SaveATMLocationCommand(ATMLocationsControlViewModel viewModel)
         {
-            viewModel = viewModel;
+            this.viewModel = viewModel;
         }
 
         public event EventHandler CanExecuteChanged;
@@ -49,7 +49,7 @@ namespace XoshBank.Command.ATMLocations
                 viewModel.DB.ATMLocations.Update(Location);
 
                 ATMLocationUIModel locationUIModel = new ATMLocationUIModel
-                {   No = viewModel.SelectedLocation.No, 
+                {   No = viewModel.Locations.Count + 1, 
                     ID = Location.ID,
                     Name = Location.Name,
                     City = Location.City,

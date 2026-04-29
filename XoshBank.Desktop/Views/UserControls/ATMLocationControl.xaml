@@ -77,11 +77,11 @@
                     <StackPanel>
                         <TextBlock Text="Actions" FontSize="16" FontWeight="SemiBold"
                                Foreground="#352439" Margin="4,2,4,10"/>
-                        <Button Style="{StaticResource PrimaryActionButtonStyle}" Content="Add"    Command="{Binding AddCommand}"/>
-                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Save"   Command="{Binding SaveCommand}"/>
-                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Edit"   Command="{Binding EditCommand}"/>
-                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Reject" Command="{Binding RejectCommand}" Click="Button_Click"/>
-                        <Button Style="{StaticResource DangerActionButtonStyle}"  Content="Delete" Command="{Binding DeleteCommand}"/>
+                        <Button Style="{StaticResource PrimaryActionButtonStyle}" Content="Add"    Command="{Binding AddATMLocationCommand}"/>
+                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Save"   Command="{Binding SaveATMLocationCommand}"/>
+                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Edit"   Command="{Binding EditATMLocationCommand}"/>
+                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Reject" Command="{Binding RejectATMLocationCommand}" Click="Button_Click"/>
+                        <Button Style="{StaticResource DangerActionButtonStyle}"  Content="Delete" Command="{Binding DeleteATMLocationCommand}"/>
                     </StackPanel>
                 </Border>
 

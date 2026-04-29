@@ -117,7 +117,7 @@
                     Padding="8" Margin="0,0,14,0"
                     Effect="{StaticResource SoftShadow}">
                     <DataGrid ItemsSource="{Binding PaymentTemplates}"
-                          SelectedItem="{Binding SelectedPaymentTemplate, Mode=TwoWay}">
+                          SelectedItem="{Binding Templates, Mode=TwoWay}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="No"            Binding="{Binding No}"           Width="*"/>
                             <DataGridTextColumn Header="Template Name" Binding="{Binding TemplateName}" Width="*"/>

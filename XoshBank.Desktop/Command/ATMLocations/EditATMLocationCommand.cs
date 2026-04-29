@@ -15,7 +15,7 @@ namespace XoshBank.Command.ATMLocations
 
         public EditATMLocationCommand( ATMLocationsControlViewModel viewModel)
         {
-            viewModel = viewModel;
+            this.viewModel = viewModel;
         }
         public event EventHandler CanExecuteChanged;
 
