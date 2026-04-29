@@ -95,11 +95,11 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "INSERT INTO Branches (BranchName, City, Address, ManagerName, PhoneNumber, EmployeeCount, OpeningDate, Revenue, Expenses) " +
-                    "VALUES (@BranchName, @City, @Address, @ManagerName, @PhoneNumber, @EmployeeCount, @OpeningDate, @Revenue, @Expenses); " +
-                    "SELECT SCOPE_IDENTITY();", 
+                    "INSERT INTO Branches (BranchID, BranchName, City, Address, ManagerName, PhoneNumber, EmployeeCount, OpeningDate, Revenue, Expenses) " +
+                    "VALUES (@BranchID, @BranchName, @City, @Address, @ManagerName, @PhoneNumber, @EmployeeCount, @OpeningDate, @Revenue, @Expenses)",
                     connection);
 
+                command.Parameters.AddWithValue("@BranchID", entity.ID);
                 command.Parameters.AddWithValue("@BranchName", (object)entity.BranchName ?? DBNull.Value);
                 command.Parameters.AddWithValue("@City", (object)entity.City ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Address", (object)entity.Address ?? DBNull.Value);
@@ -110,7 +110,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 command.Parameters.AddWithValue("@Revenue", (object)entity.Revenue ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Expenses", (object)entity.Expenses ?? DBNull.Value);
 
-                entity.ID = Convert.ToInt32(command.ExecuteScalar());
+                command.ExecuteNonQuery();
             }
         }
         #endregion
@@ -151,6 +151,20 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 command.Parameters.AddWithValue("@DeletedAt", DateTime.Now);
                 command.Parameters.AddWithValue("@Id", id);
                 command.ExecuteNonQuery();
+            }
+        }
+        #endregion
+
+        #region GetNextID
+        public int GetNextId()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                var command = new SqlCommand(
+                    "SELECT ISNULL(MAX(BranchID), 0) + 1 FROM Branches",
+                    connection);
+                return Convert.ToInt32(command.ExecuteScalar());
             }
         }
         #endregion

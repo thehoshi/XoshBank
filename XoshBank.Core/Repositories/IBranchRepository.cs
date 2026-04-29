@@ -9,7 +9,7 @@ namespace XoshBank.Core.Repositories
 {
     public interface IBranchRepository : IBaseRepository<Branch>
     {
-
+        int GetNextId();
 
     }
 }

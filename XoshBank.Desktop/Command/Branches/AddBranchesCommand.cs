@@ -25,9 +25,11 @@ namespace XoshBank.Command.Branches
         }
         public void Execute(object parameter)
         {
-            _viewModel.CurrentBranch = new BranchFormModel(); 
-            _viewModel.SelectedBranch = null;                 
+            _viewModel.SelectedBranch = null;         
             _viewModel.CurrentState = ViewState.Add;
+
+            int nextId = _viewModel.DB.Branches.GetNextId();
+            _viewModel.CurrentBranch.ID = nextId;     
         }
     }
 }

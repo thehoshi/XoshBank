@@ -97,11 +97,10 @@ namespace XoshBank.Desktop.ViewModels
                 else
                 {
                     var upper = SearchValue.ToUpper();
+                  
                     foreach (BranchUIModel b in AllBranches)
                     {
-                        if (b.BranchName?.ToUpper().Contains(upper) == true ||
-                            b.City?.ToUpper().Contains(upper) == true ||
-                            b.ManagerName?.ToUpper().Contains(upper) == true)
+                        if (b.BranchName?.ToUpper().Contains(upper) == true)
                         {
                             filtered.Add(b);
                         }
@@ -120,6 +119,7 @@ namespace XoshBank.Desktop.ViewModels
         public EditBranchesCommand EditCommand => new EditBranchesCommand(this);
         public RejectBranchesCommand RejectCommand => new RejectBranchesCommand(this);
         public DeleteBranchesCommand DeleteCommand => new DeleteBranchesCommand(this);
+        public ExportBranchesCommand ExportCommand => new ExportBranchesCommand(this);
 
         #endregion
 

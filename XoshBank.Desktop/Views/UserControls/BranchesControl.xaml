@@ -189,9 +189,9 @@
 
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="ID"/>
-                            <TextBox Style="{StaticResource ReadOnlyTextStyle}" Text="{Binding SelectedBranch.ID}" TextChanged="TextBox_TextChanged"/>
+                            <TextBox Style="{StaticResource ReadOnlyTextStyle}" Text="{Binding CurrentBranch.ID}"/>
                         </StackPanel>
-
+                        
                         <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Branch name"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.BranchName, UpdateSourceTrigger=PropertyChanged}"/>
@@ -339,7 +339,7 @@
                 <Border Grid.Row="2" Grid.Column="0" Background="#FFFFFFFF" CornerRadius="18" Padding="14,10" Margin="0,0,14,14" Effect="{StaticResource SoftShadow}">
                     <DockPanel LastChildFill="False">
                         <TextBlock DockPanel.Dock="Left" Text="Search" FontSize="14" Foreground="#5A4860" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                        <TextBox DockPanel.Dock="Left" Width="280" Style="{StaticResource InputStyle}" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox DockPanel.Dock="Left" Width="280" Style="{StaticResource InputStyle}" Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"/>
                         <Button DockPanel.Dock="Right" Width="110" Height="34" Content="Export" Command="{Binding ExportCommand}"
                                 Background="{StaticResource AccentBrush}" Foreground="White" BorderThickness="0"
                                 FontSize="13" FontWeight="SemiBold" Cursor="Hand">
@@ -356,8 +356,9 @@
 
                 <Border Grid.Row="3" Grid.Column="0" Background="#FFFFFFFF" CornerRadius="18" Padding="2" Margin="0,0,14,0" Effect="{StaticResource SoftShadow}" >
                     <DataGrid ItemsSource="{Binding Branches}"
-                              SelectedItem="{Binding SelectedBranch, Mode=TwoWay}"
-                              RowStyle="{x:Null}">
+                        SelectedItem="{Binding SelectedBranch, Mode=TwoWay}"
+                        IsReadOnly="True"
+                        RowStyle="{x:Null}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID"           Binding="{Binding ID}"                                              Width="40"/>
                             <DataGridTextColumn Header="Branch Name"  Binding="{Binding BranchName}"                                      Width="100"/>

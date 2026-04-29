@@ -38,6 +38,7 @@ namespace XoshBank.Command.Branches
 
             var branch = new Branch
             {
+                ID = _viewModel.CurrentBranch.ID, 
                 BranchName = source.BranchName,
                 City = source.City,
                 Address = source.Address,
