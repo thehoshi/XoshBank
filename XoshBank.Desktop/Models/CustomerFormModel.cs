@@ -1,20 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace XoshBank.Models
 {
-    public class CustomerFormModel
+    public class CustomerFormModel : INotifyPropertyChanged
     {
         public int ID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime DateOfBirth { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Email { get; set; }
-        public string Address { get; set; } = string.Empty;
-        public string FINCode { get; set; }
+        private string _firstName;
+        private string _lastName;
+        private DateTime _dateOfBirth;
+        private string _phoneNumber;
+        private string _email;
+        private string _address;
+        private string _finCode;
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string name) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        public string FirstName 
+        { get => _firstName; 
+            set { _firstName = value;
+                OnPropertyChanged(nameof(FirstName)); }
+        }
+
+        public string LastName 
+        { get => _lastName;
+            set { _lastName = value;
+                OnPropertyChanged(nameof(LastName)); }
+        }
+
+        public DateTime DateOfBirth 
+        { get => _dateOfBirth; 
+            set { _dateOfBirth = value; 
+                OnPropertyChanged(nameof(DateOfBirth)); }
+        }
+
+        public string PhoneNumber 
+        { get => _phoneNumber;
+            set { _phoneNumber = value; 
+                OnPropertyChanged(nameof(PhoneNumber)); } 
+        }
+
+        public string Email { get => _email;
+            set { _email = value;
+                OnPropertyChanged(nameof(Email)); }
+        }
+
+        public string Address 
+        { get => _address;
+            set { _address = value;
+                OnPropertyChanged(nameof(Address)); } 
+        }
+
+        public string FINCode 
+        { get => _finCode;
+            set { _finCode = value;
+                OnPropertyChanged(nameof(FINCode)); }
+        }
     }
 }
