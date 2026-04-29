@@ -35,6 +35,7 @@ namespace XoshBank.Command.Customers
 
             var customer = new Customer
             {
+                ID = source.ID,
                 FirstName = source.FirstName,
                 LastName = source.LastName,
                 DateOfBirth = source.DateOfBirth,
@@ -72,7 +73,7 @@ namespace XoshBank.Command.Customers
             }
             else
             {
-                _viewModel.DB.Customers.Insert(customer);
+                _viewModel.DB.Customers.Update(customer);
                 var newModel = new CustomerUIModel
                 {
                     ID = customer.ID,

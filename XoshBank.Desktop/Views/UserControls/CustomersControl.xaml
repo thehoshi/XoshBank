@@ -57,39 +57,39 @@
 
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="First Name"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentCustomer.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="1">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Last Name"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.LastName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentCustomer.LastName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Date of Birth"/>
                             <DatePicker Style="{StaticResource DatePickerStyle}"
-                                        SelectedDate="{Binding SelectedCustomer.DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        SelectedDate="{Binding CurrentCustomer.DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Phone"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentCustomer.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="1">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Email"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.Email, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentCustomer.Email, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         
                         <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,8,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Address"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.Address, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentCustomer.Address, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,8,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="FIN Code"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedCustomer.FINCode, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentCustomer.FINCode, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                     </Grid>
@@ -179,7 +179,9 @@
                                 <DataGridTextColumn Header="Birth Date"  Binding="{Binding DateOfBirth, StringFormat={}{0:dd.MM.yyyy}}" Width="*"/>
                                 <DataGridTextColumn Header="Phone"       Binding="{Binding PhoneNumber}" Width="*"/>
                                 <DataGridTextColumn Header="Email"       Binding="{Binding Email}" Width="*"/>
-                                <DataGridTextColumn Header="FIN"         Binding="{Binding FINCode}" Width="*"/>
+                                <DataGridTextColumn Header="FIN"         Binding="{Binding FINCode}" Width="*"/>  
+                                <DataGridTextColumn Header="Address"     Binding="{Binding Address}" Width="*"/>
+                                
                             </DataGrid.Columns>
 
                         </DataGrid>
