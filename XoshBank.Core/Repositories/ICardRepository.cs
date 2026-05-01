@@ -9,6 +9,6 @@ namespace XoshBank.Core.Repositories
 {
     public interface ICardRepository : IBaseRepository<Card>
     {
-        List<Card> GetCardsByAccountId(int accountId);
+        int GetNextId();
     }
 }

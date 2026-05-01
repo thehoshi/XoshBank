@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using XoshBank.Core.Entities;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Enums;
 using XoshBank.Models;
+using XoshBank.Core.Entities;
 
 namespace XoshBank.Command.Cards
 {
@@ -18,83 +19,83 @@ namespace XoshBank.Command.Cards
         }
 
         public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
+        public bool CanExecute(object parameter) => true;
 
         public void Execute(object parameter)
         {
-            var result = MessageBox.Show("Are you sure you want to save this card?",
-                "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result != MessageBoxResult.Yes) return;
+            if (_viewModel.CurrentCard == null) return;
 
-            var source = _viewModel.CurrentCard ?? new CardFormModel();
-
-            var card = new Card
+            try
             {
-                CardNumber = source.CardNumber,
-                CardType = source.CardType,
-                ExpiryDate = source.ExpiryDate,
-                CVV = source.CVV,
-                Balance = source.Balance,
-                AccountId = source.AccountId,
-                IsActive = true,
-                CreatedDate = DateTime.Now
-            };
-
-            var isEdit = _viewModel.SelectedCard != null && _viewModel.SelectedCard.CardId > 0;
-            if (isEdit)
-            {
-                card.CardId = _viewModel.SelectedCard.CardId;
-                _viewModel.DB.Cards.Update(card);
-
-                int index = _viewModel.Cards.IndexOf(_viewModel.SelectedCard);
-                var updated = new CardUIModel
+           
+                var entity = new Card
                 {
-                    CardId = card.CardId,
-                    CardNumber = card.CardNumber,
-                    CardType = card.CardType,
-                    ExpiryDate = card.ExpiryDate,
-                    CVV = card.CVV,
-                    Balance = card.Balance,
-                    AccountId = card.AccountId,
-                    IsActive = card.IsActive?? false,
-                    CreatedDate = card.CreatedDate,
-                    DeletedAt = card.DeletedAt
+                    CardId = _viewModel.CurrentCard.CardId,
+                    CardNumber = _viewModel.CurrentCard.CardNumber,
+                    ExpiryDate = _viewModel.CurrentCard.ExpiryDate,
+                    CVV = _viewModel.CurrentCard.CVV,
+                    CardType = _viewModel.CurrentCard.CardType,
+                    Balance = _viewModel.CurrentCard.Balance,
+                    AccountId = _viewModel.CurrentCard.AccountId,
+                    IsActive = _viewModel.CurrentCard.IsActive,
+                    CreatedDate = _viewModel.CurrentCard.CreatedDate,
+                    DeletedAt = _viewModel.CurrentCard.DeletedAt
                 };
-                if (index >= 0)
+
+                if (_viewModel.CurrentState == ViewState.Add)
                 {
-                    _viewModel.AllCards[index] = updated;
-                    _viewModel.Cards[index] = updated;
+
+                    _viewModel.DB.Cards.Insert(entity);
+
+            
+                    var uiModel = new CardUIModel
+                    {
+                        CardId = entity.CardId,
+                        CardNumber = entity.CardNumber,
+                        ExpiryDate = entity.ExpiryDate,
+                        CVV = entity.CVV,
+                        CardType = entity.CardType,
+                        Balance = entity.Balance,
+                        AccountId = entity.AccountId,
+                        IsActive = entity.IsActive,
+                        CreatedDate = entity.CreatedDate,
+                        DeletedAt = entity.DeletedAt
+                    };
+
+                    _viewModel.AllCards.Add(uiModel);
+                    _viewModel.Cards.Add(uiModel);
+
+                    MessageBox.Show("Card added successfully!", "Success", MessageBoxButton.OK);
                 }
-                MessageBox.Show("Card updated successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                _viewModel.DB.Cards.Insert(card);
-                var newModel = new CardUIModel
+                else if (_viewModel.CurrentState == ViewState.Edit)
                 {
-                    CardId = card.CardId,
-                    CardNumber = card.CardNumber,
-                    CardType = card.CardType,
-                    ExpiryDate = card.ExpiryDate,
-                    CVV = card.CVV,
-                    Balance = card.Balance,
-                    AccountId = card.AccountId,
-                    IsActive = card.IsActive?? false,
-                    CreatedDate = card.CreatedDate,
-                    DeletedAt = card.DeletedAt
-                };
-                _viewModel.AllCards.Add(newModel);
-                _viewModel.Cards.Add(newModel);
-                MessageBox.Show("Card added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+                    _viewModel.DB.Cards.Update(entity);
 
-            _viewModel.SelectedCard = null;
-            _viewModel.CurrentCard = new CardFormModel();
-            _viewModel.CurrentState = ViewState.Default;
+                    var existing = _viewModel.AllCards.FirstOrDefault(c => c.CardId == entity.CardId);
+                    if (existing != null)
+                    {
+                        existing.CardNumber = entity.CardNumber;
+                        existing.ExpiryDate = entity.ExpiryDate;
+                        existing.CVV = entity.CVV;
+                        existing.CardType = entity.CardType;
+                        existing.Balance = entity.Balance;
+                        existing.AccountId = entity.AccountId;
+                        existing.IsActive = entity.IsActive;
+                        existing.CreatedDate = entity.CreatedDate;
+                        existing.DeletedAt = entity.DeletedAt;
+                    }
+
+                    MessageBox.Show("Card updated successfully!", "Success", MessageBoxButton.OK);
+                }
+
+                _viewModel.SelectedCard = null;
+                _viewModel.CurrentCard = new CardFormModel();
+                _viewModel.CurrentState = ViewState.Default;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while saving card: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

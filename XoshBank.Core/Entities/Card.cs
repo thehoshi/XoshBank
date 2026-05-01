@@ -1,19 +1,29 @@
 ﻿using System;
+using XoshBank.Core.Entities.Interfaces;
 
 namespace XoshBank.Core.Entities
 {
-    public class Card
+    public class Card : IDeletableDbEntity
     {
+       
         public int CardId { get; set; }
-        public string CardNumber { get; set; }
+
+      
+        public int ID
+        {
+            get => CardId;
+            set => CardId = value;
+        }
+
+        public string CardNumber { get; set; } = string.Empty;
         public DateTime ExpiryDate { get; set; }
-        public string CVV { get; set; }
-        public string CardType { get; set; }
+        public string CVV { get; set; } = string.Empty;
+        public string CardType { get; set; } = string.Empty;
         public decimal? Balance { get; set; }
         public int AccountId { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
         public DateTime? CreatedDate { get; set; }
-        public DateTime CreatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
     }
 }
+

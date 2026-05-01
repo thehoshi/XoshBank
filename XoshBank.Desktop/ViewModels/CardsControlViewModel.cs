@@ -48,12 +48,16 @@ namespace XoshBank.Desktop.ViewModels
                     CurrentState = ViewState.Selected;
                     CurrentCard = new CardFormModel
                     {
-                        CardNumber = value.CardNumber,
-                        ExpiryDate = value.ExpiryDate,
-                        CVV = value.CVV,
-                        CardType = value.CardType,
-                        Balance = value.Balance,
-                        AccountId = value.AccountId
+                        CardId = SelectedCard.CardId,
+                        CardNumber = SelectedCard.CardNumber,
+                        ExpiryDate = SelectedCard.ExpiryDate,
+                        CVV = SelectedCard.CVV,
+                        CardType = SelectedCard.CardType,
+                        Balance = SelectedCard.Balance,
+                        AccountId = SelectedCard.AccountId,
+                        IsActive = SelectedCard.IsActive,
+                        CreatedDate = SelectedCard.CreatedDate,
+                        DeletedAt = SelectedCard.DeletedAt
                     };
                 }
                 else
@@ -91,12 +95,11 @@ namespace XoshBank.Desktop.ViewModels
                 else
                 {
                     var upper = SearchValue.ToUpper();
+
                     foreach (CardUIModel c in AllCards)
                     {
                         if (c.CardNumber?.ToUpper().Contains(upper) == true ||
-                            c.CardType?.ToUpper().Contains(upper) == true ||
-                            c.AccountId.ToString().Contains(upper) ||
-                            c.IsActive.ToString().ToUpper().Contains(upper))
+                            c.CardType?.ToUpper().Contains(upper) == true)
                         {
                             filtered.Add(c);
                         }
