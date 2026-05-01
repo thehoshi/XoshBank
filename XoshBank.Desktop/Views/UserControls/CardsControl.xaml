@@ -98,6 +98,103 @@
                         <Button Style="{StaticResource DangerActionButtonStyle}" Content="Delete" Command="{Binding DeleteCommand}"/>
                     </StackPanel>
                 </Border>
+                <!-- Actions -->
+                <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Background="#FFFDF9FC" CornerRadius="18" Padding="12" Effect="{StaticResource SoftShadow}">
+                    <StackPanel>
+                        <TextBlock Text="Actions" FontSize="16" FontWeight="SemiBold" Foreground="#352439" Margin="4,2,4,10"/>
+
+                        <!-- Add -->
+                        <Button Command="{Binding AddCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource PrimaryActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="4">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Add
+                        </Button>
+
+                        <!-- Save -->
+                        <Button Command="{Binding SaveCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="4">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Save
+                        </Button>
+
+                        <!-- Edit -->
+                        <Button Command="{Binding EditCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Edit
+                        </Button>
+
+                        <!-- Reject -->
+                        <Button Command="{Binding RejectCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Reject
+                        </Button>
+
+                        <!-- Delete -->
+                        <Button Command="{Binding DeleteCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource DangerActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                                            <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Delete
+                        </Button>
+                    </StackPanel>
+                </Border>
 
                 <!-- Search -->
                 <Border Grid.Row="2" Grid.Column="0" Background="White" CornerRadius="18" Padding="14,10" Margin="0,0,14,14" Effect="{StaticResource SoftShadow}">
