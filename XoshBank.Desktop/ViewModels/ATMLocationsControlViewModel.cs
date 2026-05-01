@@ -21,13 +21,14 @@ namespace XoshBank.ViewModels
         public ATMLocationsControlViewModel(IUnitOfWork db)
         {
             _db = db;
+
         }
 
         #region Properties
 
         public IUnitOfWork DB => _db;
 
-        private ViewState _currentState;
+        private ViewState _currentState = ViewState.Default;
 
         public ViewState CurrentState
         {
@@ -39,8 +40,18 @@ namespace XoshBank.ViewModels
             {
                 _currentState = value;
                 OnPropertyChanged(nameof(CurrentState));
+                OnPropertyChanged(nameof(IsAddEnabled));
+                OnPropertyChanged(nameof(IsEditDeleteEnabled));
+                OnPropertyChanged(nameof(IsSaveRejectEnabled));
+
+
             }
         }
+
+        public bool IsAddEnabled => CurrentState == ViewState.Default || CurrentState == ViewState.Selected;
+        public bool IsEditDeleteEnabled => CurrentState == ViewState.Selected;
+        public bool IsSaveRejectEnabled => CurrentState == ViewState.Add || CurrentState == ViewState.Edit;
+
 
         private ATMLocationFormModel _currentlocation;
 

@@ -27,7 +27,11 @@ namespace XoshBank.Command.Customers
         }
         public void Execute(object parameter)
         {
+            _viewModel.SelectedCustomer = null;
             _viewModel.CurrentState = ViewState.Add;
+
+            int nextId = _viewModel.DB.Branches.GetNextId();
+            _viewModel.CurrentCustomer.ID = nextId;
         }
     }
 }
