@@ -17,21 +17,16 @@ namespace XoshBank.Persistent.SQLServer.Repositories
         #region Delete
         public void Delete(int id)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "DELETE FROM Customers WHERE CustomerID = @Id";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Id", id);
+                var command = new SqlCommand(
+                    "UPDATE Customers SET DeletedAt = @DeletedAt WHERE CustomerID = @Id",
+                    connection);
 
-                    int rowsCount = command.ExecuteNonQuery();
-
-                    if (rowsCount != 1)
-                        throw new Exception("Something went wrong while updating user");
-                    else
-                        Console.WriteLine("The operation was completed successfully");
-                }
+                command.Parameters.AddWithValue("@DeletedAt", DateTime.Now);
+                command.Parameters.AddWithValue("@Id", id);
+                command.ExecuteNonQuery();
             }
         }
         #endregion

@@ -34,12 +34,16 @@ namespace XoshBank.Command.Customers
             int index = _viewModel.Customers.IndexOf(_viewModel.SelectedCustomer);
 
             _viewModel.DB.Customers.Delete(id);
-            _viewModel.AllCustomers.RemoveAt(index);
-            _viewModel.Customers.RemoveAt(index);
 
+            var inAll = _viewModel.AllCustomers.FirstOrDefault(b => b.ID == id);
+            var inFiltered = _viewModel.Customers.FirstOrDefault(b => b.ID == id);
+
+            if (inAll != null) _viewModel.AllCustomers.Remove(inAll);
+            if (inFiltered != null) _viewModel.Customers.Remove(inFiltered);        
             _viewModel.SelectedCustomer = null;
             _viewModel.CurrentCustomer = new CustomerFormModel();
             _viewModel.CurrentState = ViewState.Default;
+
             MessageBox.Show("Customer deleted successfully!", "Success", MessageBoxButton.OK);
         }
     }
