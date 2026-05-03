@@ -180,7 +180,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="btnAdd" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseActionButton}">
+        <Style x:Key="btnAdd"  TargetType="{x:Type Button}" BasedOn="{StaticResource BaseActionButton}">
             <Setter Property="Content" Value="Add"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding CurrentState}" Value="2">
@@ -189,7 +189,7 @@
                 <DataTrigger Binding="{Binding CurrentState}" Value="3">
                     <Setter Property="IsEnabled" Value="False"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding CurrentState}" Value="4">
+                <DataTrigger Binding="{Binding CurrentState}" Value="4"> 
                     <Setter Property="IsEnabled" Value="False"/>
                 </DataTrigger>
             </Style.Triggers>
