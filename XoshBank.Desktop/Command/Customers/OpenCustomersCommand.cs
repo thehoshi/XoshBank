@@ -51,6 +51,7 @@ namespace XoshBank.Command.Customers
                     Email = customer.Email,
                     DateOfBirth = customer.DateOfBirth,
                     FINCode = customer.FINCode,
+                    CreatedAt = customer.CreatedAt,
                 };
                 customerUIModels.Add(customerUIModel);
             }
