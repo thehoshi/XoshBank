@@ -210,6 +210,7 @@
     <Compile Include="Command\Customers\AddCustomerCommand.cs" />
     <Compile Include="Command\Customers\DeleteCustomerCommand.cs" />
     <Compile Include="Command\Customers\EditCustomerCommand.cs" />
+    <Compile Include="Command\Customers\ExportCustomerCommand.cs" />
     <Compile Include="Command\Customers\RejectCustomerCommand.cs" />
     <Compile Include="Command\Customers\SaveCustomerCommand.cs" />
     <Compile Include="Command\Employees\AddEmployeesCommand.cs" />
