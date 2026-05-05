@@ -27,7 +27,6 @@ namespace XoshBank.Command.Cards
 
             try
             {
-           
                 var entity = new Card
                 {
                     CardId = _viewModel.CurrentCard.CardId,
@@ -46,7 +45,6 @@ namespace XoshBank.Command.Cards
                 {
 
                     _viewModel.DB.Cards.Insert(entity);
-
             
                     var uiModel = new CardUIModel
                     {
