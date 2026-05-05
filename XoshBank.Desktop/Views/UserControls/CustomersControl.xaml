@@ -11,7 +11,7 @@
     <Grid Background="{StaticResource AppBackground}">
 
         <Border Margin="28" Padding="20" CornerRadius="28" Background="#F8F0F6" Effect="{StaticResource CardShadow}">
-            <Grid Style="{StaticResource GrdForm}">
+            <Grid>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

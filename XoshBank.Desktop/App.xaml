@@ -180,6 +180,72 @@
             </Setter>
         </Style>
 
+        <Style x:Key="btnAdd"  TargetType="{x:Type Button}" BasedOn="{StaticResource BaseActionButton}">
+            <Setter Property="Content" Value="Add"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="4"> 
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="btnSave" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseActionButton}">
+            <Setter Property="Content" Value="Save"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="4">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="btnEdit" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseActionButton}">
+            <Setter Property="Content" Value="Edit"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="btnDelete" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseActionButton}">
+            <Setter Property="Content" Value="Delete"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="btnReject" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseActionButton}">
+            <Setter Property="Content" Value="Reject"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="GrdForm" TargetType="{x:Type Grid}">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding CurrentState}" Value="1">
