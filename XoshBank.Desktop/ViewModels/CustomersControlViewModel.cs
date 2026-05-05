@@ -117,6 +117,7 @@ namespace XoshBank.ViewModels
         public EditCustomerCommand EditCommand => new EditCustomerCommand(this);
         public RejectCustomerCommand RejectCommand => new RejectCustomerCommand(this);
         public DeleteCustomerCommand DeleteCommand => new DeleteCustomerCommand(this);
+        public ExportCustomerCommand ExportCommand => new ExportCustomerCommand(this);
 
         #endregion
 

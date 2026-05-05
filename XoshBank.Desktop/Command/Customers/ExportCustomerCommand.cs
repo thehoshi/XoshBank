@@ -38,15 +38,15 @@ namespace XoshBank.Command.Customers
 
                     foreach (var b in _viewModel.Customers)
                     {
-                        writer.WriteLine($"{b.ID}," +
-                                         $"{b.FirstName}," +
-                                         $"{b.LastName}," +
-                                         $"{b.DateOfBirth:dd.MM.yyyy}," +
-                                         $"{b.PhoneNumber}," +
-                                         $"{b.Email}"+
-                                         $"{b.Address}," +
-                                         $"{b.FINCode}"+
-                                         $"{b.CreatedAt}");
+                        writer.WriteLine($"{b.ID};" +
+                                         $"{b.FirstName};" +
+                                         $"{b.LastName};" +
+                                         $"{b.DateOfBirth:dd.MM.yyyy};" +
+                                         $"{b.PhoneNumber};" +
+                                         $"{b.Email};"+
+                                         $"{b.Address};" +
+                                         $"{b.FINCode};"+
+                                         $"{b.CreatedAt};");
                                         
                                      
                     }
