@@ -56,6 +56,7 @@ namespace XoshBank.ViewModels
                         PhoneNumber = SelectedCustomer.PhoneNumber,
                         Address = SelectedCustomer.Address,
                         FINCode = SelectedCustomer.FINCode,
+                        CreatedAt = SelectedCustomer.CreatedAt
 
                     };
                 }
@@ -99,7 +100,7 @@ namespace XoshBank.ViewModels
                         if (a.FirstName?.ToUpper().Contains(upper) == true ||
                             a.LastName?.ToUpper().Contains(upper) == true ||
                             a.Email?.ToUpper().Contains(upper) == true || a.Address?.ToUpper().Contains(upper)==true
-                            || a.FINCode?.ToUpper().Contains(upper) == true || a.DateOfBirth.ToString("yyyy-MM-dd").Contains(upper))
+                            || a.FINCode?.ToUpper().Contains(upper) == true || a.DateOfBirth.ToString("dd.MM.yyyy").Contains(upper))
                         {
                             filtered.Add(a);
                         }
