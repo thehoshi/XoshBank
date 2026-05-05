@@ -98,7 +98,8 @@ namespace XoshBank.ViewModels
                     {
                         if (a.FirstName?.ToUpper().Contains(upper) == true ||
                             a.LastName?.ToUpper().Contains(upper) == true ||
-                            a.Email?.ToUpper().Contains(upper) == true)
+                            a.Email?.ToUpper().Contains(upper) == true || a.Address?.ToUpper().Contains(upper)==true
+                            || a.FINCode?.ToUpper().Contains(upper) == true || a.DateOfBirth.ToString("yyyy-MM-dd").Contains(upper))
                         {
                             filtered.Add(a);
                         }

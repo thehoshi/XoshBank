@@ -73,7 +73,7 @@ namespace XoshBank.Command.Customers
             }
             else
             {
-                _viewModel.DB.Customers.Update(customer);
+                _viewModel.DB.Customers.Insert(customer);
                 var newModel = new CustomerUIModel
                 {
                     ID = customer.ID,
