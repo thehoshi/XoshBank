@@ -53,7 +53,7 @@
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="Background" Value="#FFDD5BA3"/>
                                 <Setter Property="Foreground" Value="White"/>
-                                
+
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -169,13 +169,15 @@
 
 
                 <Border Grid.Row="1" Grid.Column="0" Background="#FFFFFFFF" CornerRadius="18" Padding="14,12" Margin="0,0,14,14" Effect="{StaticResource SoftShadow}">
-                    <Grid>
+                    <Grid Grid.Column="0" Style="{StaticResource GrdForm}" Margin="0 0 30 0">
+                        
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.6*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="91*"/>
+                            <ColumnDefinition Width="15*"/>
+                            <ColumnDefinition Width="176*"/>
+                            <ColumnDefinition Width="176*"/>
+                            <ColumnDefinition Width="176*"/>
+                            <ColumnDefinition Width="176*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -183,60 +185,60 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.ColumnSpan="4" Text="Branch details" FontSize="14" FontWeight="SemiBold" Foreground="#352439" Margin="0,0,0,10"/>
+                        <TextBlock Grid.ColumnSpan="5" Text="Branch details" FontSize="14" FontWeight="SemiBold" Foreground="#352439" Margin="0,0,0,10"/>
 
-                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8">
+                        <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8" Grid.ColumnSpan="2">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="ID"/>
                             <TextBox Style="{StaticResource ReadOnlyTextStyle}" Text="{Binding CurrentBranch.ID}"/>
                         </StackPanel>
-                        
-                        <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,8,8">
+
+                        <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Branch name"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.BranchName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,8,8">
+                        <StackPanel Grid.Row="1" Grid.Column="2" Margin="175,0,8,8" Grid.ColumnSpan="2">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="City"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.City, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="1" Grid.Column="3" Margin="0,0,8,8">
+                        <StackPanel Grid.Row="1" Grid.Column="3" Margin="176,0,8,8" Grid.ColumnSpan="2">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Address"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.Address, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,8">
+                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,8" Grid.ColumnSpan="2">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Manager"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.ManagerName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,8,8">
+                        <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Phone"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,0,8,8">
+                        <StackPanel Grid.Row="2" Grid.Column="2" Margin="175,0,8,8" Grid.ColumnSpan="2">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Employees"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.EmployeeCount, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="3" Margin="0,0,8,8">
+                        <StackPanel Grid.Row="2" Grid.Column="3" Margin="176,0,8,8" Grid.ColumnSpan="2">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Opening date"/>
                             <DatePicker Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding CurrentBranch.OpeningDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="1" Grid.Column="4" Margin="0,0,8,8">
+                        <StackPanel Grid.Row="1" Grid.Column="4" Margin="176,0,8,8" Grid.ColumnSpan="2">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Revenue"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.Revenue, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="4" Margin="0,0,8,8">
+                        <StackPanel Grid.Row="2" Grid.Column="4" Margin="176,0,8,8" Grid.ColumnSpan="2">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Expenses"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentBranch.Expenses, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </Grid>
                 </Border>
-                
+
                 <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Background="#FFFDF9FC" CornerRadius="18" Padding="12" Margin="0,0,0,0" Effect="{StaticResource SoftShadow}">
                     <StackPanel>
                         <TextBlock Text="Actions" FontSize="16" FontWeight="SemiBold" Foreground="#352439" Margin="4,2,4,10"></TextBlock>
@@ -249,11 +251,15 @@
                                         <DataTrigger Binding="{Binding CurrentState}" Value="2">
                                             <Setter Property="Visibility" Value="Collapsed"/>
                                         </DataTrigger>
-                                        <DataTrigger Binding="{Binding CurrentState}" Value="3">
-                                            <Setter Property="IsEnabled" Value="False"/>
-                                        </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentState}" Value="4">
                                             <Setter Property="IsEnabled" Value="False"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="7">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -272,6 +278,9 @@
                                         <DataTrigger Binding="{Binding CurrentState}" Value="4">
                                             <Setter Property="Visibility" Value="Collapsed"/>
                                         </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="7">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </Button.Style>
@@ -284,10 +293,10 @@
                                 <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding CurrentState}" Value="1">
-                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Setter Property="Visibility" Value="Collapsed"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentState}" Value="2">
-                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Setter Property="Visibility" Value="Collapsed"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentState}" Value="3">
                                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -306,6 +315,10 @@
                                         <DataTrigger Binding="{Binding CurrentState}" Value="1">
                                             <Setter Property="IsEnabled" Value="False"/>
                                         </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </Button.Style>
@@ -317,14 +330,15 @@
                             <Button.Style>
                                 <Style TargetType="Button" BasedOn="{StaticResource DangerActionButtonStyle}">
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
-                                            <Setter Property="IsEnabled" Value="False"/>
-                                        </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentState}" Value="2">
-                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Setter Property="Visibility" Value="Collapsed"/>
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding CurrentState}" Value="3">
-                                            <Setter Property="IsEnabled" Value="False"/>
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -353,7 +367,7 @@
                 </Border>
 
                 <Border Grid.Row="3" Grid.Column="0" Background="#FFFFFFFF" CornerRadius="18" Padding="2" Margin="0,0,14,0" Effect="{StaticResource SoftShadow}" >
-                    
+
                     <DataGrid ItemsSource="{Binding Branches}"
                         SelectedItem="{Binding SelectedBranch, Mode=TwoWay}"
                         SelectionUnit="FullRow"
@@ -369,7 +383,7 @@
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Background" Value="#FFF3DDEB"/>
                                     </Trigger>
-                                    
+
                                 </Style.Triggers>
                             </Style>
                         </DataGrid.RowStyle>
