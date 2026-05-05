@@ -33,7 +33,7 @@ namespace XoshBank.Command.Customers
                 using (var writer = new StreamWriter(path))
                 {
 
-                    writer.WriteLine("ID,First Name,Last Name,Birthday,Phone Number,Address,FIN Code, Created At");
+                    writer.WriteLine("ID,First Name,Last Name,Birthday,Phone Number,Address,FIN Code, Created Date");
 
 
                     foreach (var b in _viewModel.Customers)
