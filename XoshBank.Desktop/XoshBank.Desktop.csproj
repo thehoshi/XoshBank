@@ -221,6 +221,7 @@
     <Compile Include="Command\Employees\RejectEmployeesCommand.cs" />
     <Compile Include="Command\Employees\SaveEmployeesCommand.cs" />
     <Compile Include="Command\ExportCommand.cs" />
+    <Compile Include="Command\Loans\ExportLoanCommand.cs" />
     <Compile Include="Command\Loans\OpenLoansCommand.cs" />
     <Compile Include="Command\Accounts\OpenAccountsCommand.cs" />
     <Compile Include="Command\Cards\OpenCardsCommand.cs" />
@@ -252,6 +253,7 @@
     <Compile Include="ViewModels\CardsControlViewModel.cs" />
     <Compile Include="ViewModels\CustomersControlViewModel.cs" />
     <Compile Include="ViewModels\EmployeesControlViewModel.cs" />
+    <Compile Include="ViewModels\LoansControlViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\PaymentTemplatesControlViewModel.cs" />
     <Compile Include="Views\UserControls\AccountsControl.xaml.cs">
