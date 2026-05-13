@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XoshBank.Command;
 using XoshBank.Command.Branches;
 using XoshBank.Command.Customers;
 using XoshBank.Core.Repositories;
@@ -118,7 +119,8 @@ namespace XoshBank.ViewModels
         public EditCustomerCommand EditCommand => new EditCustomerCommand(this);
         public RejectCustomerCommand RejectCommand => new RejectCustomerCommand(this);
         public DeleteCustomerCommand DeleteCommand => new DeleteCustomerCommand(this);
-        public ExportCustomerCommand ExportCommand => new ExportCustomerCommand(this);
+        public ExportCommand<CustomerUIModel> ExportCommand
+        => new ExportCommand<CustomerUIModel>();
 
         #endregion
 

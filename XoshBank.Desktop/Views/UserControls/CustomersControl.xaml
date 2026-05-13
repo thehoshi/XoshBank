@@ -245,6 +245,7 @@
                                 Height="34"
                                 Content="Export"
                                 Command="{Binding ExportCommand}"
+                                CommandParameter="{Binding Customers}"
                                 Background="{StaticResource AccentBrush}"
                                 Foreground="White"
                                 BorderThickness="0"
