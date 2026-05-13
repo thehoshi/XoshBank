@@ -22,6 +22,5 @@ namespace XoshBank.Models
         public string Address { get; set; } = string.Empty;
         [ExcelColumnStyle("FIN")]
         public string FINCode { get; set; }
-        public DateTime CreatedAt { get; set; }
     }
 }

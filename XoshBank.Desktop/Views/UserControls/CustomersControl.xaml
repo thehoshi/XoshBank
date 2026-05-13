@@ -95,11 +95,7 @@
                             <TextBlock Style="{StaticResource LabelStyle}" Text="ID"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentCustomer.ID, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
-                        <StackPanel Grid.Row="3" Grid.Column="2" Margin="0,8,8,8">
-                            <TextBlock Style="{StaticResource LabelStyle}" Text="Created Date"/>
-                            <DatePicker Style="{StaticResource DatePickerStyle}"
-                                       SelectedDate="{Binding CurrentCustomer.CreatedAt, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </StackPanel>
+                       
                     </Grid>
                 </Border>
 
@@ -284,7 +280,6 @@
                                 <DataGridTextColumn Header="Email"       Binding="{Binding Email}" Width="*"/>
                                 <DataGridTextColumn Header="FIN"         Binding="{Binding FINCode}" Width="*"/>  
                                 <DataGridTextColumn Header="Address"     Binding="{Binding Address}" Width="*"/>
-                                <DataGridTextColumn Header="Created Date"     Binding="{Binding CreatedAt, StringFormat={}{0:dd.MM.yyyy}}" Width="*"/>
 
                         </DataGrid.Columns>
 

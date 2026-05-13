@@ -62,7 +62,6 @@ namespace XoshBank.Command.Customers
                     FINCode = customer.FINCode,
                     Address = customer.Address,
                     Email = customer.Email,
-                    CreatedAt = customer.CreatedAt
                 };
                 if (index >= 0)
                 {
@@ -84,7 +83,6 @@ namespace XoshBank.Command.Customers
                     FINCode = customer.FINCode,
                     Address = customer.Address,
                     Email = customer.Email,
-                    CreatedAt = customer.CreatedAt
                 };
                 _viewModel.AllCustomers.Add(newModel);
                 _viewModel.Customers.Add(newModel);
