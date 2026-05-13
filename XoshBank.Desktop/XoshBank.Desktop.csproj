@@ -183,6 +183,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Attributes\ExcelColumnIgnoreAttribute.cs" />
+    <Compile Include="Attributes\ExcelColumnStyleAttribute.cs" />
     <Compile Include="Command\Accounts\AddAccountCommand.cs" />
     <Compile Include="Command\Accounts\DeleteAccountCommand.cs" />
     <Compile Include="Command\Accounts\EditAccountCommand.cs" />
@@ -219,6 +221,7 @@
     <Compile Include="Command\Employees\ExportEmployeesCommand.cs" />
     <Compile Include="Command\Employees\RejectEmployeesCommand.cs" />
     <Compile Include="Command\Employees\SaveEmployeesCommand.cs" />
+    <Compile Include="Command\ExportCommand.cs" />
     <Compile Include="Command\Loans\OpenLoansCommand.cs" />
     <Compile Include="Command\Accounts\OpenAccountsCommand.cs" />
     <Compile Include="Command\Cards\OpenCardsCommand.cs" />
