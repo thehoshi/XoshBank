@@ -9,6 +9,8 @@ namespace XoshBank.Models
 {
     public class CustomerUIModel
     {
+        public int No { get; set; }
+        [ExcelColumnIgnore]
         public int ID { get; set; }
         [ExcelColumnStyle("First Name")]
         public string FirstName { get; set; }

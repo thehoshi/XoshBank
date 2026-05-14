@@ -43,7 +43,8 @@ namespace XoshBank.Command.Customers
             {
                 CustomerUIModel customerUIModel = new CustomerUIModel
                 {
-                    ID = customerUIModels.Count + 1,
+                    ID = customer.ID,
+                    No = customerUIModels.Count + 1,
                     FirstName = customer.FirstName,
                     LastName = customer.LastName,
                     Address = customer.Address,

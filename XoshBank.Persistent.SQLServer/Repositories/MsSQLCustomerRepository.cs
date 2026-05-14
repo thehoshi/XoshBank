@@ -40,7 +40,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
 
-                string query = "SELECT * FROM Customers;";
+                string query = "SELECT * FROM Customers WHERE DeletedAt IS NULL;";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     SqlDataReader reader = command.ExecuteReader();
