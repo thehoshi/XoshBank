@@ -9,6 +9,7 @@ namespace XoshBank.Models
     public class AccountUIModel
     {
         public int No { get; set; }
+        public int AccountID { get; set; }
         public int CustomerID { get; set; }
         public string AccountNumber { get; set; }
         public decimal Balance { get; set; }

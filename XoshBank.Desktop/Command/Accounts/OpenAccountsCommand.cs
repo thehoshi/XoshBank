@@ -32,7 +32,7 @@ namespace XoshBank.Command.Accounts
         }
         public void Execute(object parameter)
         {
-            var accountsControl = new Views.UserControls.BranchesControl();
+            var accountsControl = new AccountsControl();
 
             var viewModel = new AccountsControlViewModel(_db);
 
@@ -46,8 +46,11 @@ namespace XoshBank.Command.Accounts
                 AccountUIModel accountUIModel = new AccountUIModel
                 {
                     No = no++,
+                    CustomerID = account.CustomerID,
                     AccountNumber = account.AccountNumber,
-                    
+                    Balance = account.Balance,
+                    AccountType = account.AccountType,
+                    Currency = account.Currency
                 };
                 accountUIModels.Add(accountUIModel);
             }

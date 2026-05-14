@@ -47,7 +47,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                string query = "SELECT * FROM Accounts";
+                string query = "SELECT * FROM Accounts WHERE DeletedAt IS NULL";
                 using (var command = new SqlCommand(query, connection))
                 using (var reader = command.ExecuteReader())
                 {
@@ -55,23 +55,19 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     {
                         var account = new Account
                         {
-                            ID = Convert.ToInt32(reader["AccountsID"]),
+                            ID = Convert.ToInt32(reader["AccountID"]),
                             CustomerID = Convert.ToInt32(reader["CustomerID"]),
                             AccountNumber = reader["AccountNumber"] as string,
                             Balance = Convert.ToDecimal(reader["Balance"]),
                             AccountType = reader["AccountType"] as string,
                             Currency = reader["Currency"] as string,
                             CreatedAt = Convert.ToDateTime(reader["CreatedAt"]),
-                            DeletedAt = Convert.ToDateTime(reader["DeletedAt"]),
+                            DeletedAt = reader["DeletedAt"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["DeletedAt"]) 
                         };
                         
                         accounts.Add(account);
                     }
-                    int rowsCount = command.ExecuteNonQuery();
-                    if (rowsCount != 1)
-                        throw new Exception("Something went wrong while updating user");
-                    else
-                        Console.WriteLine("The operation was completed successfully");
+              
                 }
             }
             return accounts;

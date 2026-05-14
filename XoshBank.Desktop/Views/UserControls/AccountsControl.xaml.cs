@@ -26,5 +26,10 @@ namespace XoshBank.Desktop.Views.UserControls
         {
         }
 
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
     }
 }
