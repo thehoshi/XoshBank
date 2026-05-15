@@ -217,6 +217,7 @@
                                 Height="34"
                                 Content="Export"
                                 Command="{Binding ExportCommand}"
+                                CommandParameter="{Binding Accounts}"
                                 Background="{StaticResource AccentBrush}"
                                 Foreground="White"
                                 BorderThickness="0"
