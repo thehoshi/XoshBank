@@ -162,7 +162,7 @@
 
                 <!-- ===== FORM ===== -->
                 <Border Grid.Row="1" Grid.Column="0" Background="#FFFFFFFF" CornerRadius="18" Padding="14,12" Margin="0,0,14,14" Effect="{StaticResource SoftShadow}">
-                    <Grid>
+                    <Grid  Style="{StaticResource GrdForm}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>

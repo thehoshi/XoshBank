@@ -22,7 +22,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("SELECT ISNULL(MAX(LoanID), 0) + 1 FROM Loan", connection);
+                var command = new SqlCommand("SELECT ISNULL(MAX(LoanID), 0) + 1 FROM Loans", connection);
                 return Convert.ToInt32(command.ExecuteScalar());
             }
         }
@@ -196,7 +196,8 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("DELETE FROM Loans WHERE LoanID = @LoanID", connection);
+                var command = new SqlCommand("UPDATE Loans SET DeletedAt = @DeletedAt WHERE LoanID = @LoanID", connection);
+                command.Parameters.AddWithValue("@DeletedAt", DateTime.Now);
                 command.Parameters.AddWithValue("@LoanID", id);
                 command.ExecuteNonQuery();
             }
