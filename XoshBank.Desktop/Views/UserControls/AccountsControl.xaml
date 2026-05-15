@@ -57,27 +57,27 @@
 
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Customer ID"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedAccount.CustomerID, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentAccount.CustomerID, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Account Number"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedAccount.AccountNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentAccount.AccountNumber, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Balance"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedAccount.Balance, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentAccount.Balance, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Account Type"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedAccount.AccountType, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentAccount.AccountType, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="1">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Currency"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedAccount.Currency, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentAccount.Currency, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                     </Grid>
@@ -210,7 +210,7 @@
                         <TextBox DockPanel.Dock="Left"
                                  Width="280"
                                  Style="{StaticResource InputStyle}"
-                                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                                 Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"/>
 
                         <Button DockPanel.Dock="Right"
                                 Width="110"

@@ -74,7 +74,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                string query = "SELECT * FROM Account WHERE Id = @Id AND DeletedAt IS NULL";
+                string query = "SELECT * FROM Customers WHERE CustomerID = @Id AND DeletedAt IS NULL";
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Id", id);
@@ -84,7 +84,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                         {
                             return new Customer
                             {
-                                ID = Convert.ToInt32(reader["CustomersID"]),
+                                ID = Convert.ToInt32(reader["CustomerID"]),
                                 FirstName = reader["FirstName"] as string,
                                 LastName = reader["LastName"] as string,
                                 DateOfBirth = Convert.ToDateTime(reader["DateOfBirth"]),
@@ -168,6 +168,20 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     else
                         Console.WriteLine("The operation was completed successfully");
                 }
+            }
+        }
+        #endregion
+
+        #region GetNextID
+        public int GetNextId()
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                var command = new SqlCommand(
+                    "SELECT ISNULL(MAX(CustomerID), 0) + 1 FROM Customers",
+                    connection);
+                return Convert.ToInt32(command.ExecuteScalar());
             }
         }
         #endregion
