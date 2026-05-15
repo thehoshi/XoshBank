@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using XoshBank.Enums;
 using XoshBank.Models;
 using XoshBank.ViewModels;
 
 namespace XoshBank.Command.Accounts
 {
-    public class DeleteAccountCommand
+    public class DeleteAccountCommand : ICommand
     {
         private readonly AccountsControlViewModel _viewModel;
         public DeleteAccountCommand(AccountsControlViewModel viewModel)

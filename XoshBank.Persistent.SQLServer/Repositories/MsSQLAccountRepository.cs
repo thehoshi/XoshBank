@@ -113,8 +113,8 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
 
-                string query = "INSERT INTO Accounts (CustomerID,AccountNumber,Balance,AccountType,Currency,CreatedAt,DeletedAt) " +
-                    "VALUES(@CustomerID,@AccountNumber,@Balance,@AccountType,@Currency,@CreatedAt,@DeletedAt)";
+                string query = "INSERT INTO Accounts (CustomerID,AccountNumber,Balance,AccountType,Currency,CreatedAt) " +
+                    "VALUES(@CustomerID,@AccountNumber,@Balance,@AccountType,@Currency, GETDATE() )";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@CustomerID", account.CustomerID);
@@ -122,7 +122,6 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     command.Parameters.AddWithValue("@Balance", account.Balance);
                     command.Parameters.AddWithValue("@AccountType", account.AccountType ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@Currency", account.Currency);
-                    command.Parameters.AddWithValue("@CreatedAt", account.CreatedAt);
 
                     int rowsCount = command.ExecuteNonQuery();
                     if (rowsCount != 1)
@@ -140,17 +139,15 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                string query = "UPDATE Accounts SET CustomerID = @CustomerID, AccountNumber = @AccountNumber, Balance = @Balance, AccountType = @AccountType, Currency = @Currency ," +
-                    "CreatedAt = @CreatedAt, DeletedAt = @DeletedAt WHERE AccountID = @Id";
+                string query = "UPDATE Accounts SET CustomerID = @CustomerID, AccountNumber = @AccountNumber, Balance = @Balance, AccountType = @AccountType, Currency = @Currency WHERE AccountID = @Id";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@Id", account.ID);
                     command.Parameters.AddWithValue("@CustomerID", account.CustomerID);
                     command.Parameters.AddWithValue("@AccountNumber", account.AccountNumber);
                     command.Parameters.AddWithValue("@Balance", account.Balance);
                     command.Parameters.AddWithValue("@AccountType", account.AccountType);
                     command.Parameters.AddWithValue("@Currency", account.Currency);
-                    command.Parameters.AddWithValue("@CreatedAt", account.CreatedAt);
-                    command.Parameters.AddWithValue("@DeletedAt", account.DeletedAt);
 
                     int rowsCount = command.ExecuteNonQuery();
 

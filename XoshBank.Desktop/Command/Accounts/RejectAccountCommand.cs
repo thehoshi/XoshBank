@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using XoshBank.Enums;
 using XoshBank.Models;
 using XoshBank.ViewModels;
 
 namespace XoshBank.Command.Accounts
 {
-    public class RejectAccountCommand
+    public class RejectAccountCommand : ICommand
     {
         private readonly AccountsControlViewModel _viewModel;
         public RejectAccountCommand(AccountsControlViewModel viewModel)

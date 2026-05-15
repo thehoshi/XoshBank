@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using XoshBank.Enums;
 using XoshBank.ViewModels;
 
 namespace XoshBank.Command.Accounts
 {
-    public class EditAccountCommand
+    public class EditAccountCommand : ICommand
     {
         private readonly AccountsControlViewModel _viewModel;
         public EditAccountCommand(AccountsControlViewModel viewModel)
