@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using XoshBank.Enums;
+using XoshBank.Models;
 using XoshBank.ViewModels;
 
 namespace XoshBank.Command.Accounts
@@ -23,7 +24,9 @@ namespace XoshBank.Command.Accounts
         }
         public void Execute(object parameter)
         {
-            _viewModel.CurrentState = ViewState.Reject;
+            _viewModel.SelectedAccount = null;
+            _viewModel.CurrentAccount = new AccountFormModel();
+            _viewModel.CurrentState = ViewState.Default;
         }
     }
 }

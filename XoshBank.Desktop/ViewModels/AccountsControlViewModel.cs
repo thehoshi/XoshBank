@@ -98,7 +98,11 @@ namespace XoshBank.ViewModels
                     var upper = SearchValue.ToUpper();
                     foreach (AccountUIModel b in AllAccounts)
                     {
-                        if (b.AccountNumber?.ToUpper().Contains(upper) == true )
+                        if (b.AccountNumber?.ToUpper().Contains(upper) == true 
+                            || b.CustomerID.ToString().Contains(upper) == true
+                            || b.Balance.ToString().Contains(upper) == true
+                            || b.AccountType.ToString().ToUpper().Contains(upper) == true
+                            || b.Currency.ToString().ToUpper().Contains(upper) == true)
                         {
                             filtered.Add(b);
                         }
