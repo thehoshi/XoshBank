@@ -1,70 +1,59 @@
-﻿using ClosedXML.Excel;
-using Microsoft.Win32;
-using System;
-using System.Data;
-using System.Diagnostics;
+﻿using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
-using XoshBank.Models;
 using XoshBank.Desktop.ViewModels;
 
 namespace XoshBank.Command.Employees
 {
     public class ExportEmployeesCommand : ICommand
     {
-        private readonly EmployeesControlViewModel viewModel;
+        private readonly EmployeesControlViewModel _viewModel;
 
         public ExportEmployeesCommand(EmployeesControlViewModel viewModel)
         {
-            this.viewModel = viewModel;
+            _viewModel = viewModel;
         }
 
         public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter) => true;
+        public bool CanExecute(object parameter) => _viewModel.Employees?.Count > 0;
 
         public void Execute(object parameter)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog
+            try
             {
-                Filter = "Excel Files (*.xlsx)|*.xlsx"
-            };
+                string path = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                    $"Employees_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.csv");
 
-            if (saveFileDialog.ShowDialog() != true)
-                return;
+                using (var writer = new StreamWriter(path))
+                {
+               
+                    writer.WriteLine("EmployeeId,FirstName,LastName,Email,Phone,Position,Salary,HireDate,IsActive,CreatedAt,DeletedAt");
 
-            string fileName = saveFileDialog.FileName;
+                   
+                    foreach (var e in _viewModel.Employees)
+                    {
+                        writer.WriteLine($"{e.EmployeeId}," +
+                                         $"{e.FirstName}," +
+                                         $"{e.LastName}," +
+                                         $"{e.Email}," +
+                                         $"{e.Phone}," +
+                                         $"{e.Position}," +
+                                         $"{e.Salary}," +
+                                         $"{e.HireDate:dd.MM.yyyy}," +
+                                         $"{e.IsActive}," +
+                                         $"{e.DeletedAt:dd.MM.yyyy}");
+                    }
+                }
 
-            var table = new DataTable("Employees");
-            table.Columns.Add("EmployeeId");
-            table.Columns.Add("FirstName");
-            table.Columns.Add("LastName");
-            table.Columns.Add("Email");
-            table.Columns.Add("Phone");
-            table.Columns.Add("Position");
-            table.Columns.Add("Salary");
-            table.Columns.Add("HireDate");
-            table.Columns.Add("IsActive");
-            table.Columns.Add("DeletedAt");
-
-            foreach (var emp in viewModel.Employees)
-            {
-                table.Rows.Add(emp.EmployeeId, emp.FirstName, emp.LastName, emp.Email,
-                               emp.Phone, emp.Position, emp.Salary, emp.HireDate,
-                               emp.IsActive, emp.DeletedAt);
+                MessageBox.Show($"Exported successfully!\n\nSaved to:\n{Path.GetFullPath(path)}",
+                    "Export", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-
-            using (XLWorkbook workbook = new XLWorkbook())
+            catch (Exception ex)
             {
-                var worksheet = workbook.Worksheets.Add(table);
-                worksheet.Columns().AdjustToContents();
-                workbook.SaveAs(fileName);
-            }
-
-            if (MessageBox.Show("File is ready. Do you want to open it?", "Question",
-                MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-            {
-                Process.Start(fileName);
+                MessageBox.Show($"Export failed: {ex.Message}", "Error",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

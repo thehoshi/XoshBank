@@ -7,10 +7,8 @@ using XoshBank.Core.Entities;
 
 namespace XoshBank.Core.Repositories
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeRepository : IBaseRepository<Employee>
     {
-        List<Employee> GetAll();
-        Employee GetById(int id);
-        void Insert(Employee entity);
+        int GetNextId();
     }
 }

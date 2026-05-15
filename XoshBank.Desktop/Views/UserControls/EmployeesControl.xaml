@@ -23,6 +23,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
+                <!-- Employee details form -->
                 <Border Grid.Row="1" Grid.Column="0"
                         Background="White"
                         CornerRadius="18"
@@ -31,7 +32,6 @@
                         Effect="{StaticResource SoftShadow}">
 
                     <Grid>
-
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -53,48 +53,48 @@
 
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="First Name"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedEmployee.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" 
+                                     Text="{Binding SelectedEmployee.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Last Name"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedEmployee.LastName, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" 
+                                     Text="{Binding SelectedEmployee.LastName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Email"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedEmployee.Email, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" 
+                                     Text="{Binding SelectedEmployee.Email, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Phone"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedEmploye.Phone, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" 
+                                     Text="{Binding SelectedEmployee.Phone, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="1">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Position"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding SelectedEmployee.Position, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Style="{StaticResource InputStyle}" 
+                                     Text="{Binding SelectedEmployee.Position, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
-
-
-
-
                     </Grid>
                 </Border>
 
+                <!-- Actions panel -->
                 <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"
                         Background="#FFFDF9FC"
                         CornerRadius="18"
                         Padding="12"
                         Effect="{StaticResource SoftShadow}">
-
                     <StackPanel>
                         <TextBlock Text="Actions"
                                    FontSize="16"
                                    FontWeight="SemiBold"
                                    Foreground="#352439"
                                    Margin="4,2,4,10"/>
-
                         <Button Style="{StaticResource PrimaryActionButtonStyle}" Content="Add"    Command="{Binding AddCommand}"/>
                         <Button Style="{StaticResource ActionButtonStyle}"        Content="Save"   Command="{Binding SaveCommand}"/>
                         <Button Style="{StaticResource ActionButtonStyle}"        Content="Edit"   Command="{Binding EditCommand}"/>
@@ -103,13 +103,13 @@
                     </StackPanel>
                 </Border>
 
+                <!-- Search bar -->
                 <Border Grid.Row="2" Grid.Column="0"
                         Background="White"
                         CornerRadius="18"
                         Padding="14,10"
                         Margin="0,0,14,14"
                         Effect="{StaticResource SoftShadow}">
-
                     <DockPanel LastChildFill="False">
                         <TextBlock DockPanel.Dock="Left"
                                    Text="Search"
@@ -117,12 +117,10 @@
                                    Foreground="#5A4860"
                                    VerticalAlignment="Center"
                                    Margin="0,0,10,0"/>
-
                         <TextBox DockPanel.Dock="Left"
                                  Width="280"
                                  Style="{StaticResource InputStyle}"
-                                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
-
+                                 Text="{Binding SearchValue, UpdateSourceTrigger=PropertyChanged}"/>
                         <Button DockPanel.Dock="Right"
                                 Width="110"
                                 Height="34"
@@ -145,22 +143,23 @@
                     </DockPanel>
                 </Border>
 
+                <!-- DataGrid -->
                 <Border Grid.Row="3" Grid.Column="0"
                         Background="White"
                         CornerRadius="18"
                         Padding="8"
                         Margin="0,0,14,0"
                         Effect="{StaticResource SoftShadow}">
-
                     <DataGrid ItemsSource="{Binding Employees}" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto" Margin="0,20,0,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding EmployeeId}" Width="40"/>
                             <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" Width="90"/>
                             <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" Width="90"/>
                             <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="70"/>
+                            <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" Width="90"/>
                             <DataGridTextColumn Header="Position" Binding="{Binding Position}" Width="70"/>
                             <DataGridTextColumn Header="Salary" Binding="{Binding Salary, StringFormat={}{0:N2}}" Width="60"/>
-                            <DataGridTextColumn Header="Hire Date" Binding="{Binding HireDate, StringFormat={}{0:N2}}" Width="70"/>
+                            <DataGridTextColumn Header="Hire Date" Binding="{Binding HireDate, StringFormat={}{0:dd.MM.yyyy}}" Width="90"/>
                             <DataGridTextColumn Header="Is Active" Binding="{Binding IsActive}" Width="100"/>
                             <DataGridTextColumn Header="Created Date" Binding="{Binding CreatedDate, StringFormat={}{0:dd.MM.yyyy}}" Width="110"/>
                             <DataGridTextColumn Header="Deleted At" Binding="{Binding DeletedAt, StringFormat={}{0:dd.MM.yyyy}}" Width="110"/>
@@ -170,6 +169,5 @@
 
             </Grid>
         </Border>
-
     </Grid>
 </UserControl>

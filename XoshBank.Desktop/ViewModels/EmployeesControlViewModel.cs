@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using XoshBank.Core.Repositories;
+using XoshBank.Command.Cards;
 using XoshBank.Command.Employees;
+using XoshBank.Core.Repositories;
 using XoshBank.Enums;
 using XoshBank.Models;
 
@@ -18,7 +19,7 @@ namespace XoshBank.Desktop.ViewModels
 
         #region properties
 
-        public IUnitOfWork DB => _db;
+        public IUnitOfWork Db => _db;
 
         private ViewState _currentState;
         public ViewState CurrentState
@@ -48,12 +49,16 @@ namespace XoshBank.Desktop.ViewModels
                     CurrentState = ViewState.Selected;
                     CurrentEmployee = new EmployeeFormModel
                     {
+                        EmployeeId = SelectedEmployee.EmployeeId,
                         FirstName = SelectedEmployee.FirstName,
                         LastName = SelectedEmployee.LastName,
                         Email = SelectedEmployee.Email,
                         Phone = SelectedEmployee.Phone,
                         Position = SelectedEmployee.Position,
-                        Salary = SelectedEmployee.Salary
+                        Salary = SelectedEmployee.Salary,
+                        HireDate = SelectedEmployee.HireDate,
+                        IsActive = SelectedEmployee.IsActive,
+                        DeletedAt = SelectedEmployee.DeletedAt
                     };
                 }
                 else
@@ -91,12 +96,17 @@ namespace XoshBank.Desktop.ViewModels
                 else
                 {
                     var upper = SearchValue.ToUpper();
+
                     foreach (EmployeeUIModel e in AllEmployees)
                     {
                         if (e.FirstName?.ToUpper().Contains(upper) == true ||
                             e.LastName?.ToUpper().Contains(upper) == true ||
                             e.Email?.ToUpper().Contains(upper) == true ||
-                            e.Position?.ToUpper().Contains(upper) == true)
+                            e.Position?.ToUpper().Contains(upper) == true ||
+                            e.Phone?.ToUpper().Contains(upper) == true ||
+                            (e.Salary.HasValue && e.Salary.Value.ToString().ToUpper().Contains(upper)) ||
+                            (e.HireDate.HasValue && e.HireDate.Value.ToString("yyyy-MM-dd").ToUpper().Contains(upper)) ||
+                            (e.IsActive.HasValue && e.IsActive.Value.ToString().ToUpper().Contains(upper)))
                         {
                             filtered.Add(e);
                         }
@@ -110,12 +120,13 @@ namespace XoshBank.Desktop.ViewModels
 
         #region commands
 
-        public AddEmployeesCommand Add => new AddEmployeesCommand(this);
-        public SaveEmployeesCommand Save => new SaveEmployeesCommand(this);
-        public EditEmployeesCommand Edit => new EditEmployeesCommand(this);
-        public RejectEmployeesCommand Reject => new RejectEmployeesCommand(this);
-        public DeleteEmployeeCommand Delete => new DeleteEmployeeCommand(this);
-        public ExportEmployeesCommand Export => new ExportEmployeesCommand(this);
+        public AddEmployeesCommand AddCommand => new AddEmployeesCommand(this);
+        public SaveEmployeesCommand SaveCommand => new SaveEmployeesCommand(this);
+        public EditEmployeesCommand EditCommand => new EditEmployeesCommand(this);
+        public RejectEmployeesCommand RejectCommand => new RejectEmployeesCommand(this);
+        public DeleteEmployeesCommand DeleteCommand => new DeleteEmployeesCommand(this);
+        public ExportEmployeesCommand ExportCommand => new ExportEmployeesCommand(this);
+
         #endregion
 
         #region property changed
