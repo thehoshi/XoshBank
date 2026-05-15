@@ -43,6 +43,7 @@ namespace XoshBank.Command.Accounts
                 AccountUIModel accountUIModel = new AccountUIModel
                 {
                     No = no++,
+                    AccountID = account.ID,
                     CustomerID = account.CustomerID,
                     AccountNumber = account.AccountNumber,
                     Balance = account.Balance,

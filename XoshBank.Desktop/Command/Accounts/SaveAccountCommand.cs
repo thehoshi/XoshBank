@@ -51,6 +51,8 @@ namespace XoshBank.Command.Accounts
                 int index = _viewModel.Accounts.IndexOf(_viewModel.SelectedAccount);
                 var updated = new AccountUIModel
                 {
+                    No = _viewModel.SelectedAccount.No,
+                    AccountID = account.ID,
                     CustomerID = account.CustomerID,
                     AccountNumber = account.AccountNumber,
                     Balance = account.Balance,

@@ -20,7 +20,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                string query = "UPDATE Accounts SET DeletedAt = @DeletedAt WHERE Id = @Id AND DeletedAt IS NULL";
+                string query = "UPDATE Accounts SET DeletedAt = @DeletedAt WHERE AccountID = @Id AND DeletedAt IS NULL";
 
                 var command = new SqlCommand(query,connection);
 
@@ -88,7 +88,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                         {
                             return new Account
                             {
-                                ID = Convert.ToInt32(reader["AccountsID"]),
+                                ID = Convert.ToInt32(reader["AccountID"]),
                                 CustomerID = Convert.ToInt32(reader["CustomerID"]),
                                 AccountNumber = reader["AccountNumber"] as string,
                                 Balance = Convert.ToDecimal(reader["Balance"]),
@@ -99,12 +99,6 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                             };
                         }
 
-                        int rowsCount = command.ExecuteNonQuery();
-
-                        if (rowsCount != 1)
-                            throw new Exception("Something went wrong while updating user");
-                        else
-                            Console.WriteLine("The operation was completed successfully");
                     }
                 }
             }
@@ -129,7 +123,6 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                     command.Parameters.AddWithValue("@AccountType", account.AccountType ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@Currency", account.Currency);
                     command.Parameters.AddWithValue("@CreatedAt", account.CreatedAt);
-                    command.Parameters.AddWithValue("@DeletedAt",account.DeletedAt ?? (object)DBNull.Value);
 
                     int rowsCount = command.ExecuteNonQuery();
                     if (rowsCount != 1)
@@ -147,7 +140,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                string query = "UPDATE Accounts SET CustomerID = @CustomerID, AccountNumber = @AccountNumber, Balance = @Balance, AccountType = @AccountType, Currency = @Currency " +
+                string query = "UPDATE Accounts SET CustomerID = @CustomerID, AccountNumber = @AccountNumber, Balance = @Balance, AccountType = @AccountType, Currency = @Currency ," +
                     "CreatedAt = @CreatedAt, DeletedAt = @DeletedAt WHERE AccountID = @Id";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
