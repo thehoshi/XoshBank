@@ -24,7 +24,11 @@ namespace XoshBank.Command.Accounts
         }
         public void Execute(object parameter)
         {
+            _viewModel.SelectedAccount = null;
             _viewModel.CurrentState = ViewState.Add;
+
+            int nextId = _viewModel.DB.Branches.GetNextId();
+            _viewModel.CurrentAccount.AccountID = nextId;
         }
     }
 }

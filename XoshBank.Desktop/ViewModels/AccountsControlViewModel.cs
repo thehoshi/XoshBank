@@ -107,11 +107,6 @@ namespace XoshBank.ViewModels
                 }
             }
         }
-        public AddAccountCommand Add => new AddAccountCommand(this);
-        public SaveAccountCommand Save => new SaveAccountCommand(this);
-        public EditAccountCommand Edit => new EditAccountCommand(this);
-        public RejectAccountCommand Reject => new RejectAccountCommand(this);
-        public DeleteAccountCommand Delete => new DeleteAccountCommand(this);
 
         #endregion
 
