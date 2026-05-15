@@ -17,6 +17,16 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             _connectionString = connectionString;
         }
 
+        public int GetNextId()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                var command = new SqlCommand("SELECT ISNULL(MAX(LoanID), 0) + 1 FROM Loan", connection);
+                return Convert.ToInt32(command.ExecuteScalar());
+            }
+        }
+
         #region GetAll
         public List<Loan> GetAll()
         {
@@ -139,7 +149,8 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 command.Parameters.AddWithValue("@CreatedAt", (object)entity.CreatedAt ?? DBNull.Value);
                 command.Parameters.AddWithValue("@UpdatedAt", (object)entity.UpdatedAt ?? DBNull.Value);
 
-                command.ExecuteNonQuery();
+                command.CommandText += "; SELECT SCOPE_IDENTITY();";
+                entity.ID = Convert.ToInt32(command.ExecuteScalar());
             }
         }
         #endregion

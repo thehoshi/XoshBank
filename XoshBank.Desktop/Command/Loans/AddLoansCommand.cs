@@ -4,6 +4,7 @@ using XoshBank.Desktop.ViewModels;
 using XoshBank.Enums;
 using XoshBank.Models;
 
+
 namespace XoshBank.Command.Loans
 {
     public class AddLoansCommand : ICommand
@@ -22,7 +23,10 @@ namespace XoshBank.Command.Loans
         {
             _viewModel.SelectedLoan = null;
             _viewModel.CurrentState = ViewState.Add;
+
+            int nextId = _viewModel.DB.Loans.GetNextId();
             _viewModel.CurrentLoan = new LoanFormModel();
+            _viewModel.CurrentLoan.No = nextId;
         }
     }
 }

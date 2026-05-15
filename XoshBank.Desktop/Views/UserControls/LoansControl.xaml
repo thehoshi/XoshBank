@@ -5,7 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:XoshBank.Views.UserControls"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="807.2" d:DesignWidth="1107.2">
+
     <UserControl.Resources>
         <DropShadowEffect x:Key="CardShadow" BlurRadius="26" ShadowDepth="8" Opacity="0.16" Color="#8E4A74"/>
         <DropShadowEffect x:Key="SoftShadow" BlurRadius="16" ShadowDepth="4" Opacity="0.12" Color="#8E4A74"/>
@@ -46,14 +47,11 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Opacity" Value="0.88"/>
+                                <Setter Property="Background" Value="#FFF3DDEB"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="RenderTransform">
-                                    <Setter.Value>
-                                        <ScaleTransform ScaleX="0.98" ScaleY="0.98"/>
-                                    </Setter.Value>
-                                </Setter>
+                                <Setter Property="Background" Value="#FFDD5BA3"/>
+                                <Setter Property="Foreground" Value="White"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -155,7 +153,6 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="160"/>
                 </Grid.ColumnDefinitions>
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -163,10 +160,11 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
+                <!-- ===== FORM ===== -->
                 <Border Grid.Row="1" Grid.Column="0" Background="#FFFFFFFF" CornerRadius="18" Padding="14,12" Margin="0,0,14,14" Effect="{StaticResource SoftShadow}">
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.6*"/>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
@@ -180,8 +178,11 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Grid.ColumnSpan="4" Text="Loan details" FontSize="14" FontWeight="SemiBold" Foreground="#352439" Margin="0,0,0,10"/>
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="5"
+                                   Text="Loan details"
+                                   FontSize="14" FontWeight="SemiBold" Foreground="#352439" Margin="0,0,0,10"/>
 
+                        <!-- Row 1 -->
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="No"/>
                             <TextBox Style="{StaticResource ReadOnlyTextStyle}" Text="{Binding CurrentLoan.No}"/>
@@ -193,94 +194,199 @@
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,8,8">
-                            <TextBlock Style="{StaticResource LabelStyle}" Text="Approved by"/>
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Approved By"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.ApprovedBy, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="1" Grid.Column="3" Margin="0,0,0,8">
+                        <StackPanel Grid.Row="1" Grid.Column="3" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Branch ID"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.BranchID, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,0">
-                            <TextBlock Style="{StaticResource LabelStyle}" Text="Amount"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.Amount, UpdateSourceTrigger=PropertyChanged}"/>
-                        </StackPanel>
-
-                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,8,0">
-                            <TextBlock Style="{StaticResource LabelStyle}" Text="Interest rate"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.InterestRate, UpdateSourceTrigger=PropertyChanged}"/>
-                        </StackPanel>
-
-                        <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,0,8,0">
-                            <TextBlock Style="{StaticResource LabelStyle}" Text="Total amount"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.TotalAmount, UpdateSourceTrigger=PropertyChanged}"/>
-                        </StackPanel>
-
-                        <StackPanel Grid.Row="2" Grid.Column="3" Margin="0,0,0,0">
-                            <TextBlock Style="{StaticResource LabelStyle}" Text="Monthly payment"/>
-                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.MonthlyPayment, UpdateSourceTrigger=PropertyChanged}"/>
-                        </StackPanel>
-
-                        <StackPanel Grid.Row="1" Grid.Column="4" Margin="0,0,8,0">
+                        <StackPanel Grid.Row="1" Grid.Column="4" Margin="0,0,0,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Status"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.Status, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="2" Grid.Column="4" Margin="0,0,8,0">
-                            <TextBlock Style="{StaticResource LabelStyle}" Text="Loan type"/>
+                        <!-- Row 2 -->
+                        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Amount"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.Amount, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="1" Margin="0,0,8,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Interest Rate"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.InterestRate, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="2" Margin="0,0,8,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Total Amount"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.TotalAmount, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="3" Margin="0,0,8,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Monthly Payment"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.MonthlyPayment, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="2" Grid.Column="4" Margin="0,0,0,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Loan Type"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.LoanType, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,0,8,0">
+                        <!-- Row 3 -->
+                        <StackPanel Grid.Row="3" Grid.Column="0" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Currency"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.Currency, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,0,8,0">
-                            <TextBlock Style="{StaticResource LabelStyle}" Text="Start date"/>
-                            <DatePicker Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding CurrentLoan.StartDate, UpdateSourceTrigger=PropertyChanged}"/>
+                        <StackPanel Grid.Row="3" Grid.Column="1" Margin="0,0,8,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Start Date"/>
+                            <DatePicker Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding CurrentLoan.StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="3" Grid.Column="2" Margin="0,0,8,0">
-                            <TextBlock Style="{StaticResource LabelStyle}" Text="End date"/>
-                            <DatePicker Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding CurrentLoan.EndDate, UpdateSourceTrigger=PropertyChanged}"/>
+                        <StackPanel Grid.Row="3" Grid.Column="2" Margin="0,0,8,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="End Date"/>
+                            <DatePicker Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding CurrentLoan.EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="3" Grid.Column="3" Margin="0,0,8,0">
-                            <TextBlock Style="{StaticResource LabelStyle}" Text="Approval date"/>
-                            <DatePicker Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding CurrentLoan.ApprovalDate, UpdateSourceTrigger=PropertyChanged}"/>
+                        <StackPanel Grid.Row="3" Grid.Column="3" Margin="0,0,8,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Approval Date"/>
+                            <DatePicker Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding CurrentLoan.ApprovalDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="3" Grid.Column="4" Margin="0,0,8,0">
-                            <TextBlock Style="{StaticResource LabelStyle}" Text="Duration (months)"/>
+                        <StackPanel Grid.Row="3" Grid.Column="4" Margin="0,0,0,8">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Duration (Months)"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.DurationMonths, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,8,0">
+                        <!-- Row 4 -->
+                        <StackPanel Grid.Row="4" Grid.Column="0" Margin="0,0,8,0">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Late Payment Fee"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.LatePaymentFee, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="4" Grid.Column="1" Margin="0,0,8,0">
+                            <TextBlock Style="{StaticResource LabelStyle}" Text="Penalty Rate"/>
+                            <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.PenaltyRate, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="4" Grid.Column="2" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Collateral"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.Collateral, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
-                        <StackPanel Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="3" Margin="0,0,8,0">
+                        <StackPanel Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="2" Margin="0,0,0,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Notes"/>
                             <TextBox Style="{StaticResource InputStyle}" Text="{Binding CurrentLoan.Notes, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
-
                     </Grid>
                 </Border>
 
-                <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Background="#FFFDF9FC" CornerRadius="18" Padding="12" Margin="0,0,0,0" Effect="{StaticResource SoftShadow}">
+                <!-- ===== ACTION BUTTONS ===== -->
+                <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"
+                        Background="#FFFDF9FC" CornerRadius="18" Padding="12"
+                        Effect="{StaticResource SoftShadow}">
                     <StackPanel>
                         <TextBlock Text="Actions" FontSize="16" FontWeight="SemiBold" Foreground="#352439" Margin="4,2,4,10"/>
-                        <Button Style="{StaticResource PrimaryActionButtonStyle}" Content="Add" Command="{Binding AddCommand}"/>
-                        <Button Style="{StaticResource ActionButtonStyle}" Content="Save" Command="{Binding SaveCommand}"/>
-                        <Button Style="{StaticResource ActionButtonStyle}" Content="Edit" Command="{Binding EditCommand}"/>
-                        <Button Style="{StaticResource ActionButtonStyle}" Content="Reject" Command="{Binding RejectCommand}"/>
-                        <Button Style="{StaticResource DangerActionButtonStyle}" Content="Delete" Command="{Binding DeleteCommand}"/>
+
+                        <!-- Add -->
+                        <Button Command="{Binding AddCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource PrimaryActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="7">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Add
+                        </Button>
+
+                        <!-- Save -->
+                        <Button Command="{Binding SaveCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="4">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="7">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Save
+                        </Button>
+
+                        <!-- Edit -->
+                        <Button Command="{Binding EditCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Edit
+                        </Button>
+
+                        <!-- Reject -->
+                        <Button Command="{Binding RejectCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Reject
+                        </Button>
+
+                        <!-- Delete -->
+                        <Button Command="{Binding DeleteCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource DangerActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="1">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="2">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="3">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Delete
+                        </Button>
                     </StackPanel>
                 </Border>
 
+                <!-- ===== SEARCH + EXPORT ===== -->
                 <Border Grid.Row="2" Grid.Column="0" Background="#FFFFFFFF" CornerRadius="18" Padding="14,10" Margin="0,0,14,14" Effect="{StaticResource SoftShadow}">
                     <DockPanel LastChildFill="False">
                         <TextBlock DockPanel.Dock="Left" Text="Search" FontSize="14" Foreground="#5A4860" VerticalAlignment="Center" Margin="0,0,10,0"/>
@@ -299,31 +405,48 @@
                     </DockPanel>
                 </Border>
 
-                <Border Grid.Row="3" Grid.Column="0" Background="#FFFFFFFF" CornerRadius="18" Padding="8" Margin="0,0,14,0" Effect="{StaticResource SoftShadow}">
+                <!-- ===== DATAGRID ===== -->
+                <Border Grid.Row="3" Grid.Column="0" Background="#FFFFFFFF" CornerRadius="18" Padding="2" Margin="0,0,14,0" Effect="{StaticResource SoftShadow}">
                     <DataGrid ItemsSource="{Binding Loans}"
                               SelectedItem="{Binding SelectedLoan, Mode=TwoWay}"
-                              RowStyle="{x:Null}">
+                              SelectionUnit="FullRow"
+                              IsReadOnly="True">
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Background" Value="White"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Background" Value="#FFDD5BA3"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#FFF3DDEB"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="No"              Binding="{Binding No}" Width="60"/>
-                            <DataGridTextColumn Header="Customer ID"     Binding="{Binding CustomerID}" Width="95"/>
-                            <DataGridTextColumn Header="Approved By"     Binding="{Binding ApprovedBy}" Width="120"/>
-                            <DataGridTextColumn Header="Branch ID"       Binding="{Binding BranchID}" Width="80"/>
-                            <DataGridTextColumn Header="Amount"          Binding="{Binding Amount, StringFormat={}{0:N2}}" Width="100"/>
-                            <DataGridTextColumn Header="Interest Rate"   Binding="{Binding InterestRate, StringFormat={}{0:N2}}" Width="105"/>
-                            <DataGridTextColumn Header="Total Amount"    Binding="{Binding TotalAmount, StringFormat={}{0:N2}}" Width="110"/>
-                            <DataGridTextColumn Header="Monthly Payment" Binding="{Binding MonthlyPayment, StringFormat={}{0:N2}}" Width="120"/>
-                            <DataGridTextColumn Header="Status"          Binding="{Binding Status}" Width="95"/>
-                            <DataGridTextColumn Header="Loan Type"       Binding="{Binding LoanType}" Width="100"/>
-                            <DataGridTextColumn Header="Currency"        Binding="{Binding Currency}" Width="80"/>
-                            <DataGridTextColumn Header="Start Date"       Binding="{Binding StartDate, StringFormat={}{0:dd.MM.yyyy}}" Width="110"/>
-                            <DataGridTextColumn Header="End Date"         Binding="{Binding EndDate, StringFormat={}{0:dd.MM.yyyy}}" Width="110"/>
-                            <DataGridTextColumn Header="Approval Date"    Binding="{Binding ApprovalDate, StringFormat={}{0:dd.MM.yyyy}}" Width="120"/>
-                            <DataGridTextColumn Header="Duration Months"  Binding="{Binding DurationMonths}" Width="110"/>
-                            <DataGridTextColumn Header="Collateral"      Binding="{Binding Collateral}" Width="140"/>
-                            <DataGridTextColumn Header="Notes"           Binding="{Binding Notes}" Width="160"/>
+                            <DataGridTextColumn Header="No"              Binding="{Binding No}"                                               Width="50"/>
+                            <DataGridTextColumn Header="Customer ID"     Binding="{Binding CustomerID}"                                       Width="90"/>
+                            <DataGridTextColumn Header="Approved By"     Binding="{Binding ApprovedBy}"                                       Width="100"/>
+                            <DataGridTextColumn Header="Branch ID"       Binding="{Binding BranchID}"                                         Width="80"/>
+                            <DataGridTextColumn Header="Amount"          Binding="{Binding Amount,         StringFormat={}{0:N2}}"            Width="100"/>
+                            <DataGridTextColumn Header="Interest Rate"   Binding="{Binding InterestRate,   StringFormat={}{0:N2}}"            Width="100"/>
+                            <DataGridTextColumn Header="Total Amount"    Binding="{Binding TotalAmount,    StringFormat={}{0:N2}}"            Width="110"/>
+                            <DataGridTextColumn Header="Monthly Payment" Binding="{Binding MonthlyPayment, StringFormat={}{0:N2}}"            Width="120"/>
+                            <DataGridTextColumn Header="Status"          Binding="{Binding Status}"                                           Width="90"/>
+                            <DataGridTextColumn Header="Loan Type"       Binding="{Binding LoanType}"                                         Width="100"/>
+                            <DataGridTextColumn Header="Currency"        Binding="{Binding Currency}"                                         Width="80"/>
+                            <DataGridTextColumn Header="Start Date"      Binding="{Binding StartDate,    StringFormat={}{0:dd.MM.yyyy}}"      Width="100"/>
+                            <DataGridTextColumn Header="End Date"        Binding="{Binding EndDate,      StringFormat={}{0:dd.MM.yyyy}}"      Width="100"/>
+                            <DataGridTextColumn Header="Approval Date"   Binding="{Binding ApprovalDate, StringFormat={}{0:dd.MM.yyyy}}"      Width="110"/>
+                            <DataGridTextColumn Header="Duration (Mo.)"  Binding="{Binding DurationMonths}"                                   Width="100"/>
+                            <DataGridTextColumn Header="Collateral"      Binding="{Binding Collateral}"                                       Width="120"/>
+                            <DataGridTextColumn Header="Notes"           Binding="{Binding Notes}"                                            Width="150"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
+
             </Grid>
         </Border>
     </Grid>

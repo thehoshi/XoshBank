@@ -50,6 +50,7 @@ namespace XoshBank.Desktop.ViewModels
                     CurrentState = ViewState.Selected;
                     CurrentLoan = new LoanFormModel
                     {
+                        No = value.No,
                         CustomerID = value.CustomerID,
                         ApprovedBy = value.ApprovedBy,
                         BranchID = value.BranchID,
@@ -108,11 +109,23 @@ namespace XoshBank.Desktop.ViewModels
 
                 foreach (var l in AllLoans)
                 {
-                    if (l.Status?.ToUpper().Contains(upper) == true ||
+                    if (l.No.ToString().Contains(upper) ||
+                        l.CustomerID.ToString().Contains(upper) ||
+                        l.ApprovedBy.ToString().Contains(upper) ||
+                        l.BranchID?.ToString().Contains(upper) == true ||
+                        l.Amount.ToString().Contains(upper) ||
+                        l.InterestRate.ToString().Contains(upper) ||
+                        l.TotalAmount.ToString().Contains(upper) ||
+                        l.MonthlyPayment.ToString().Contains(upper) ||
+                        l.Status?.ToUpper().Contains(upper) == true ||
                         l.LoanType?.ToUpper().Contains(upper) == true ||
                         l.Currency?.ToUpper().Contains(upper) == true ||
-                        l.CustomerID.ToString().Contains(upper) ||
-                        l.No.ToString().Contains(upper))
+                        l.StartDate.ToString("dd.MM.yyyy").Contains(upper) ||
+                        l.EndDate.ToString("dd.MM.yyyy").Contains(upper) ||
+                        l.ApprovalDate.ToString("dd.MM.yyyy").Contains(upper) ||
+                        l.DurationMonths.ToString().Contains(upper) ||
+                        l.Collateral?.ToUpper().Contains(upper) == true ||
+                        l.Notes?.ToUpper().Contains(upper) == true)
                     {
                         filtered.Add(l);
                     }
