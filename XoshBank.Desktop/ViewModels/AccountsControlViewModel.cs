@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XoshBank.Command;
 using XoshBank.Command.Accounts;
 using XoshBank.Command.Branches;
 using XoshBank.Command.Customers;
@@ -126,6 +127,7 @@ namespace XoshBank.ViewModels
         public EditAccountCommand EditCommand => new EditAccountCommand(this);
         public RejectAccountCommand RejectCommand => new RejectAccountCommand(this);
         public DeleteAccountCommand DeleteCommand => new DeleteAccountCommand(this);
+        public ExportCommand<AccountUIModel> ExportCommand => new ExportCommand<AccountUIModel>();
         #endregion
     }
 }

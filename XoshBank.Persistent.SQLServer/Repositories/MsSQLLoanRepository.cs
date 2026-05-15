@@ -1,6 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using System.Runtime.InteropServices.ComTypes;
 using XoshBank.Core.Entities;
 using XoshBank.Core.Repositories;
 
@@ -15,6 +17,16 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             _connectionString = connectionString;
         }
 
+        public int GetNextId()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+                var command = new SqlCommand("SELECT ISNULL(MAX(LoanID), 0) + 1 FROM Loans", connection);
+                return Convert.ToInt32(command.ExecuteScalar());
+            }
+        }
+
         #region GetAll
         public List<Loan> GetAll()
         {
@@ -22,8 +34,8 @@ namespace XoshBank.Persistent.SQLServer.Repositories
 
             using (var connection = new SqlConnection(_connectionString))
             {
-                connection.Open();
-                var command = new SqlCommand("SELECT * FROM Loan", connection);
+                connection.Open(); 
+                var command = new SqlCommand("SELECT * FROM Loans WHERE DeletedAt IS NULL", connection);
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -34,23 +46,24 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                             CustomerID = Convert.ToInt32(reader["CustomerID"]),
                             ApprovedBy = reader.GetInt32(2),
                             BranchID = reader.IsDBNull(3) ? (int?)null : reader.GetInt32(3),
-                            Amount = reader.GetDouble(4),
-                            InterestRate = reader.GetDouble(5),
-                            TotalAmount = reader.GetDouble(6),
-                            MonthlyPayment = reader.GetDouble(7),
-                            Status = reader.GetString(8),
-                            LoanType = reader.GetString(9),
-                            Currency = reader.GetString(10),
+                            Amount = Convert.ToDouble(reader[4]),
+                            InterestRate = Convert.ToDouble(reader[5]),
+                            TotalAmount = Convert.ToDouble(reader[6]),
+                            MonthlyPayment = Convert.ToDouble(reader[7]),
+                            Status = reader.IsDBNull(8) ? string.Empty : reader.GetString(8),
+                            LoanType = reader.IsDBNull(9) ? string.Empty : reader.GetString(9),
+                            Currency = reader.IsDBNull(10) ? string.Empty : reader.GetString(10),
                             StartDate = reader.GetDateTime(11),
                             EndDate = reader.GetDateTime(12),
                             ApprovalDate = reader.GetDateTime(13),
                             DurationMonths = reader.GetInt32(14),
-                            LatePaymentFee = reader.IsDBNull(15) ? (double?)null : reader.GetDouble(15),
-                            PenaltyRate = reader.IsDBNull(16) ? (double?)null : reader.GetDouble(16),
-                            Collateral = reader.GetString(17),
-                            Notes = reader.GetString(18),
+                            LatePaymentFee = reader.IsDBNull(15) ? (double?)null : Convert.ToDouble(reader[15]),
+                            PenaltyRate = reader.IsDBNull(16) ? (double?)null : Convert.ToDouble(reader[16]),
+                            Collateral = reader.IsDBNull(17) ? string.Empty : reader.GetString(17),
+                            Notes = reader.IsDBNull(18) ? string.Empty : reader.GetString(18),
                             CreatedAt = reader.IsDBNull(19) ? (DateTime?)null : reader.GetDateTime(19),
-                            UpdatedAt = reader.IsDBNull(20) ? (DateTime?)null : reader.GetDateTime(20)
+                            UpdatedAt = reader.IsDBNull(20) ? (DateTime?)null : reader.GetDateTime(20),
+                            DeletedAt = reader.IsDBNull(21) ? (DateTime?)null : reader.GetDateTime(21),
                         });
                     }
                 }
@@ -67,7 +80,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("SELECT * FROM Loan WHERE LoanID = @LoanID", connection);
+                var command = new SqlCommand("SELECT * FROM Loans WHERE LoanID = @LoanID", connection);
                 command.Parameters.AddWithValue("@LoanID", id);
                 using (var reader = command.ExecuteReader())
                 {
@@ -112,7 +125,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "INSERT INTO Loan (CustomerID, ApprovedBy, BranchID, Amount, InterestRate, TotalAmount, MonthlyPayment, Status, LoanType, Currency, StartDate, EndDate, ApprovalDate, DurationMonths, LatePaymentFee, PenaltyRate, Collateral, Notes, CreatedAt, UpdatedAt) " +
+                    "INSERT INTO Loans (CustomerID, ApprovedBy, BranchID, Amount, InterestRate, TotalAmount, MonthlyPayment, Status, LoanType, Currency, StartDate, EndDate, ApprovalDate, DurationMonths, LatePaymentFee, PenaltyRate, Collateral, Notes, CreatedAt, UpdatedAt) " +
                     "VALUES (@CustomerID, @ApprovedBy, @BranchID, @Amount, @InterestRate, @TotalAmount, @MonthlyPayment, @Status, @LoanType, @Currency, @StartDate, @EndDate, @ApprovalDate, @DurationMonths, @LatePaymentFee, @PenaltyRate, @Collateral, @Notes, @CreatedAt, @UpdatedAt)",
                     connection);
                 command.Parameters.AddWithValue("@CustomerID", entity.CustomerID);
@@ -136,7 +149,8 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                 command.Parameters.AddWithValue("@CreatedAt", (object)entity.CreatedAt ?? DBNull.Value);
                 command.Parameters.AddWithValue("@UpdatedAt", (object)entity.UpdatedAt ?? DBNull.Value);
 
-                command.ExecuteNonQuery();
+                command.CommandText += "; SELECT SCOPE_IDENTITY();";
+                entity.ID = Convert.ToInt32(command.ExecuteScalar());
             }
         }
         #endregion
@@ -148,7 +162,7 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "UPDATE Loan SET CustomerID = @CustomerID, ApprovedBy = @ApprovedBy, BranchID = @BranchID, Amount = @Amount, InterestRate = @InterestRate, TotalAmount = @TotalAmount, MonthlyPayment = @MonthlyPayment, Status = @Status, LoanType = @LoanType, Currency = @Currency, StartDate = @StartDate, EndDate = @EndDate, ApprovalDate = @ApprovalDate, DurationMonths = @DurationMonths, LatePaymentFee = @LatePaymentFee, PenaltyRate = @PenaltyRate, Collateral = @Collateral, Notes = @Notes, CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt WHERE LoanID = @LoanID",
+                    "UPDATE Loans SET CustomerID = @CustomerID, ApprovedBy = @ApprovedBy, BranchID = @BranchID, Amount = @Amount, InterestRate = @InterestRate, TotalAmount = @TotalAmount, MonthlyPayment = @MonthlyPayment, Status = @Status, LoanType = @LoanType, Currency = @Currency, StartDate = @StartDate, EndDate = @EndDate, ApprovalDate = @ApprovalDate, DurationMonths = @DurationMonths, LatePaymentFee = @LatePaymentFee, PenaltyRate = @PenaltyRate, Collateral = @Collateral, Notes = @Notes, CreatedAt = @CreatedAt, UpdatedAt = @UpdatedAt WHERE LoanID = @LoanID",
                     connection);
                 command.Parameters.AddWithValue("@LoanID", entity.ID);
                 command.Parameters.AddWithValue("@CustomerID", entity.CustomerID);
@@ -182,7 +196,8 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("DELETE FROM Loan WHERE LoanID = @LoanID", connection);
+                var command = new SqlCommand("UPDATE Loans SET DeletedAt = @DeletedAt WHERE LoanID = @LoanID", connection);
+                command.Parameters.AddWithValue("@DeletedAt", DateTime.Now);
                 command.Parameters.AddWithValue("@LoanID", id);
                 command.ExecuteNonQuery();
             }

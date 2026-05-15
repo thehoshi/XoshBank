@@ -4,13 +4,13 @@ using XoshBank.Command;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Models;
 
-namespace XoshBank.Command.Branches
+namespace XoshBank.Command.Loans
 {
-    public class ExportBranchesCommand : ICommand
+    public class ExportLoansCommand : ICommand
     {
-        private readonly BranchesControlViewModel _viewModel;
+        private readonly LoansControlViewModel _viewModel;
 
-        public ExportBranchesCommand(BranchesControlViewModel viewModel)
+        public ExportLoansCommand(LoansControlViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -20,8 +20,8 @@ namespace XoshBank.Command.Branches
 
         public void Execute(object parameter)
         {
-            var exportCommand = new ExportCommand<BranchUIModel>();
-            exportCommand.Execute(_viewModel.Branches);
+            var exportCommand = new ExportCommand<LoanUIModel>();
+            exportCommand.Execute(_viewModel.Loans);
         }
     }
 }

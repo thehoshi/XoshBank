@@ -8,6 +8,7 @@ namespace XoshBank.Models
 {
     public class LoanFormModel
     {
+        public int No { get; set; }
         public int CustomerID { get; set; }
         public int ApprovedBy { get; set; }
         public int? BranchID { get; set; }

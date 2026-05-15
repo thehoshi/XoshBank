@@ -9,6 +9,6 @@ namespace XoshBank.Core.Repositories
 {
     public interface ILoanRepository : IBaseRepository<Loan>
     {
-
+        int GetNextId();
     }
 }

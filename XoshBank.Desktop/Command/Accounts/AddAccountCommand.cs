@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Enums;
 using XoshBank.ViewModels;
 
 namespace XoshBank.Command.Accounts
 {
-    public class AddAccountCommand
+    public class AddAccountCommand : ICommand
     {
         private readonly AccountsControlViewModel _viewModel;
         public AddAccountCommand(AccountsControlViewModel viewModel)

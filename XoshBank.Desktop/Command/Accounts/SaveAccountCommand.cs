@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using XoshBank.Core.Entities;
 using XoshBank.Enums;
 using XoshBank.Models;
@@ -11,7 +12,7 @@ using XoshBank.ViewModels;
 
 namespace XoshBank.Command.Accounts
 {
-    public class SaveAccountCommand
+    public class SaveAccountCommand : ICommand
     {
         private readonly AccountsControlViewModel _viewModel;
         public SaveAccountCommand(AccountsControlViewModel viewModel)
