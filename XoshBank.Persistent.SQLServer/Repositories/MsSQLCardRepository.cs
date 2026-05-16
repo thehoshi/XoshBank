@@ -93,11 +93,10 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "INSERT INTO Cards (CardID, CardNumber, ExpiryDate, CVV, CardType, Balance, AccountID, IsActive, CreatedDate) " +
-                    "VALUES (@CardID, @CardNumber, @ExpiryDate, @CVV, @CardType, @Balance, @AccountID, @IsActive, @CreatedDate)",
+                    "INSERT INTO Cards (CardNumber, ExpiryDate, CVV, CardType, Balance, AccountID, IsActive, CreatedDate) " +
+                    "VALUES (@CardNumber, @ExpiryDate, @CVV, @CardType, @Balance, @AccountID, @IsActive, @CreatedDate)",
                     connection);
 
-                command.Parameters.AddWithValue("@CardID", entity.CardId);
                 command.Parameters.AddWithValue("@CardNumber", (object)entity.CardNumber ?? DBNull.Value);
                 command.Parameters.AddWithValue("@ExpiryDate", (object)entity.ExpiryDate ?? DBNull.Value);
                 command.Parameters.AddWithValue("@CVV", (object)entity.CVV ?? DBNull.Value);

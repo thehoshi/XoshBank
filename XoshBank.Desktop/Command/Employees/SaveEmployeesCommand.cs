@@ -22,11 +22,8 @@ namespace XoshBank.Command.Employees
 
         public void Execute(object parameter)
         {
-            if (_viewModel.CurrentEmployee == null)
-                _viewModel.CurrentEmployee = new EmployeeFormModel();
+            var result = MessageBox.Show("Are you sure you want to save?", "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-            var result = MessageBox.Show("Are you sure you want to save?",
-                "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result != MessageBoxResult.Yes) return;
 
             var source = _viewModel.CurrentEmployee;

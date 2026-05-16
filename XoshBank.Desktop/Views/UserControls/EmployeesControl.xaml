@@ -50,31 +50,31 @@
                         <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,8,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="First Name"/>
                             <TextBox Style="{StaticResource InputStyle}" 
-                                     Text="{Binding SelectedEmployee.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+                                     Text="{Binding CurrentEmployee.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,0,8">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Last Name"/>
                             <TextBox Style="{StaticResource InputStyle}" 
-                                     Text="{Binding SelectedEmployee.LastName, UpdateSourceTrigger=PropertyChanged}"/>
+                                     Text="{Binding CurrentEmployee.LastName, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Email"/>
                             <TextBox Style="{StaticResource InputStyle}" 
-                                     Text="{Binding SelectedEmployee.Email, UpdateSourceTrigger=PropertyChanged}"/>
+                                     Text="{Binding CurrentEmployee.Email, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,8,0">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Phone"/>
                             <TextBox Style="{StaticResource InputStyle}" 
-                                     Text="{Binding SelectedEmployee.Phone, UpdateSourceTrigger=PropertyChanged}"/>
+                                     Text="{Binding CurrentEmployee.Phone, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="2" Grid.Column="1">
                             <TextBlock Style="{StaticResource LabelStyle}" Text="Position"/>
                             <TextBox Style="{StaticResource InputStyle}" 
-                                     Text="{Binding SelectedEmployee.Position, UpdateSourceTrigger=PropertyChanged}"/>
+                                     Text="{Binding CurrentEmployee.Position, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
                     </Grid>
                 </Border>
