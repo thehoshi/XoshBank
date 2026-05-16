@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 using XoshBank.Desktop.ViewModels;
-using XoshBank.Enums;
 using XoshBank.Models;
 
 namespace XoshBank.Command.Cards
@@ -15,22 +15,18 @@ namespace XoshBank.Command.Cards
             _viewModel = viewModel;
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
         public bool CanExecute(object parameter) => true;
 
         public void Execute(object parameter)
         {
-           
-            _viewModel.SelectedCard = null;
-            _viewModel.CurrentState = ViewState.Add;
-
-           
-            int nextId = _viewModel.DB.Cards.GetNextId();
-            _viewModel.CurrentCard.CardId = nextId;
-
-           
-            _viewModel.CurrentCard.CreatedDate = DateTime.Now;
-            _viewModel.CurrentCard.IsActive = true;
+            _viewModel.CurrentState = Enums.ViewState.Add;
+            _viewModel.CurrentCard = new CardFormModel();
         }
     }
 }

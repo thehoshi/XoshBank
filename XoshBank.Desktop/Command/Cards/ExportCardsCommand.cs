@@ -1,13 +1,9 @@
-﻿using ClosedXML.Excel;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System;
-using System.Data;
-using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using XoshBank.Desktop.ViewModels;
-using XoshBank.Models;
 
 namespace XoshBank.Command.Cards
 {
@@ -20,45 +16,36 @@ namespace XoshBank.Command.Cards
             _viewModel = viewModel;
         }
 
-        public event EventHandler CanExecuteChanged;
-        public bool CanExecute(object parameter) => true;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public bool CanExecute(object parameter) => _viewModel.Cards.Count > 0;
 
         public void Execute(object parameter)
         {
-            try
+            var dialog = new SaveFileDialog
             {
-                string path = Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-                    $"Cards_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.csv");
+                Title = "Export Cards",
+                Filter = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*",
+                FileName = "cards.csv"
+            };
 
-                using (var writer = new StreamWriter(path))
+            if (dialog.ShowDialog() == true)
+            {
+                using (var writer = new StreamWriter(dialog.FileName))
                 {
-                    // Header
                     writer.WriteLine("CardId,CardNumber,ExpiryDate,CVV,CardType,Balance,AccountId,IsActive,CreatedDate,DeletedAt");
 
-                    // Rows
                     foreach (var c in _viewModel.Cards)
                     {
-                        writer.WriteLine($"{c.CardId}," +
-                                         $"{c.CardNumber}," +
-                                         $"{c.ExpiryDate:dd.MM.yyyy}," +
-                                         $"{c.CVV}," +
-                                         $"{c.CardType}," +
-                                         $"{c.Balance}," +
-                                         $"{c.AccountId}," +
-                                         $"{c.IsActive}," +
-                                         $"{c.CreatedDate:dd.MM.yyyy}," +
-                                         $"{c.DeletedAt:dd.MM.yyyy}");
+                        writer.WriteLine($"{c.CardId},{c.CardNumber},{c.ExpiryDate:yyyy-MM-dd},{c.CVV},{c.CardType},{c.Balance},{c.AccountId},{c.IsActive},{c.CreatedDate},{c.DeletedAt}");
                     }
                 }
 
-                MessageBox.Show($"Exported successfully!\n\nSaved to:\n{Path.GetFullPath(path)}",
-                    "Export", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Export failed: {ex.Message}", "Error",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Cards exported successfully!", "Success", MessageBoxButton.OK);
             }
         }
     }

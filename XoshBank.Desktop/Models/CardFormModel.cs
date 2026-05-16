@@ -21,46 +21,55 @@ namespace XoshBank.Models
             get => _cardId;
             set { _cardId = value; OnPropertyChanged(nameof(CardId)); }
         }
+
         public string CardNumber
         {
             get => _cardNumber;
             set { _cardNumber = value; OnPropertyChanged(nameof(CardNumber)); }
         }
+
         public DateTime ExpiryDate
         {
             get => _expiryDate;
             set { _expiryDate = value; OnPropertyChanged(nameof(ExpiryDate)); }
         }
+
         public string CVV
         {
             get => _cvv;
             set { _cvv = value; OnPropertyChanged(nameof(CVV)); }
         }
+
         public string CardType
         {
             get => _cardType;
             set { _cardType = value; OnPropertyChanged(nameof(CardType)); }
         }
+
         public decimal? Balance
         {
             get => _balance;
             set { _balance = value; OnPropertyChanged(nameof(Balance)); }
         }
+
         public int AccountId
         {
             get => _accountId;
             set { _accountId = value; OnPropertyChanged(nameof(AccountId)); }
         }
+
         public bool IsActive
         {
             get => _isActive;
             set { _isActive = value; OnPropertyChanged(nameof(IsActive)); }
         }
+
         public DateTime? CreatedDate
         {
             get => _createdDate;
             set { _createdDate = value; OnPropertyChanged(nameof(CreatedDate)); }
         }
+
         public DateTime? DeletedAt
         {
             get => _deletedAt;
@@ -68,7 +77,7 @@ namespace XoshBank.Models
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string name) =>
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        private void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

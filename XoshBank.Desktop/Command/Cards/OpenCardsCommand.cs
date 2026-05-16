@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using XoshBank.Core.Entities;
 using XoshBank.Core.Repositories;
-using XoshBank.Enums;
-using XoshBank.Models;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Desktop.Views.UserControls;
+using XoshBank.Enums;
+using XoshBank.Models;
 
 namespace XoshBank.Command.Cards
 {
@@ -29,19 +30,17 @@ namespace XoshBank.Command.Cards
             
             CardsControl cardsControl = new CardsControl(_db);
 
-            
             CardsControlViewModel viewModel = (CardsControlViewModel)cardsControl.DataContext;
 
            
-            List<Card> cards = _db.Cards.GetAll();
+            List<Card> cards = _db.Cards.GetAll().ToList();
 
-           
+            
             List<CardUIModel> cardUIModels = new List<CardUIModel>();
             foreach (Card card in cards)
             {
                 cardUIModels.Add(new CardUIModel
                 {
-
                     CardId = card.CardId,
                     CardNumber = card.CardNumber,
                     ExpiryDate = card.ExpiryDate,
@@ -61,7 +60,7 @@ namespace XoshBank.Command.Cards
             viewModel.CurrentCard = new CardFormModel();
             viewModel.CurrentState = ViewState.Default;
 
-           
+            
             if (parameter is Grid grid)
             {
                 grid.Children.Clear();

@@ -107,6 +107,19 @@
             </Setter>
         </Style>
 
+        <!-- ComboBox -->
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="Background" Value="#FAF7FB"/>
+            <Setter Property="BorderBrush" Value="#E7D8E4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#2E2130"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="MinWidth" Value="120"/>
+        </Style>
+
         <!-- ReadOnly -->
         <Style x:Key="ReadOnlyTextStyle" TargetType="TextBox" BasedOn="{StaticResource InputStyle}">
             <Setter Property="Background" Value="#FFF6F2F7"/>

@@ -15,14 +15,18 @@ namespace XoshBank.Command.Cards
             _viewModel = viewModel;
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
         public bool CanExecute(object parameter) => true;
 
         public void Execute(object parameter)
         {
-            _viewModel.SelectedCard = null;
-            _viewModel.CurrentCard = new CardFormModel();
             _viewModel.CurrentState = ViewState.Default;
+            _viewModel.CurrentCard = new CardFormModel();
         }
     }
 }

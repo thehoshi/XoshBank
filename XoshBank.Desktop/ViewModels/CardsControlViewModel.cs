@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
+using XoshBank.Core.Entities;
 using XoshBank.Core.Repositories;
 using XoshBank.Command.Cards;
 using XoshBank.Enums;
@@ -11,12 +14,39 @@ namespace XoshBank.Desktop.ViewModels
     public class CardsControlViewModel : INotifyPropertyChanged
     {
         private readonly IUnitOfWork _db;
+
         public CardsControlViewModel(IUnitOfWork db)
         {
             _db = db;
+
+            
+            CardTypes = new ObservableCollection<string> { "Debit", "Credit" };
+
+            
+            Accounts = new ObservableCollection<Account>(_db.Accounts.GetAll().ToList());
+
+           
+            AllCards = _db.Cards.GetAll().Select(c => new CardUIModel
+            {
+                CardId = c.CardId,
+                CardNumber = c.CardNumber,
+                ExpiryDate= c.ExpiryDate,
+                CVV = c.CVV,
+                CardType = c.CardType,
+                Balance = c.Balance,
+                AccountId = c.AccountId,
+                IsActive = c.IsActive,
+                CreatedDate = c.CreatedDate,
+                DeletedAt = c.DeletedAt
+            }).ToList();
+
+            Cards = new ObservableCollection<CardUIModel>(AllCards);
+
+            CurrentCard = new CardFormModel();
+            CurrentState = ViewState.Default;
         }
 
-        #region properties
+        #region Properties
 
         public IUnitOfWork DB => _db;
 
@@ -48,16 +78,16 @@ namespace XoshBank.Desktop.ViewModels
                     CurrentState = ViewState.Selected;
                     CurrentCard = new CardFormModel
                     {
-                        CardId = SelectedCard.CardId,
-                        CardNumber = SelectedCard.CardNumber,
-                        ExpiryDate = SelectedCard.ExpiryDate,
-                        CVV = SelectedCard.CVV,
-                        CardType = SelectedCard.CardType,
-                        Balance = SelectedCard.Balance,
-                        AccountId = SelectedCard.AccountId,
-                        IsActive = SelectedCard.IsActive,
-                        CreatedDate = SelectedCard.CreatedDate,
-                        DeletedAt = SelectedCard.DeletedAt
+                        CardId = value.CardId,
+                        CardNumber = value.CardNumber,
+                        ExpiryDate = value.ExpiryDate,
+                        CVV = value.CVV,
+                        CardType = value.CardType,
+                        Balance = value.Balance,
+                        AccountId = value.AccountId,
+                        IsActive = value.IsActive,
+                        CreatedDate = value.CreatedDate,
+                        DeletedAt = value.DeletedAt
                     };
                 }
                 else
@@ -86,8 +116,6 @@ namespace XoshBank.Desktop.ViewModels
                 _searchValue = value;
                 OnPropertyChanged(nameof(SearchValue));
 
-                var filtered = new List<CardUIModel>();
-
                 if (string.IsNullOrWhiteSpace(SearchValue))
                 {
                     Cards = new ObservableCollection<CardUIModel>(AllCards);
@@ -95,23 +123,23 @@ namespace XoshBank.Desktop.ViewModels
                 else
                 {
                     var upper = SearchValue.ToUpper();
+                    var filtered = AllCards.Where(c =>
+                        (c.CardNumber?.ToUpper().Contains(upper) ?? false) ||
+                        (c.CardType?.ToUpper().Contains(upper) ?? false)
+                    ).ToList();
 
-                    foreach (CardUIModel c in AllCards)
-                    {
-                        if (c.CardNumber?.ToUpper().Contains(upper) == true ||
-                            c.CardType?.ToUpper().Contains(upper) == true)
-                        {
-                            filtered.Add(c);
-                        }
-                    }
                     Cards = new ObservableCollection<CardUIModel>(filtered);
                 }
             }
         }
 
+       
+        public ObservableCollection<string> CardTypes { get; set; }
+        public ObservableCollection<Account> Accounts { get; set; }
+
         #endregion
 
-        #region commands
+        #region Commands
 
         public AddCardsCommand AddCommand => new AddCardsCommand(this);
         public SaveCardsCommand SaveCommand => new SaveCardsCommand(this);
@@ -122,7 +150,7 @@ namespace XoshBank.Desktop.ViewModels
 
         #endregion
 
-        #region property changed
+        #region PropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string propertyName)
