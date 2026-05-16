@@ -37,8 +37,8 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                             Phone = reader["Phone"] as string,
                             Position = reader["Position"] as string,
                             Salary = reader["Salary"] != DBNull.Value ? Convert.ToDecimal(reader["Salary"]) : 0,
-                            HireDate = reader["HireDate"] != DBNull.Value ? Convert.ToDateTime(reader["HireDate"]) : DateTime.MinValue,
-                            IsActive = reader["IsActive"] != DBNull.Value && Convert.ToBoolean(reader["IsActive"]),
+                            HireDate = reader["HireDate"] != DBNull.Value ? Convert.ToDateTime(reader["HireDate"]) : DateTime.Now,
+                            IsActive = reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(reader["IsActive"]) : false,
                             DeletedAt = reader["DeletedAt"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(reader["DeletedAt"]) : null
                         };
 
@@ -66,15 +66,15 @@ namespace XoshBank.Persistent.SQLServer.Repositories
                         {
                             return new Employee
                             {
-                                EmployeeId = reader["EmployeeId"] != DBNull.Value ? Convert.ToInt32(reader["EmployeeId"]) : 0,
+                                EmployeeId = Convert.ToInt32(reader["EmployeeId"]),
                                 FirstName = reader["FirstName"] as string,
                                 LastName = reader["LastName"] as string,
                                 Email = reader["Email"] as string,
                                 Phone = reader["Phone"] as string,
                                 Position = reader["Position"] as string,
                                 Salary = reader["Salary"] != DBNull.Value ? Convert.ToDecimal(reader["Salary"]) : 0,
-                                HireDate = reader["HireDate"] != DBNull.Value ? Convert.ToDateTime(reader["HireDate"]) : DateTime.MinValue,
-                                IsActive = reader["IsActive"] != DBNull.Value && Convert.ToBoolean(reader["IsActive"]),
+                                HireDate = reader["HireDate"] != DBNull.Value ? Convert.ToDateTime(reader["HireDate"]) : DateTime.Now,
+                                IsActive = reader["IsActive"] != DBNull.Value ? Convert.ToBoolean(reader["IsActive"]) : false,
                                 DeletedAt = reader["DeletedAt"] != DBNull.Value ? (DateTime?)Convert.ToDateTime(reader["DeletedAt"]) : null
                             };
                         }
@@ -93,19 +93,24 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "INSERT INTO Employees (EmployeeId, FirstName, LastName, Email, Phone, Position, Salary, HireDate, IsActive, CreatedDate) " +
-                    "VALUES (@EmployeeId, @FirstName, @LastName, @Email, @Phone, @Position, @Salary, @HireDate, @IsActive, @CreatedDate)",
+                    "INSERT INTO Employees (FirstName, LastName, Email, Phone, Position, Salary, HireDate, IsActive) " +
+                    "VALUES (@FirstName, @LastName, @Email, @Phone, @Position, @Salary, @HireDate, @IsActive)",
                     connection);
 
-                command.Parameters.AddWithValue("@EmployeeId", entity.EmployeeId);
-                command.Parameters.AddWithValue("@FirstName", (object)entity.FirstName ?? DBNull.Value);
-                command.Parameters.AddWithValue("@LastName", (object)entity.LastName ?? DBNull.Value);
+                
+                command.Parameters.AddWithValue("@FirstName", string.IsNullOrWhiteSpace(entity.FirstName) ? "" : entity.FirstName);
+                command.Parameters.AddWithValue("@LastName", string.IsNullOrWhiteSpace(entity.LastName) ? "" : entity.LastName);
+
                 command.Parameters.AddWithValue("@Email", (object)entity.Email ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Phone", (object)entity.Phone ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Position", (object)entity.Position ?? DBNull.Value);
-                command.Parameters.AddWithValue("@Salary", entity.Salary);
-                command.Parameters.AddWithValue("@HireDate", entity.HireDate);
+                command.Parameters.AddWithValue("@Salary", (object)entity.Salary ?? DBNull.Value);
+
+                var safeHireDate = entity.HireDate < new DateTime(1753, 1, 1) ? DateTime.Now : entity.HireDate;
+                command.Parameters.AddWithValue("@HireDate", safeHireDate);
+
                 command.Parameters.AddWithValue("@IsActive", entity.IsActive);
+
                 command.ExecuteNonQuery();
             }
         }
@@ -118,19 +123,25 @@ namespace XoshBank.Persistent.SQLServer.Repositories
             {
                 connection.Open();
                 var command = new SqlCommand(
-                    "UPDATE Employees SET FirstName = @FirstName, LastName = @LastName, Email = @Email, Phone = @Phone, " +
-                    "Position = @Position, Salary = @Salary, HireDate = @HireDate, IsActive = @IsActive, CreatedDate = @CreatedDate " +
-                    "WHERE EmployeeId = @EmployeeId",
+                    "UPDATE Employees SET FirstName=@FirstName, LastName=@LastName, Email=@Email, Phone=@Phone, " +
+                    "Position=@Position, Salary=@Salary, HireDate=@HireDate, IsActive=@IsActive " +
+                    "WHERE EmployeeId=@EmployeeId",
                     connection);
 
                 command.Parameters.AddWithValue("@EmployeeId", entity.EmployeeId);
-                command.Parameters.AddWithValue("@FirstName", (object)entity.FirstName ?? DBNull.Value);
-                command.Parameters.AddWithValue("@LastName", (object)entity.LastName ?? DBNull.Value);
+
+               
+                command.Parameters.AddWithValue("@FirstName", string.IsNullOrWhiteSpace(entity.FirstName) ? "" : entity.FirstName);
+                command.Parameters.AddWithValue("@LastName", string.IsNullOrWhiteSpace(entity.LastName) ? "" : entity.LastName);
+
                 command.Parameters.AddWithValue("@Email", (object)entity.Email ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Phone", (object)entity.Phone ?? DBNull.Value);
                 command.Parameters.AddWithValue("@Position", (object)entity.Position ?? DBNull.Value);
-                command.Parameters.AddWithValue("@Salary", entity.Salary);
-                command.Parameters.AddWithValue("@HireDate", entity.HireDate);
+                command.Parameters.AddWithValue("@Salary", (object)entity.Salary ?? DBNull.Value);
+
+                var safeHireDate = entity.HireDate < new DateTime(1753, 1, 1) ? DateTime.Now : entity.HireDate;
+                command.Parameters.AddWithValue("@HireDate", safeHireDate);
+
                 command.Parameters.AddWithValue("@IsActive", entity.IsActive);
 
                 command.ExecuteNonQuery();

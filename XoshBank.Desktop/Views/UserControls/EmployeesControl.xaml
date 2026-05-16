@@ -6,16 +6,14 @@
              xmlns:local="clr-namespace:XoshBank.Desktop.Views.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="{StaticResource AppBackground}">
 
+    <Grid Background="{StaticResource AppBackground}">
         <Border Margin="28" Padding="20" CornerRadius="28" Background="#F8F0F6" Effect="{StaticResource CardShadow}">
             <Grid>
-
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="160"/>
                 </Grid.ColumnDefinitions>
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -23,21 +21,19 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!-- Employee details form -->
+               
                 <Border Grid.Row="1" Grid.Column="0"
                         Background="White"
                         CornerRadius="18"
                         Padding="14,12"
                         Margin="0,0,14,14"
                         Effect="{StaticResource SoftShadow}">
-
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -82,28 +78,95 @@
                         </StackPanel>
                     </Grid>
                 </Border>
-
-                <!-- Actions panel -->
+               
                 <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="3"
-                        Background="#FFFDF9FC"
-                        CornerRadius="18"
-                        Padding="12"
-                        Effect="{StaticResource SoftShadow}">
+        Background="#FFFDF9FC"
+        CornerRadius="18"
+        Padding="12"
+        Effect="{StaticResource SoftShadow}">
                     <StackPanel>
                         <TextBlock Text="Actions"
-                                   FontSize="16"
-                                   FontWeight="SemiBold"
-                                   Foreground="#352439"
-                                   Margin="4,2,4,10"/>
-                        <Button Style="{StaticResource PrimaryActionButtonStyle}" Content="Add"    Command="{Binding AddCommand}"/>
-                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Save"   Command="{Binding SaveCommand}"/>
-                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Edit"   Command="{Binding EditCommand}"/>
-                        <Button Style="{StaticResource ActionButtonStyle}"        Content="Reject" Command="{Binding RejectCommand}"/>
-                        <Button Style="{StaticResource DangerActionButtonStyle}"  Content="Delete" Command="{Binding DeleteCommand}"/>
+                   FontSize="16"
+                   FontWeight="SemiBold"
+                   Foreground="#352439"
+                   Margin="4,2,4,10"/>
+
+                        
+                        <Button Command="{Binding AddCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource PrimaryActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="Add">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Add
+                        </Button>
+
+                       
+                        <Button Command="{Binding SaveCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="Default">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Save
+                        </Button>
+
+                       
+                        <Button Command="{Binding RejectCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="Default">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Reject
+                        </Button>
+
+                       
+                        <Button Command="{Binding DeleteCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="Default">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Delete
+                        </Button>
+
+                       
+                        <Button Command="{Binding EditCommand}">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource ActionButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="Selected">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding CurrentState}" Value="Default">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            Edit
+                        </Button>
                     </StackPanel>
                 </Border>
 
-                <!-- Search bar -->
+               
                 <Border Grid.Row="2" Grid.Column="0"
                         Background="White"
                         CornerRadius="18"
@@ -143,14 +206,18 @@
                     </DockPanel>
                 </Border>
 
-                <!-- DataGrid -->
+               
                 <Border Grid.Row="3" Grid.Column="0"
-                        Background="White"
-                        CornerRadius="18"
-                        Padding="8"
-                        Margin="0,0,14,0"
-                        Effect="{StaticResource SoftShadow}">
-                    <DataGrid ItemsSource="{Binding Employees}" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto" Margin="0,20,0,0">
+        Background="White"
+        CornerRadius="18"
+        Padding="8"
+        Margin="0,0,14,0"
+        Effect="{StaticResource SoftShadow}">
+                    <DataGrid ItemsSource="{Binding Employees}"
+              SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
+              AutoGenerateColumns="False"
+              HorizontalScrollBarVisibility="Auto"
+              Margin="0,20,0,0">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="ID" Binding="{Binding EmployeeId}" Width="40"/>
                             <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" Width="90"/>

@@ -20,8 +20,13 @@ namespace XoshBank.Command.Employees
 
         public void Execute(object parameter)
         {
+           
             _viewModel.SelectedEmployee = null;
+
+            
             _viewModel.CurrentEmployee = new EmployeeFormModel();
+
+            
             _viewModel.CurrentState = ViewState.Default;
         }
     }

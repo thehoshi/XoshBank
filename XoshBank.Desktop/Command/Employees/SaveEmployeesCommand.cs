@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using XoshBank.Core.Entities;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Enums;
 using XoshBank.Models;
-using XoshBank.Core.Entities;
 
 namespace XoshBank.Command.Employees
 {
@@ -23,76 +22,83 @@ namespace XoshBank.Command.Employees
 
         public void Execute(object parameter)
         {
-            if (_viewModel.CurrentEmployee == null) return;
+            if (_viewModel.CurrentEmployee == null)
+                _viewModel.CurrentEmployee = new EmployeeFormModel();
 
-            try
+            var result = MessageBox.Show("Are you sure you want to save?",
+                "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result != MessageBoxResult.Yes) return;
+
+            var source = _viewModel.CurrentEmployee;
+
+            var employee = new Employee
             {
-                var entity = new Employee
+                EmployeeId = source.EmployeeId,
+                FirstName = source.FirstName,
+                LastName = source.LastName,
+                Email = source.Email,
+                Phone = source.Phone,
+                Position = source.Position,
+                Salary = source.Salary,
+                HireDate = source.HireDate,
+                IsActive = source.IsActive
+            };
+
+            bool isEdit = _viewModel.SelectedEmployee != null && _viewModel.SelectedEmployee.EmployeeId > 0;
+
+            if (isEdit)
+            {
+                _viewModel.Db.Employees.Update(employee);
+
+                int index = _viewModel.Employees.IndexOf(_viewModel.SelectedEmployee);
+                var updated = new EmployeeUIModel
                 {
-                    EmployeeId = _viewModel.CurrentEmployee.EmployeeId,
-                    FirstName = _viewModel.CurrentEmployee.FirstName,
-                    LastName = _viewModel.CurrentEmployee.LastName,
-                    Email = _viewModel.CurrentEmployee.Email,
-                    Phone = _viewModel.CurrentEmployee.Phone,
-                    Position = _viewModel.CurrentEmployee.Position,
-                    Salary = _viewModel.CurrentEmployee.Salary,
-                    HireDate = _viewModel.CurrentEmployee.HireDate,
-                    IsActive = _viewModel.CurrentEmployee.IsActive,
-                    DeletedAt = _viewModel.CurrentEmployee.DeletedAt
+                    EmployeeId = employee.EmployeeId,
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    Email = employee.Email,
+                    Phone = employee.Phone,
+                    Position = employee.Position,
+                    Salary = employee.Salary,
+                    HireDate = employee.HireDate,
+                    IsActive = employee.IsActive
                 };
 
-                if (_viewModel.CurrentState == ViewState.Add)
+                if (index >= 0)
                 {
-                    _viewModel.Db.Employees.Insert(entity);
-
-                    var uiModel = new EmployeeUIModel
-                    {
-                        EmployeeId = entity.EmployeeId,
-                        FirstName = entity.FirstName,
-                        LastName = entity.LastName,
-                        Email = entity.Email,
-                        Phone = entity.Phone,
-                        Position = entity.Position,
-                        Salary = entity.Salary,
-                        HireDate = entity.HireDate,
-                        IsActive = entity.IsActive,
-                        DeletedAt = entity.DeletedAt
-                    };
-
-                    _viewModel.AllEmployees.Add(uiModel);
-                    _viewModel.Employees.Add(uiModel);
-
-                    MessageBox.Show("Employee added successfully!", "Success", MessageBoxButton.OK);
-                }
-                else if (_viewModel.CurrentState == ViewState.Edit)
-                {
-                    _viewModel.Db.Employees.Update(entity);
-
-                    var existing = _viewModel.AllEmployees.FirstOrDefault(e => e.EmployeeId == entity.EmployeeId);
-                    if (existing != null)
-                    {
-                        existing.FirstName = entity.FirstName;
-                        existing.LastName = entity.LastName;
-                        existing.Email = entity.Email;
-                        existing.Phone = entity.Phone;
-                        existing.Position = entity.Position;
-                        existing.Salary = entity.Salary;
-                        existing.HireDate = entity.HireDate;
-                        existing.IsActive = entity.IsActive;
-                        existing.DeletedAt = entity.DeletedAt;
-                    }
-
-                    MessageBox.Show("Employee updated successfully!", "Success", MessageBoxButton.OK);
+                    _viewModel.AllEmployees[index] = updated;
+                    _viewModel.Employees[index] = updated;
                 }
 
-                _viewModel.SelectedEmployee = null;
-                _viewModel.CurrentEmployee = new EmployeeFormModel();
-                _viewModel.CurrentState = ViewState.Default;
+                MessageBox.Show("Employee updated successfully!", "Success", MessageBoxButton.OK);
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Error while saving employee: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                _viewModel.Db.Employees.Insert(employee);
+
+                var newModel = new EmployeeUIModel
+                {
+                    EmployeeId = employee.EmployeeId,
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    Email = employee.Email,
+                    Phone = employee.Phone,
+                    Position = employee.Position,
+                    Salary = employee.Salary,
+                    HireDate = employee.HireDate,
+                    IsActive = employee.IsActive
+                };
+
+                _viewModel.AllEmployees.Add(newModel);
+                _viewModel.Employees.Add(newModel);
+
+                MessageBox.Show("Employee added successfully!", "Success", MessageBoxButton.OK);
             }
+
+            _viewModel.SelectedEmployee = null;
+            _viewModel.CurrentEmployee = new EmployeeFormModel();
+            _viewModel.CurrentState = ViewState.Default;
         }
     }
 }
+

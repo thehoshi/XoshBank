@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Enums;
-using XoshBank.Models;
 
 namespace XoshBank.Command.Employees
 {
@@ -17,34 +15,29 @@ namespace XoshBank.Command.Employees
             _viewModel = viewModel;
         }
 
-        public event EventHandler CanExecuteChanged;
-
        
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
         public bool CanExecute(object parameter) => _viewModel.SelectedEmployee != null;
 
         public void Execute(object parameter)
         {
             if (_viewModel.SelectedEmployee == null) return;
 
-            var result = MessageBox.Show("Are you sure you want to delete this employee?",
+            var result = MessageBox.Show("Are you sure you want to delete?",
                 "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result != MessageBoxResult.Yes) return;
 
-            int id = _viewModel.SelectedEmployee.EmployeeId;
+            _viewModel.Db.Employees.Delete(_viewModel.SelectedEmployee.EmployeeId);
+            _viewModel.AllEmployees.Remove(_viewModel.SelectedEmployee);
+            _viewModel.Employees.Remove(_viewModel.SelectedEmployee);
 
-           
-            _viewModel.Db.Employees.Delete(id);
-
-           
-            var inAll = _viewModel.AllEmployees.FirstOrDefault(e => e.EmployeeId == id);
-            var inFiltered = _viewModel.Employees.FirstOrDefault(e => e.EmployeeId == id);
-
-            if (inAll != null) _viewModel.AllEmployees.Remove(inAll);
-            if (inFiltered != null) _viewModel.Employees.Remove(inFiltered);
-
-       
             _viewModel.SelectedEmployee = null;
-            _viewModel.CurrentEmployee = new EmployeeFormModel();
+            _viewModel.CurrentEmployee = new Models.EmployeeFormModel();
             _viewModel.CurrentState = ViewState.Default;
 
             MessageBox.Show("Employee deleted successfully!", "Success", MessageBoxButton.OK);

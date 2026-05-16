@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32; 
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -15,45 +16,46 @@ namespace XoshBank.Command.Employees
             _viewModel = viewModel;
         }
 
-        public event EventHandler CanExecuteChanged;
-        public bool CanExecute(object parameter) => _viewModel.Employees?.Count > 0;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
+        public bool CanExecute(object parameter) => _viewModel.Employees.Count > 0;
 
         public void Execute(object parameter)
         {
-            try
+            
+            var dialog = new SaveFileDialog
             {
-                string path = Path.Combine(
-                    Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
-                    $"Employees_{DateTime.Now:yyyy-MM-dd_HH-mm-ss}.csv");
+                Title = "Export Employees",
+                Filter = "CSV Files (*.csv)|*.csv|All Files (*.*)|*.*",
+                FileName = "employees.csv"
+            };
 
-                using (var writer = new StreamWriter(path))
+            if (dialog.ShowDialog() == true)
+            {
+                try
                 {
-               
-                    writer.WriteLine("EmployeeId,FirstName,LastName,Email,Phone,Position,Salary,HireDate,IsActive,CreatedAt,DeletedAt");
-
-                   
-                    foreach (var e in _viewModel.Employees)
+                    using (var writer = new StreamWriter(dialog.FileName))
                     {
-                        writer.WriteLine($"{e.EmployeeId}," +
-                                         $"{e.FirstName}," +
-                                         $"{e.LastName}," +
-                                         $"{e.Email}," +
-                                         $"{e.Phone}," +
-                                         $"{e.Position}," +
-                                         $"{e.Salary}," +
-                                         $"{e.HireDate:dd.MM.yyyy}," +
-                                         $"{e.IsActive}," +
-                                         $"{e.DeletedAt:dd.MM.yyyy}");
-                    }
-                }
+                        // Header
+                        writer.WriteLine("ID,FirstName,LastName,Email,Phone,Position,Salary,HireDate,IsActive,CreatedDate,DeletedAt");
 
-                MessageBox.Show($"Exported successfully!\n\nSaved to:\n{Path.GetFullPath(path)}",
-                    "Export", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Export failed: {ex.Message}", "Error",
-                    MessageBoxButton.OK, MessageBoxImage.Error);
+                        // Rows
+                        foreach (var e in _viewModel.Employees)
+                        {
+                            writer.WriteLine($"{e.EmployeeId},{e.FirstName},{e.LastName},{e.Email},{e.Phone},{e.Position},{e.Salary},{e.HireDate},{e.IsActive},{e.DeletedAt}");
+                        }
+                    }
+
+                    MessageBox.Show("Employees exported successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error exporting employees: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }

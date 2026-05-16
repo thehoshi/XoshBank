@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using XoshBank.Command.Cards;
+using System.Windows.Input;
 using XoshBank.Command.Employees;
 using XoshBank.Core.Repositories;
 using XoshBank.Enums;
@@ -12,9 +12,15 @@ namespace XoshBank.Desktop.ViewModels
     public class EmployeesControlViewModel : INotifyPropertyChanged
     {
         private readonly IUnitOfWork _db;
+
         public EmployeesControlViewModel(IUnitOfWork db)
         {
             _db = db;
+
+            CurrentState = ViewState.Default;
+            CurrentEmployee = new EmployeeFormModel();
+            Employees = new ObservableCollection<EmployeeUIModel>();
+            AllEmployees = new List<EmployeeUIModel>();
         }
 
         #region properties
@@ -25,14 +31,22 @@ namespace XoshBank.Desktop.ViewModels
         public ViewState CurrentState
         {
             get => _currentState;
-            set { _currentState = value; OnPropertyChanged(nameof(CurrentState)); }
+            set
+            {
+                _currentState = value;
+                OnPropertyChanged(nameof(CurrentState));
+            }
         }
 
         private EmployeeFormModel _currentEmployee;
         public EmployeeFormModel CurrentEmployee
         {
             get => _currentEmployee;
-            set { _currentEmployee = value; OnPropertyChanged(nameof(CurrentEmployee)); }
+            set
+            {
+                _currentEmployee = value;
+                OnPropertyChanged(nameof(CurrentEmployee));
+            }
         }
 
         private EmployeeUIModel _selectedEmployee;
@@ -47,18 +61,19 @@ namespace XoshBank.Desktop.ViewModels
                 if (value != null)
                 {
                     CurrentState = ViewState.Selected;
+
                     CurrentEmployee = new EmployeeFormModel
                     {
-                        EmployeeId = SelectedEmployee.EmployeeId,
-                        FirstName = SelectedEmployee.FirstName,
-                        LastName = SelectedEmployee.LastName,
-                        Email = SelectedEmployee.Email,
-                        Phone = SelectedEmployee.Phone,
-                        Position = SelectedEmployee.Position,
-                        Salary = SelectedEmployee.Salary,
-                        HireDate = SelectedEmployee.HireDate,
-                        IsActive = SelectedEmployee.IsActive,
-                        DeletedAt = SelectedEmployee.DeletedAt
+                        EmployeeId = value.EmployeeId,
+                        FirstName = value.FirstName,
+                        LastName = value.LastName,
+                        Email = value.Email,
+                        Phone = value.Phone,
+                        Position = value.Position,
+                        Salary = value.Salary ?? 0,
+                        HireDate = value.HireDate ?? System.DateTime.Now,
+                        IsActive = value.IsActive ?? false,
+                        DeletedAt = value.DeletedAt
                     };
                 }
                 else
@@ -66,6 +81,9 @@ namespace XoshBank.Desktop.ViewModels
                     CurrentState = ViewState.Default;
                     CurrentEmployee = new EmployeeFormModel();
                 }
+
+               
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -73,7 +91,11 @@ namespace XoshBank.Desktop.ViewModels
         public ObservableCollection<EmployeeUIModel> Employees
         {
             get => _employees;
-            set { _employees = value; OnPropertyChanged(nameof(Employees)); }
+            set
+            {
+                _employees = value;
+                OnPropertyChanged(nameof(Employees));
+            }
         }
 
         public List<EmployeeUIModel> AllEmployees { get; set; }
@@ -99,18 +121,30 @@ namespace XoshBank.Desktop.ViewModels
 
                     foreach (EmployeeUIModel e in AllEmployees)
                     {
-                        if (e.FirstName?.ToUpper().Contains(upper) == true ||
+                        if (
+                            e.FirstName?.ToUpper().Contains(upper) == true ||
                             e.LastName?.ToUpper().Contains(upper) == true ||
                             e.Email?.ToUpper().Contains(upper) == true ||
                             e.Position?.ToUpper().Contains(upper) == true ||
                             e.Phone?.ToUpper().Contains(upper) == true ||
-                            (e.Salary.HasValue && e.Salary.Value.ToString().ToUpper().Contains(upper)) ||
-                            (e.HireDate.HasValue && e.HireDate.Value.ToString("yyyy-MM-dd").ToUpper().Contains(upper)) ||
-                            (e.IsActive.HasValue && e.IsActive.Value.ToString().ToUpper().Contains(upper)))
+                            (e.Salary.HasValue &&
+                             e.Salary.Value.ToString().ToUpper().Contains(upper)) ||
+
+                            (e.HireDate.HasValue &&
+                             e.HireDate.Value.ToString("yyyy-MM-dd")
+                             .ToUpper()
+                             .Contains(upper)) ||
+
+                            (e.IsActive.HasValue &&
+                             e.IsActive.Value.ToString()
+                             .ToUpper()
+                             .Contains(upper))
+                           )
                         {
                             filtered.Add(e);
                         }
                     }
+
                     Employees = new ObservableCollection<EmployeeUIModel>(filtered);
                 }
             }
@@ -120,20 +154,34 @@ namespace XoshBank.Desktop.ViewModels
 
         #region commands
 
-        public AddEmployeesCommand AddCommand => new AddEmployeesCommand(this);
-        public SaveEmployeesCommand SaveCommand => new SaveEmployeesCommand(this);
-        public EditEmployeesCommand EditCommand => new EditEmployeesCommand(this);
-        public RejectEmployeesCommand RejectCommand => new RejectEmployeesCommand(this);
-        public DeleteEmployeesCommand DeleteCommand => new DeleteEmployeesCommand(this);
-        public ExportEmployeesCommand ExportCommand => new ExportEmployeesCommand(this);
+        public AddEmployeesCommand AddCommand
+            => new AddEmployeesCommand(this);
+
+        public SaveEmployeesCommand SaveCommand
+            => new SaveEmployeesCommand(this);
+
+        public EditEmployeesCommand EditCommand
+            => new EditEmployeesCommand(this);
+
+        public RejectEmployeesCommand RejectCommand
+            => new RejectEmployeesCommand(this);
+
+        public DeleteEmployeesCommand DeleteCommand
+            => new DeleteEmployeesCommand(this);
+
+        public ExportEmployeesCommand ExportCommand
+            => new ExportEmployeesCommand(this);
 
         #endregion
 
         #region property changed
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         private void OnPropertyChanged(string propertyName)
-            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            => PropertyChanged?.Invoke(
+                this,
+                new PropertyChangedEventArgs(propertyName));
 
         #endregion
     }

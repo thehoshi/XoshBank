@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Input;
 using XoshBank.Desktop.ViewModels;
 using XoshBank.Enums;
@@ -17,18 +16,19 @@ namespace XoshBank.Command.Employees
         }
 
         public event EventHandler CanExecuteChanged;
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
+        public bool CanExecute(object parameter) => true;
 
         public void Execute(object parameter)
         {
            
             _viewModel.SelectedEmployee = null;
+
+           
             _viewModel.CurrentState = ViewState.Add;
 
+            
             int nextId = _viewModel.Db.Employees.GetNextId();
+            _viewModel.CurrentEmployee = new EmployeeFormModel();
             _viewModel.CurrentEmployee.EmployeeId = nextId;
         }
     }
