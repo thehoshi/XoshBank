@@ -9,13 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XoshBank.Desktop", "Xoshban
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XoshBank.Persistent.SQLServer", "XoshBank.Persistent.SQLServer\XoshBank.Persistent.SQLServer.csproj", "{C32FD3FE-0F9F-48FD-A321-3DC37D681C30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XoshBank.Web", "XoshBank.Web\XoshBank.Web.csproj", "{0BD74857-6063-4520-BEBB-CE396DAC19C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{712D04E0-6EA9-45BB-9BE7-A2D5F758BABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +29,15 @@ Global
 		{C32FD3FE-0F9F-48FD-A321-3DC37D681C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C32FD3FE-0F9F-48FD-A321-3DC37D681C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C32FD3FE-0F9F-48FD-A321-3DC37D681C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD74857-6063-4520-BEBB-CE396DAC19C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD74857-6063-4520-BEBB-CE396DAC19C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD74857-6063-4520-BEBB-CE396DAC19C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD74857-6063-4520-BEBB-CE396DAC19C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {700F3AE6-6654-456B-A05E-623FE4A6E6B4}
 	EndGlobalSection
 EndGlobal

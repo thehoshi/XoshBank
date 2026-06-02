@@ -1,0 +1,28 @@
+﻿@model XoshBank.Web.Models.EmployeeUiModel
+
+<h2>Employees List</h2>
+<p>Manage all employees in the system</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Position</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model.Employees)
+        {
+            <tr>
+                <td>@emp.No</td>
+                <td>@emp.FirstName</td>
+                <td>@emp.LastName</td>
+                <td>@emp.Email</td>
+                <td>@emp.Position</td>
+            </tr>
+        }
+    </tbody>
+</table>
