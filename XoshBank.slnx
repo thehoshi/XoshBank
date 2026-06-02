@@ -2,6 +2,7 @@
   <Project Path="XoshBank.Core/XoshBank.Core.csproj" Id="25c543d9-d122-4dea-8502-231b8b4d5dc1" />
   <Project Path="XoshBank.Desktop/XoshBank.Desktop.csproj" Id="3e1057c6-2999-4937-be27-e181d87388db" />
   <Project Path="XoshBank.Persistent.SQLServer/XoshBank.Persistent.SQLServer.csproj" Id="fa322679-56ea-4428-8fcd-18b61343c89f" />
+  <Project Path="XoshBank.Web/XoshBank.Web.csproj" Id="ee5c71cf-751f-43d8-9d88-6310b074d164" />
 </Solution>
 
 
