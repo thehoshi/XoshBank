@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\XoshBank.Core\XoshBank.Core.csproj" />
+    <ProjectReference Include="..\XoshBank.Persistent.SQLServer\XoshBank.Persistent.SQLServer.csproj" />
+  </ItemGroup>
+
 </Project>

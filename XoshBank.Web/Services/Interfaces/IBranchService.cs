@@ -1,6 +1,9 @@
-﻿namespace XoshBank.Web.Services.Interfaces
+﻿using XoshBank.Web.Models;
+
+namespace XoshBank.Web.Services.Interfaces
 {
-    public class IBranchService
+    public interface IBranchService
     {
+        List<BranchModel> Get();
     }
 }
