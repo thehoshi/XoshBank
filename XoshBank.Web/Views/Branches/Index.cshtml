@@ -1,10 +1,54 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
+﻿@model XoshBank.Web.Models.BranchUiModel
 
-</body>
-</html>
+@{
+    ViewData["Title"] = "Branches";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-1">Branches List</h2>
+            <p class="text-muted mb-0">Manage all bank branches in the system</p>
+        </div>
+
+        <a href="#" class="btn btn-primary">Add Branch</a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>No</th>
+                        <th>Branch Name</th>
+                        <th>City</th>
+                        <th>Address</th>
+                        <th>Manager</th>
+                        <th>Phone</th>
+                        <th>Employees</th>
+                        <th>Opening Date</th>
+                        <th>Revenue</th>
+                        <th>Expenses</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Branches)
+                    {
+                        <tr>
+                            <td>@item.No</td>
+                            <td>@item.BranchName</td>
+                            <td>@item.City</td>
+                            <td>@item.Address</td>
+                            <td>@item.ManagerName</td>
+                            <td>@item.PhoneNumber</td>
+                            <td>@item.EmployeeCount</td>
+                            <td>@(item.OpeningDate.HasValue ? item.OpeningDate.Value.ToString("dd.MM.yyyy") : "-")</td>
+                            <td>@(item.Revenue.HasValue ? item.Revenue.Value.ToString("N2") : "-")</td>
+                            <td>@(item.Expenses.HasValue ? item.Expenses.Value.ToString("N2") : "-")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

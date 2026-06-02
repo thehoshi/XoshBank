@@ -1,9 +1,14 @@
+using XoshBank.Web.Services.Interfaces;
+using XoshBank.Web.Services.Implementations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+builder.Services.AddTransient<IBranchService, BranchService>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
