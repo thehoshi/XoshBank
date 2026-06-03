@@ -1,6 +1,10 @@
 ﻿@model XoshBank.Web.Models.EmployeeUiModel
 
-<h2>Employees List</h2>
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Employees List</h2>
+    <a asp-controller="Employees" asp-action="Create" class="btn btn-primary">Add Employee</a>
+</div>
+
 <p>Manage all employees in the system</p>
 
 <table class="table table-striped">
