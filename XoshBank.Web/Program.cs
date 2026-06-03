@@ -5,10 +5,9 @@ using XoshBank.Persistent.SQLServer.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Register services before building the app
 builder.Services.AddTransient<IBranchService, BranchService>();
+builder.Services.AddTransient<IEmployeeService, EmployeeService>();
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddTransient<IUnitOfWork>(x =>
@@ -19,7 +18,7 @@ builder.Services.AddTransient<IUnitOfWork>(x =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
