@@ -11,7 +11,11 @@ builder.Services.AddTransient<IBranchService, BranchService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddTransient<IUnitOfWork, MsSQLUnitOfWork>();
+builder.Services.AddTransient<IUnitOfWork>(x =>
+    new MsSQLUnitOfWork(
+        builder.Configuration.GetConnectionString("MsSql")
+    )
+);
 
 var app = builder.Build();
 
