@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<IBranchService, BranchService>();
 builder.Services.AddTransient<IEmployeeService, EmployeeService>();
+builder.Services.AddTransient<ICustomerService, CustomerService>();
 
 builder.Services.AddControllersWithViews();
 

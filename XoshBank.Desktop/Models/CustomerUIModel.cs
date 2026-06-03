@@ -14,6 +14,8 @@ namespace XoshBank.Models
         public int ID { get; set; }
         [ExcelColumnStyle("First Name")]
         public string FirstName { get; set; }
+        [ExcelColumnStyle("First Name")]
+
         [ExcelColumnStyle("Last Name")]
         public string LastName { get; set; }
         [ExcelColumnStyle("Date of Birth")]
